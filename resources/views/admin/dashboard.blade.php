@@ -110,10 +110,10 @@
                     <div>
                         <p class="font-medium">{{ $student->name }}</p>
                         <p class="text-sm text-red-600">
-                            Rs. {{ number_format($student->pendingFees->sum('amount')) }} pending
+                             Rs. {{ number_format($student->pending_amount) }} pending
                         </p>
                     </div>
-                    <a href="{{ route('admin.students.show', $student) }}" 
+                    <a href="{{ route('admin.student.details', ['id' => $student->id]) }}" 
                        class="text-blue-600 hover:text-blue-800 text-sm">
                         View Details
                     </a>

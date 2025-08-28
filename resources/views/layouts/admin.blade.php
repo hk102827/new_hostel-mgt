@@ -7,11 +7,20 @@
     <title>@yield('title') - Hostel Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Print optimizations so only main content prints */
+        @media print {
+            .no-print { display: none !important; }
+            .ml-64 { margin-left: 0 !important; }
+            body { background: #fff !important; }
+            main { padding: 0 !important; }
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
     <div class="flex min-h-screen">
         <!-- Sidebar -->
-       <div class="w-64 bg-gray-800 text-white flex flex-col justify-between">
+       <div class="w-64 bg-gray-800 text-white fixed inset-y-0 left-0 flex flex-col justify-between no-print">
         <div>
             <div class="p-4">
                 <h2 class="text-xl font-bold">Hostel Admin</h2>
@@ -68,12 +77,12 @@
         </div>
         
         <!-- Main Content -->
-        <div class="flex-1 flex flex-col">
+        <div class="flex-1 flex flex-col ml-64">
             <!-- Header -->
-            <header class="bg-white shadow-sm border-b px-6 py-4">
+            <header class="bg-white shadow-sm border-b px-6 py-4 no-print">
                 <div class="flex justify-between items-center">
                     <h1 class="text-2xl font-semibold text-gray-800">@yield('page-title')</h1>
-                    {{-- <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-4">
                         <span class="text-gray-600">{{ auth()->user()->name }}</span>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -81,20 +90,20 @@
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </button>
                         </form>
-                    </div> --}}
+                    </div>
                 </div>
             </header>
             
             <!-- Content -->
             <main class="flex-1 p-6 overflow-y-auto">
                 @if(session('success'))
-                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 no-print">
                         {{ session('success') }}
                     </div>
                 @endif
                 
                 @if($errors->any())
-                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 no-print">
                         <ul>
                             @foreach($errors->all() as $error)
                                 <li>{{ $error }}</li>

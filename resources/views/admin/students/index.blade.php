@@ -17,8 +17,26 @@
         </a>
     </div>
     
+    <!-- Filters -->
+    <form method="GET" class="bg-white p-4 rounded-lg shadow flex items-end gap-4">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Japanese Course</label>
+            <select name="academy" class="border rounded px-3 py-2">
+                <option value="">All</option>
+                <option value="enrolled" {{ request('academy') === 'enrolled' ? 'selected' : '' }}>Enrolled</option>
+                <option value="not_enrolled" {{ request('academy') === 'not_enrolled' ? 'selected' : '' }}>Not Enrolled</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" class="mt-6 bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900">Filter</button>
+        </div>
+        @if(request()->has('academy') && request('academy') !== null && request('academy') !== '')
+            <a href="{{ route('admin.students.index') }}" class="mt-6 text-sm text-blue-600 hover:text-blue-800">Clear</a>
+        @endif
+    </form>
+
     <!-- Students Table -->
-    <div class="bg-white rounded-lg shadow overflow-hidden">
+    <div class="bg-white rounded-lg shadow overflow-hidden mt-4">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
@@ -45,10 +63,13 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                         @if($student->japaneseAcademy)
                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                {{ $student->japaneseAcademy->level }}
+                                Enrolled
                             </span>
+                            @if(!empty($student->japaneseAcademy->level))
+                                <span class="ml-2 text-xs text-gray-600">Level: {{ $student->japaneseAcademy->level }}</span>
+                            @endif
                         @else
-                            <span class="text-gray-400">Not enrolled</span>
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-700">Not Enrolled</span>
                         @endif
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">

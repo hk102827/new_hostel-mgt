@@ -8,6 +8,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\JapaneseAcademyController;
 use App\Http\Controllers\MessManagementController;
 use App\Http\Controllers\FeeManagementController;
+use App\Http\Controllers\ReportsController;
 
 
 // Route::get('/', function () {
@@ -24,6 +25,7 @@ Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'admindashboard'])->name('dashboard');
         Route::get('/sidebar', [AdminDashboardController::class, 'adminsidebar'])->name('sidebar');
+        Route::get('/student/details/{id}', [AdminDashboardController::class, 'show'])->name('student.details');
 
         // Students
         Route::get('/students', [StudentController::class, 'index'])->name('students.index');
@@ -68,6 +70,9 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
 
         // Reports
         Route::get('/reports', [ReportsController::class, 'index'])->name('reports.index');
+        Route::get('/reports/download', [ReportsController::class, 'download'])->name('reports.download');
+        Route::get('/reports/fees', [ReportsController::class, 'fees'])->name('reports.fees');
+        Route::get('/reports/fees/download', [ReportsController::class, 'feesDownload'])->name('reports.fees.download');
     });
 
 

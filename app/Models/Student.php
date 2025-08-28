@@ -35,9 +35,11 @@ class Student extends Model
             return $this->hasMany(Fee_management::class);
         }
 
-        public function pendingFees()
+        public function getPendingAmountAttribute()
         {
-            return $this->hasMany(Fee_management::class)->whereIn('status', ['pending', 'overdue']);
+             $total = $this->fees->sum('amount');   // maan lo total_amount column hai
+            $paid  = $this->fees->sum('paid_amount');
+            return $total - $paid;
         }
 }
 

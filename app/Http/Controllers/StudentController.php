@@ -10,9 +10,19 @@ use App\Models\Room_assignment;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $students = Student::latest()->paginate(10);
+        $query = Student::with(['roomAssignment.room', 'japaneseAcademy', 'messManagement'])->latest();
+
+        if ($request->filled('academy')) {
+            if ($request->academy === 'enrolled') {
+                $query->whereHas('japaneseAcademy');
+            } elseif ($request->academy === 'not_enrolled') {
+                $query->whereDoesntHave('japaneseAcademy');
+            }
+        }
+
+        $students = $query->paginate(10)->withQueryString();
         return view('admin.students.index', compact('students'));
     }
     public function create()
@@ -105,6 +115,11 @@ class StudentController extends Controller
 
             return redirect()->back()->with('success', 'Room assignment deleted successfully.');
         }
+
+
+
+
+        
 
 
 

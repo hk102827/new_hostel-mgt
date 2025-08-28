@@ -13,7 +13,12 @@ class Fee_management extends Model
         'status', 'paid_amount', 'payment_method', 'receipt_number', 'notes'
     ];
 
-    protected $dates = ['due_date', 'paid_date'];
+    // Ensure Carbon instances for dates (reliable in newer Laravel versions)
+    protected $casts = [
+        'due_date' => 'date',
+        'paid_date' => 'date',
+    ];
+    
 
     public function student()
     {
