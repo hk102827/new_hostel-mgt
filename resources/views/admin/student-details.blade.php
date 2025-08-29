@@ -122,7 +122,13 @@
                     <tbody>
                         @forelse($pendingFees as $f)
                         <tr class="border-b">
-                            <td class="p-2">{{ $f->fee_type }}</td>
+                             <td>
+                    @if(!empty($f->fee_type))
+                        {{ implode(', ', json_decode($f->fee_type, true)) }}
+                    @else
+                        -
+                    @endif
+                </td>
                             <td class="p-2">{{ $f->amount }}</td>
                             <td class="p-2">{{ optional($f->due_date)->format('Y-m-d') }}</td>
                             <td class="p-2">{{ ucfirst($f->status) }}</td>

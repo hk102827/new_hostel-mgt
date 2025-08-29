@@ -15,6 +15,7 @@ class Fee_management extends Model
 
     // Ensure Carbon instances for dates (reliable in newer Laravel versions)
     protected $casts = [
+        'fee_type' => 'array',
         'due_date' => 'date',
         'paid_date' => 'date',
     ];

@@ -73,6 +73,12 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         Route::get('/reports/download', [ReportsController::class, 'download'])->name('reports.download');
         Route::get('/reports/fees', [ReportsController::class, 'fees'])->name('reports.fees');
         Route::get('/reports/fees/download', [ReportsController::class, 'feesDownload'])->name('reports.fees.download');
+
+        // Kitchen Management
+        Route::get('/kitchen', [\App\Http\Controllers\KitchenController::class, 'index'])->name('kitchen.index');
+        Route::post('/kitchen/store', [\App\Http\Controllers\KitchenController::class, 'store'])->name('kitchen.store');
+        Route::get('/kitchen/report', [\App\Http\Controllers\KitchenController::class, 'report'])->name('kitchen.report');
+        Route::get('/kitchen/export', [\App\Http\Controllers\KitchenController::class, 'exportCsv'])->name('kitchen.export');
     });
 
 

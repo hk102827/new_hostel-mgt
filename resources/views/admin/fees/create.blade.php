@@ -22,18 +22,53 @@
             @error('student_id')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
         </div>
 
-        <!-- Fee Type -->
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Fee Type</label>
-            <select name="fee_type" class="h-12 px-3 block w-full rounded-lg border-gray-300 shadow-md focus:border-indigo-500 focus:ring-indigo-500 text-base">
-                <option value="hostel_rent" {{ old('fee_type')=='hostel_rent' ? 'selected' : '' }}>Hostel Rent</option>
-                <option value="mess_fee" {{ old('fee_type')=='mess_fee' ? 'selected' : '' }}>Mess Fee</option>
-                <option value="japanese_course" {{ old('fee_type')=='japanese_course' ? 'selected' : '' }}>Japanese Course</option>
-                <option value="security_deposit" {{ old('fee_type')=='security_deposit' ? 'selected' : '' }}>Security Deposit</option>
-                <option value="other" {{ old('fee_type')=='other' ? 'selected' : '' }}>Other</option>
-            </select>
-            @error('fee_type')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
+{{-- Fee Type --}}
+<div class="relative w-full">
+    <label for="fee_type" class="block text-sm font-medium text-gray-700 mb-1">Fee Type</label>
+    
+    <div class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm cursor-pointer flex flex-wrap gap-2 items-center"
+         onclick="toggleFeeDropdown()">
+        <div id="selected-fees" class="flex gap-2 flex-wrap">
+            <span class="text-gray-400">Select Fee Type...</span>
         </div>
+        <svg class="inline-block h-5 w-5 ml-auto" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+        </svg>
+    </div>
+
+    {{-- Hidden input (array) --}}
+    <input type="hidden" name="fee_type" id="fee_type_input">
+
+    <div id="fee-dropdown" class="hidden absolute mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+        <div class="flex items-center px-4 py-2 hover:bg-gray-100">
+            <input type="checkbox" id="fee-hostel" value="hostel_rent" class="mr-2" onchange="updateFeeSelected()">
+            <label for="fee-hostel">Hostel Rent</label>
+        </div>
+        <div class="flex items-center px-4 py-2 hover:bg-gray-100">
+            <input type="checkbox" id="fee-mess" value="mess_fee" class="mr-2" onchange="updateFeeSelected()">
+            <label for="fee-mess">Mess Fee</label>
+        </div>
+        <div class="flex items-center px-4 py-2 hover:bg-gray-100">
+            <input type="checkbox" id="fee-japanese" value="japanese_course" class="mr-2" onchange="updateFeeSelected()">
+            <label for="fee-japanese">Japanese Course</label>
+        </div>
+        <div class="flex items-center px-4 py-2 hover:bg-gray-100">
+            <input type="checkbox" id="fee-security" value="security_deposit" class="mr-2" onchange="updateFeeSelected()">
+            <label for="fee-security">Security Deposit</label>
+        </div>
+        <div class="flex items-center px-4 py-2 hover:bg-gray-100">
+            <input type="checkbox" id="fee-other" value="other" class="mr-2" onchange="updateFeeSelected()">
+            <label for="fee-other">Other</label>
+        </div>
+    </div>
+
+    @error('fee_type')
+    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
+
+
+
 
         <!-- Amount -->
         <div>
@@ -103,4 +138,54 @@
         </div>
     </form>
 </div>
+
+
+<script>
+function toggleFeeDropdown() {
+    document.getElementById('fee-dropdown').classList.toggle('hidden');
+}
+
+function updateFeeSelected() {
+    const checkboxes = document.querySelectorAll('#fee-dropdown input[type="checkbox"]');
+    const selectedContainer = document.getElementById('selected-fees');
+    const hiddenInput = document.getElementById('fee_type_input');
+
+    selectedContainer.innerHTML = '';
+    let selectedValues = [];
+
+    checkboxes.forEach(cb => {
+        if (cb.checked) {
+            selectedValues.push(cb.value);
+
+            const tag = document.createElement('span');
+            tag.className = 'bg-indigo-100 text-indigo-700 px-2 py-1 rounded flex items-center gap-1 cursor-pointer';
+            tag.innerHTML = cb.nextElementSibling.innerText + 
+                ` <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" onclick="removeFee('${cb.id}')"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>`;
+            
+            selectedContainer.appendChild(tag);
+        }
+    });
+
+    if (selectedValues.length === 0) {
+        selectedContainer.innerHTML = '<span class="text-gray-400">Select Fee Type...</span>';
+    }
+
+    hiddenInput.value = selectedValues.join(',');
+}
+
+function removeFee(id) {
+    document.getElementById(id).checked = false;
+    updateFeeSelected();
+}
+
+// Close dropdown on outside click
+document.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('fee-dropdown');
+    const trigger = event.target.closest('[onclick="toggleFeeDropdown()"]');
+    if (!dropdown.contains(event.target) && !trigger) {
+        dropdown.classList.add('hidden');
+    }
+});
+</script>
+
 @endsection

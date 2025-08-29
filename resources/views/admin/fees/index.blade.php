@@ -51,7 +51,14 @@
             @forelse($fees as $fee)
             <tr class="border-t">
                 <td class="px-6 py-3">{{ optional($fee->student)->name }} (ID: {{ $fee->student_id }})</td>
-                <td class="px-6 py-3">{{ str_replace('_',' ', ucfirst($fee->fee_type)) }}</td>
+                <td>
+                    @if(!empty($fee->fee_type))
+                        {{ implode(', ', json_decode($fee->fee_type, true)) }}
+                    @else
+                        -
+                    @endif
+                </td>
+
                 <td class="px-6 py-3">{{ number_format($fee->amount, 2) }}</td>
                 <td class="px-6 py-3">{{ \Carbon\Carbon::parse($fee->due_date)->format('Y-m-d') }}</td>
                 <td class="px-6 py-3">{{ $fee->paid_date ? \Carbon\Carbon::parse($fee->paid_date)->format('Y-m-d') : '-' }}</td>

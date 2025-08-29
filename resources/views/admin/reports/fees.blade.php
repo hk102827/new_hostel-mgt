@@ -57,7 +57,13 @@
                 <tr class="border-b">
                     <td class="p-2">{{ $f->id }}</td>
                     <td class="p-2">{{ optional($f->student)->name }}</td>
-                    <td class="p-2">{{ $f->fee_type }}</td>
+                     <td>
+                    @if(!empty($f->fee_type))
+                        {{ implode(', ', json_decode($f->fee_type, true)) }}
+                    @else
+                        -
+                    @endif
+                </td>
                     <td class="p-2">{{ $f->amount }}</td>
                     <td class="p-2">{{ $f->paid_amount }}</td>
                     <td class="p-2">{{ max(($f->amount ?? 0) - ($f->paid_amount ?? 0), 0) }}</td>

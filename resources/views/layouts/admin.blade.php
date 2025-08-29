@@ -51,6 +51,11 @@
                    class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.mess.*') ? 'bg-gray-700' : '' }}">
                     <i class="fas fa-utensils mr-3"></i> Mess Management
                 </a>
+
+                <a href="{{ route('admin.kitchen.index') }}" 
+                   class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.kitchen.*') ? 'bg-gray-700' : '' }}">
+                    <i class="fas fa-carrot mr-3"></i> Kitchen Management
+                </a>
                 
                 <a href="{{ route('admin.fees.index') }}" 
                    class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.fees.*') ? 'bg-gray-700' : '' }}">
