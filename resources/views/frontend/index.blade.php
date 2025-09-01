@@ -1,6 +1,94 @@
 
 @extends('layouts.app')
 @section('content')
+<style>
+.accomodation_item {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px;
+    background: white;
+}
+
+.accomodation_item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.hotel_img {
+    position: relative;
+    overflow: hidden;
+}
+
+.hotel_img img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.status-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+
+.badge-success { background-color: #28a745; }
+.badge-danger { background-color: #dc3545; }
+.badge-warning { background-color: #ffc107; color: #212529; }
+
+.room-details {
+    padding: 20px 15px;
+}
+
+.room-info {
+    margin: 10px 0;
+}
+
+.room-info p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.price {
+    color: #007bff;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 15px 0 10px 0;
+}
+
+.facilities {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.facilities small {
+    display: block;
+    line-height: 1.4;
+}
+
+.btn.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+    .col-lg-3.col-sm-6 {
+        margin-bottom: 20px;
+    }
+    
+    .hotel_img img {
+        height: 180px;
+    }
+}
+</style>
     
         
         <!--================Banner Area =================-->
@@ -95,17 +183,55 @@
                     <p>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, </p>
                 </div>
                 <div class="row mb_30">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="accomodation_item text-center">
-                            <div class="hotel_img">
-                                <img src="{{ asset('assets/image/room1.jpg') }}" alt="">
-                                <a href="#" class="btn theme_btn button_hover">Book Now</a>
-                            </div>
-                            <a href="#"><h4 class="sec_h4">Double Deluxe Room</h4></a>
-                            <h5>$250<small>/night</small></h5>
+                @foreach($rooms as $room)
+            <div class="col-lg-3 col-sm-6">
+                <div class="accomodation_item text-center">
+                    <div class="hotel_img position-relative">
+                        @if($room->picture)
+                            <img src="{{ asset('storage/' . $room->picture) }}" alt="{{ $room->room_type }}" class="img-fluid">
+                        @else
+                            <img src="{{ asset('assets/image/default-room.jpg') }}" alt="{{ $room->room_type }}" class="img-fluid">
+                        @endif
+                        
+                        <!-- Status Badge -->
+                        <div class="status-badge 
+                            @if($room->status == 'available') badge-success 
+                            @elseif($room->status == 'full') badge-danger 
+                            @else badge-warning @endif">
+                            {{ ucfirst($room->status) }}
                         </div>
+                        
+                        <!-- Book Now Button - only show if available -->
+                        @if($room->status == 'available')
+                            <a href="" class="btn theme_btn button_hover">Book Now</a>
+                      
+                        @endif
                     </div>
-                    <div class="col-lg-3 col-sm-6">
+                    
+                    <div class="room-details">
+                        <a href="{{ route('admin.room.details', $room->id) }}">
+                            <h4 class="sec_h4">{{ $room->room_type }} - Bed</h4>
+                        </a>
+                        
+                        <div class="room-info">
+                            <p class="capacity"><i class="fa fa-users"></i> Capacity: {{ $room->capacity }} persons</p>
+                            <p class="occupied"><i class="fa fa-bed"></i> Occupied: {{ $room->occupied }}/{{ $room->capacity }}</p>
+                        </div>
+                        
+                        <h5 class="price">Rs {{ number_format($room->rent, 2) }}<small>/month</small></h5>
+                        
+                        @if($room->facilities)
+                            <div class="facilities">
+                                <small class="text-muted">
+                                    <i class="fa fa-check-circle"></i> {{ $room->facilities }}
+                                </small>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            @endforeach
+                    {{-- <div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
                                 <img src="{{ asset('assets/image/room2.jpg') }}" alt="">
@@ -134,7 +260,7 @@
                             <a href="#"><h4 class="sec_h4">Economy Double</h4></a>
                             <h5>$200<small>/night</small></h5>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>

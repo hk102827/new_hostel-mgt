@@ -29,6 +29,7 @@
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rent</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Facilities</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Image</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
                 </tr>
             </thead>
@@ -56,7 +57,7 @@
                         @endif
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        ${{ number_format($room->rent, 2) }}
+                        Rs{{ number_format($room->rent, 2) }}
                     </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm">
                         @if($room->status == 'available')
@@ -80,6 +81,9 @@
 
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                         {{ $room->facilities }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <img src="{{ asset('storage/' . $room->picture) }}" alt="" width="100" height="100">
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <a href="{{ route('admin.rooms.edit', $room->id) }}" 

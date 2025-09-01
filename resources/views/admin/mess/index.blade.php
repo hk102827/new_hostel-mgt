@@ -31,7 +31,7 @@
     <thead>
         <tr class="bg-gray-100">
             <th class="px-6 py-3 text-left">Student</th>
-            <th class="px-6 py-3 text-left">Plan</th>
+            <th class="px-6 py-3 text-left">Mess Plan</th>
             <th class="px-6 py-3 text-left">Monthly Fee</th>
             <th class="px-6 py-3 text-left">Start</th>
             <th class="px-6 py-3 text-left">End</th>

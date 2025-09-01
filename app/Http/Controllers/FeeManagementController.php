@@ -57,7 +57,7 @@ class FeeManagementController extends Controller
             $validated['paid_amount'] = 0;
         }
         
-// Convert to array
+        // Convert to array
             $feeTypes = explode(',', $validated['fee_type']);
 
             // Store as JSON (better for multiple values)
@@ -69,18 +69,18 @@ class FeeManagementController extends Controller
     }
 
     // Edit form
- public function edit($id)
-{
-    $fee = Fee_management::findOrFail($id);
-    if (is_string($fee->fee_type)) {
-        $fee->fee_type = json_decode($fee->fee_type, true) ?: [$fee->fee_type];
-    } elseif (!is_array($fee->fee_type)) {
-        $fee->fee_type = [];
-    }
-    
-    $students = Student::select('id','name')->orderBy('name')->get();
-    return view('admin.fees.edit', compact('fee','students'));
-}
+        public function edit($id)
+        {
+            $fee = Fee_management::findOrFail($id);
+            if (is_string($fee->fee_type)) {
+                $fee->fee_type = json_decode($fee->fee_type, true) ?: [$fee->fee_type];
+            } elseif (!is_array($fee->fee_type)) {
+                $fee->fee_type = [];
+            }
+            
+            $students = Student::select('id','name')->orderBy('name')->get();
+            return view('admin.fees.edit', compact('fee','students'));
+        }
 
     // Update
     public function update(Request $request, $id)

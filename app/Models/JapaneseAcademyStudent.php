@@ -23,4 +23,10 @@ class JapaneseAcademyStudent extends Model
     {
         return $this->belongsTo(Student::class);
     }
+
+    public function messManagement()
+{
+    return $this->hasOne(Mess_management::class, 'student_id', 'student_id');
+}
+
 }

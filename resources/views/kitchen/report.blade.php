@@ -73,7 +73,6 @@
                         <th class="text-left p-2">Date</th>
                         <th class="text-left p-2">Item</th>
                         <th class="text-left p-2">Category</th>
-                        <th class="text-left p-2">Qty</th>
                         <th class="text-left p-2">Unit</th>
                         <th class="text-left p-2">Unit Price</th>
                         <th class="text-left p-2">Total</th>
@@ -83,10 +82,9 @@
                 <tbody>
                     @foreach($items as $p)
                     <tr class="border-b">
-                        <td class="p-2">{{ optional($p->purchase_date)->format('Y-m-d') }}</td>
+                        <td class="p-2">{{ optional($p->purchase_date)->format('d-m-Y') }}</td>
                         <td class="p-2">{{ $p->item_name }}</td>
                         <td class="p-2">{{ $p->category }}</td>
-                        <td class="p-2">{{ $p->quantity }}</td>
                         <td class="p-2">{{ $p->unit }}</td>
                         <td class="p-2">{{ number_format($p->unit_price,2) }}</td>
                         <td class="p-2 font-semibold">{{ number_format($p->total_cost,2) }}</td>

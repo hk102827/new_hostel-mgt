@@ -9,30 +9,31 @@ use App\Models\Student;
 class JapaneseAcademyController extends Controller
 {
     // List with filters
-    public function index(Request $request)
-    {
-        $query = JapaneseAcademyStudent::query();
+public function index(Request $request)
+{
+    $query = JapaneseAcademyStudent::with('messManagement'); // relation include
+    // dd($query->get());
 
-        if ($request->type) {
-            $query->where('student_type', $request->type); // online / physical
-        }
-
-        if ($request->hostel !== null && $request->hostel !== '') {
-            $query->where('hostel', (bool)$request->hostel); // 1 = hostel, 0 = not
-        }
-
-        // Alias fields to match the existing index.blade expectations (type, is_in_hostel)
-        $students = $query->select([
-            'id',
-            'name',
-            'father_name',
-            'phone',
-            'student_type as type',
-            'hostel as is_in_hostel',
-        ])->get();
-
-        return view('admin.accademy.index', compact('students'));
+    if ($request->type) {
+        $query->where('student_type', $request->type); // online / physical
     }
+
+    if ($request->hostel !== null && $request->hostel !== '') {
+        $query->where('hostel', (bool)$request->hostel); // 1 = hostel, 0 = not
+    }
+
+    $students = $query->select([
+        'id',
+        'name',
+        'father_name',
+        'phone',
+        'student_type as type',
+        'hostel as is_in_hostel',
+    ])->get();
+
+    return view('admin.accademy.index', compact('students'));
+}
+
 
     // Show create form
     public function create()

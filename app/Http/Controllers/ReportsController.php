@@ -58,6 +58,7 @@ class ReportsController extends Controller
             fputcsv($handle, [
                 'ID', 'Student Name', 'Student ID', 'Fee Type', 'Amount', 'Paid Amount', 'Status', 'Due Date', 'Paid Date', 'Payment Method', 'Receipt Number', 'Notes', 'Created At'
             ]);
+            
 
             $base = Fee_management::with('student');
             if ($status) $base->where('status', $status);
@@ -86,6 +87,7 @@ class ReportsController extends Controller
 
             fclose($handle);
         };
+
 
         return response()->stream($callback, 200, $headers);
     }

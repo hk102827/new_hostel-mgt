@@ -13,7 +13,6 @@
             <input type="date" name="purchase_date" class="border rounded p-2" required>
             <input type="text" name="item_name" class="border rounded p-2" placeholder="Item (e.g. Vegetables)" required>
             <input type="text" name="category" class="border rounded p-2" placeholder="Category (optional)">
-            <input type="number" step="0.01" name="quantity" class="border rounded p-2" placeholder="Qty">
             <input type="text" name="unit" class="border rounded p-2" placeholder="Unit (kg, ltr)">
             <input type="number" step="0.01" name="unit_price" class="border rounded p-2" placeholder="Unit Price">
             <input type="number" step="0.01" name="total_cost" class="border rounded p-2 md:col-span-2" placeholder="Total (auto if blank)">
@@ -54,24 +53,32 @@
                         <th class="text-left p-2">Date</th>
                         <th class="text-left p-2">Item</th>
                         <th class="text-left p-2">Category</th>
-                        <th class="text-left p-2">Qty</th>
                         <th class="text-left p-2">Unit</th>
                         <th class="text-left p-2">Unit Price</th>
                         <th class="text-left p-2">Total</th>
                         <th class="text-left p-2">Notes</th>
+                        <th class="text-left p-2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($purchases as $p)
                     <tr class="border-b">
-                        <td class="p-2">{{ optional($p->purchase_date)->format('Y-m-d') }}</td>
+                        <td class="p-2">{{ optional($p->purchase_date)->format('d-m-Y') }}</td>
                         <td class="p-2">{{ $p->item_name }}</td>
                         <td class="p-2">{{ $p->category }}</td>
-                        <td class="p-2">{{ $p->quantity }}</td>
                         <td class="p-2">{{ $p->unit }}</td>
                         <td class="p-2">{{ number_format($p->unit_price,2) }}</td>
                         <td class="p-2 font-semibold">{{ number_format($p->total_cost,2) }}</td>
                         <td class="p-2">{{ $p->notes }}</td>
+                        <td class="p-2 flex gap-2">
+                            <a href="{{ route('admin.kitchen.edit', $p->id) }}" class="px-3 py-1 bg-yellow-500 text-white rounded">Edit</a>
+
+                            <form method="POST" action="{{ route('admin.kitchen.destroy', $p->id) }}" onsubmit="return confirm('Delete this record?');">
+                                @csrf
+                                @method('DELETE')
+                                <button class="px-3 py-1 bg-red-600 text-white rounded">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                     @empty
                     <tr>

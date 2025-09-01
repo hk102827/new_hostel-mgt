@@ -7,7 +7,7 @@
 <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
     <h2 class="text-xl font-semibold mb-6">Add New Room</h2>
 
-    <form action="{{ route('admin.rooms.store') }}" method="POST" class="space-y-6">
+    <form action="{{ route('admin.rooms.store') }}" method="POST" class="space-y-6" enctype="multipart/form-data">
         @csrf
         
         <!-- Room Number -->
@@ -94,6 +94,16 @@
             </select>
             @error('status')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
+        </div>
+        {{-- picture --}}
+              <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Picture</label>
+            <input type="file" name="picture" accept="image/*"
+                   class="h-12 px-3 block w-full rounded-lg border-gray-300 shadow-md 
+                          focus:border-indigo-500 focus:ring-indigo-500 text-base">
+            @error('picture') 
+            <p class="text-red-500 text-sm">{{ $message }}</p> 
             @enderror
         </div>
 

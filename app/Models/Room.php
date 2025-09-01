@@ -16,6 +16,7 @@ class Room extends Model
         'occupied', 
         'rent', 
         'status', 
+        'picture',
         'facilities'
     ];
 

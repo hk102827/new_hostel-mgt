@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Room;
 
 class FrontendController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+        $rooms = Room::latest()->take(8)->get();
+        // dd($rooms);
+        return view('frontend.index', compact('rooms'));
     }
     public function about()
     {

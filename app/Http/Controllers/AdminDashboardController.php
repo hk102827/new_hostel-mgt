@@ -12,10 +12,6 @@ use App\Models\Mess_management;
 use App\Models\Fee_management;
 use Illuminate\Support\Facades\DB;
 
-
-
-
-
 class AdminDashboardController extends Controller
 {
     public function adminsidebar()
@@ -25,11 +21,14 @@ class AdminDashboardController extends Controller
 
 public function admindashboard()
 {
+     $total_fees = Fee_management::sum('amount');
+    $total_paid = Fee_management::sum('paid_amount');
+
     $stats = [
         'total_students' => Student::where('status', 'active')->count(),
         'occupied_rooms' => Room::sum('occupied'),
         'total_rooms' => Room::count(),
-        'academy_students' => JapaneseAcademyStudent::where('status', 'enrolled')->count(),
+        'academy_students' => JapaneseAcademyStudent::where('status', 'active')->count(),
         'mess_members' => Mess_management::where('status', 'active')->count(),
 
         // ✅ Total pending fees
@@ -38,6 +37,10 @@ public function admindashboard()
         // ✅ Monthly revenue (full + partial payments dono ka paid_amount add hoga)
         'monthly_revenue' => Fee_management::whereMonth('paid_date', now()->month)
             ->sum('paid_amount'),
+                  // ✅ Collection Rate
+        'collection_rate' => $total_fees > 0 
+            ? round(($total_paid / $total_fees) * 100, 2) 
+            : 0,
     ];
 
     $recent_admissions = Student::with('roomAssignment.room')
@@ -65,6 +68,7 @@ public function admindashboard()
             'messManagement',
             'fees'                    // all fees
         ])->findOrFail($id);
+        // dd($student);
 
         // Split fees into helpful buckets
         $pendingFees = $student->fees()->whereIn('status', ['pending', 'overdue','partial'])->orderByDesc('due_date')->get();

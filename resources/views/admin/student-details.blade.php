@@ -88,7 +88,7 @@
     <div class="bg-white p-6 rounded shadow">
         <div class="flex items-center justify-between mb-4">
             <h2 class="text-xl font-semibold">Fees</h2>
-            <a href="{{ route('admin.reports.fees') }}" class="text-sm text-blue-600 hover:text-blue-800">Go to Fee Report</a>
+            <a href="{{ route('admin.reports.fees') }}" class="text-sm text-blue-600 hover:text-blue-800 no-print">Go to Fee Report</a>
         </div>
 
         <!-- Totals summary -->

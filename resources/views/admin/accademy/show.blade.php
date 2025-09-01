@@ -35,6 +35,11 @@
             <p class="font-medium">{{ $student->hostel ? 'Yes' : 'No' }}</p>
         </div>
         <div>
+            <p class="text-sm text-gray-600">Mess Plan</p>
+            <p class="font-medium">{{ $student->messManagement ? 'Yes' : 'No' }}</p>
+        </div>
+
+        <div>
             <p class="text-sm text-gray-600">Admission Date</p>
             <p class="font-medium">{{ $student->admission_date ? \Carbon\Carbon::parse($student->admission_date)->format('Y-m-d') : '-' }}</p>
         </div>

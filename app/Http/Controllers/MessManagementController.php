@@ -48,8 +48,7 @@ class MessManagementController extends Controller
 
         Mess_management::create($validated);
 
-        return redirect()->route('admin.mess.index')
-            ->with('success','Mess record created successfully.');
+        return redirect()->route('admin.mess.index')->with('success','Mess record created successfully.');
     }
 
     // Edit form

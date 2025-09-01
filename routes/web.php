@@ -9,6 +9,7 @@ use App\Http\Controllers\JapaneseAcademyController;
 use App\Http\Controllers\MessManagementController;
 use App\Http\Controllers\FeeManagementController;
 use App\Http\Controllers\ReportsController;
+use App\Http\Controllers\KitchenController;
 
 
 // Route::get('/', function () {
@@ -26,6 +27,7 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'admindashboard'])->name('dashboard');
         Route::get('/sidebar', [AdminDashboardController::class, 'adminsidebar'])->name('sidebar');
         Route::get('/student/details/{id}', [AdminDashboardController::class, 'show'])->name('student.details');
+        Route::get('/student/{id}/show', [AdminDashboardController::class, 'show'])->name('students.show');
 
         // Students
         Route::get('/students', [StudentController::class, 'index'])->name('students.index');
@@ -42,6 +44,8 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         Route::get('/rooms/edit/{id}', [RoomController::class, 'edit'])->name('rooms.edit');
         Route::put('/rooms/update/{id}', [RoomController::class, 'update'])->name('rooms.update');
         Route::delete('/rooms/destroy/{id}', [RoomController::class, 'destroy'])->name('rooms.destroy');
+        Route::get('/room/{id}', [RoomController::class, 'show'])->name('room.details');
+        Route::get('/room/{id}/book', [RoomController::class, 'create'])->name('room.book');
 
         // Academy
         Route::get('/academy', [JapaneseAcademyController::class, 'index'])->name('academy.index');
@@ -75,10 +79,15 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         Route::get('/reports/fees/download', [ReportsController::class, 'feesDownload'])->name('reports.fees.download');
 
         // Kitchen Management
-        Route::get('/kitchen', [\App\Http\Controllers\KitchenController::class, 'index'])->name('kitchen.index');
-        Route::post('/kitchen/store', [\App\Http\Controllers\KitchenController::class, 'store'])->name('kitchen.store');
-        Route::get('/kitchen/report', [\App\Http\Controllers\KitchenController::class, 'report'])->name('kitchen.report');
-        Route::get('/kitchen/export', [\App\Http\Controllers\KitchenController::class, 'exportCsv'])->name('kitchen.export');
+        Route::get('/kitchen', [KitchenController::class, 'index'])->name('kitchen.index');
+        Route::post('/kitchen/store', [KitchenController::class, 'store'])->name('kitchen.store');
+        Route::get('/kitchen/report', [KitchenController::class, 'report'])->name('kitchen.report');
+        Route::get('/kitchen/export', [KitchenController::class, 'exportCsv'])->name('kitchen.export');
+        Route::delete('/kitchen/delete/{id}', [KitchenController::class, 'destroy'])->name('kitchen.destroy');
+        Route::get('admin/kitchen/{id}/edit', [KitchenController::class, 'edit'])->name('kitchen.edit');
+        Route::put('admin/kitchen/{id}', [KitchenController::class, 'update'])->name('kitchen.update');
+
+
     });
 
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
+
 class KitchenController extends Controller
 {
     // List + filters
@@ -113,5 +114,41 @@ class KitchenController extends Controller
         $byCategory = $items->groupBy('category')->map->sum('total_cost')->sortDesc();
 
         return view('kitchen.report', compact('year','month','items','total','byCategory'));
+    }
+    public function edit($id)
+    {
+        $purchase = KitchenPurchase::findOrFail($id);
+        return view('kitchen.edit', compact('purchase'));
+    }
+    public function update(Request $request, $id)
+{
+    $validated = $request->validate([
+        'purchase_date' => 'required|date',
+        'item_name'     => 'required|string|max:255',
+        'category'      => 'nullable|string|max:255',
+        'unit'          => 'nullable|string|max:50',
+        'unit_price'    => 'nullable|numeric',
+        'total_cost'    => 'nullable|numeric',
+        'notes'         => 'nullable|string',
+    ]);
+
+    $purchase = KitchenPurchase::findOrFail($id);
+
+    // auto-calc total if not provided
+    if (empty($validated['total_cost']) && !empty($validated['unit_price'])) {
+        $validated['total_cost'] = $validated['unit_price']; // agar quantity column ho to qty*unit_price karna
+    }
+
+    $purchase->update($validated);
+
+    return redirect()->route('admin.kitchen.index')->with('success', 'Purchase updated successfully');
+}
+
+
+
+    public function destroy($id)
+    {
+        KitchenPurchase::destroy($id);
+        return back()->with('success', 'Kitchen item deleted');
     }
 }

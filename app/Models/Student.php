@@ -39,7 +39,7 @@ class Student extends Model
         {
              $total = $this->fees->sum('amount');   // maan lo total_amount column hai
             $paid  = $this->fees->sum('paid_amount');
-            return $total - $paid;
+            return max(0, round($total - $paid, 2)); // round to 2 decimals
         }
 }
 

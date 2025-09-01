@@ -59,9 +59,9 @@
                     @endif
                 </td>
 
-                <td class="px-6 py-3">{{ number_format($fee->amount, 2) }}</td>
-                <td class="px-6 py-3">{{ \Carbon\Carbon::parse($fee->due_date)->format('Y-m-d') }}</td>
-                <td class="px-6 py-3">{{ $fee->paid_date ? \Carbon\Carbon::parse($fee->paid_date)->format('Y-m-d') : '-' }}</td>
+                <td class="px-6 py-3">{{ number_format($fee->amount) }}</td>
+                <td class="px-6 py-3">{{ \Carbon\Carbon::parse($fee->due_date)->format('d-m-Y') }}</td>
+                <td class="px-6 py-3">{{ $fee->paid_date ? \Carbon\Carbon::parse($fee->paid_date)->format('d-m-Y') : '-' }}</td>
                 <td class="px-6 py-3">
                     <span class="px-2 py-1 rounded text-white {{ $fee->status=='paid' ? 'bg-green-600' : ($fee->status=='overdue' ? 'bg-red-600' : ($fee->status=='partial' ? 'bg-yellow-600' : 'bg-gray-600')) }}">
                         {{ ucfirst($fee->status) }}

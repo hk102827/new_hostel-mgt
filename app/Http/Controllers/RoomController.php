@@ -18,22 +18,32 @@ class RoomController extends Controller
         return view('admin.rooms.create');
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'room_number' => 'required|string|max:255',
-            'room_type' => 'required|string|in:Single,Double,Triple,Quad,Quint',
-            'capacity' => 'required|integer|min:1|max:5',
-            'occupied' => 'required|integer|min:0|max:5',
-            'rent' => 'required|numeric|min:0',
-            'status' => 'required|string|in:available,full,maintenance',
-            'facilities' => 'nullable|string',
-        ]);
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'room_number' => 'required|string|max:255',
+        'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'room_type' => 'required|string|in:Single,Double,Triple,Quad,Quint',
+        'capacity' => 'required|integer|min:1|max:5',
+        'occupied' => 'required|integer|min:0|max:5',
+        'rent' => 'required|numeric|min:0',
+        'status' => 'required|string|in:available,full,maintenance',
+        'facilities' => 'nullable|string',
+    ]);
 
-        Room::create($request->all());
+        if ($request->hasFile('picture')) {
+            $path = $request->file('picture')->store('rooms', 'public');
+            $validated['picture'] = $path;
+        } else {
+            logger('No file uploaded!');
+        }
 
-        return redirect()->route('admin.rooms.index')->with('success', 'Room created successfully.');
-    }
+
+    Room::create($validated);
+
+    return redirect()->route('admin.rooms.index')->with('success', 'Room created successfully.');
+}
+
 
         public function edit($id)
         {
@@ -41,31 +51,40 @@ class RoomController extends Controller
             return view('admin.rooms.edit', compact('room'));
         }
 
-        public function update(Request $request, $id)
-        {
-            $room = Room::findOrFail($id);
+ public function update(Request $request, $id)
+{
+    $room = Room::findOrFail($id);
 
-            $request->validate([
-                'room_number' => 'required|string|max:255',
-                'room_type' => 'required|string|in:Single,Double,Triple,Quad,Quint',
-                'capacity' => 'required|integer|min:1|max:5',
-                'occupied' => 'required|integer|min:0|max:5',
-                'rent' => 'required|numeric|min:0',
-                'status' => 'required|string|in:available,full,maintenance',
-                'facilities' => 'nullable|string',
-            ]);
+    $request->validate([
+        'room_number' => 'required|string|max:255',
+        'room_type' => 'required|string|in:Single,Double,Triple,Quad,Quint',
+        'capacity' => 'required|integer|min:1|max:5',
+        'occupied' => 'required|integer|min:0|max:5',
+        'rent' => 'required|numeric|min:0',
+        'status' => 'required|string|in:available,full,maintenance',
+        'facilities' => 'nullable|string',
+        'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // ✅ image validation
+    ]);
 
-            $room->update($request->all());
+    // ✅ form ke data copy
+    $data = $request->all();
 
-            return redirect()->route('admin.rooms.index')->with('success', 'Room updated successfully.');
-        }
+ if ($request->hasFile('picture')) {
+    // purani picture delete
+    if ($room->picture && file_exists(public_path('storage/' . $room->picture))) {
+        unlink(public_path('storage/' . $room->picture));
+    }
 
-        public function destroy($id)
-        {
-            $room = Room::findOrFail($id);
-            $room->delete();
+    // new picture save
+    $path = $request->file('picture')->store('rooms', 'public');
+    $data['picture'] = $path; // ✅ same format like store()
+}
 
-            return redirect()->route('admin.rooms.index')->with('success', 'Room deleted successfully.');
-        }
+
+    $room->update($data);
+
+    return redirect()->route('admin.rooms.index')->with('success', 'Room updated successfully.');
+}
+
 
 }

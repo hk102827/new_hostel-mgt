@@ -24,7 +24,7 @@
 
         <!-- Plan Type -->
         <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Plan Type</label>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Mess Plan</label>
             <select name="plan_type" class="h-12 px-3 block w-full rounded-lg border-gray-300 shadow-md focus:border-indigo-500 focus:ring-indigo-500 text-base">
                 <option value="full_board" {{ old('plan_type')=='full_board' ? 'selected' : '' }}>Full board</option>
                 <option value="breakfast_lunch" {{ old('plan_type')=='breakfast_lunch' ? 'selected' : '' }}>Breakfast + Lunch</option>
