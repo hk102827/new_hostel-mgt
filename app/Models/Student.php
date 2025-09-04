@@ -41,5 +41,10 @@ class Student extends Model
             $paid  = $this->fees->sum('paid_amount');
             return max(0, round($total - $paid, 2)); // round to 2 decimals
         }
+
+          public function attendances()
+            {
+                return $this->morphMany(Attendance::class, 'attendable');
+            }
 }
 

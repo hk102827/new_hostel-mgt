@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class JapaneseAcademyStudent extends Model
 {
@@ -25,8 +26,13 @@ class JapaneseAcademyStudent extends Model
     }
 
     public function messManagement()
-{
-    return $this->hasOne(Mess_management::class, 'student_id', 'student_id');
-}
+    {
+        return $this->hasOne(Mess_management::class, 'student_id', 'student_id');
+    }
 
+    // Polymorphic relation for attendance
+    public function attendances(): MorphMany
+    {
+        return $this->morphMany(Attendance::class, 'attendable');
+    }
 }

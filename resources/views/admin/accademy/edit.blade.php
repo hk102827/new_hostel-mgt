@@ -94,7 +94,7 @@
         <!-- Admission Date -->
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Admission Date</label>
-            <input type="date" name="admission_date" value="{{ old('admission_date', optional($student->admission_date)->format('Y-m-d')) }}"
+            <input type="date" name="admission_date" value="{{ old('admission_date', $student->admission_date) }}"
                    class="h-12 px-3 block w-full rounded-lg border-gray-300 shadow-md focus:border-indigo-500 focus:ring-indigo-500 text-base">
             @error('admission_date')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

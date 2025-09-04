@@ -6,23 +6,27 @@
 
 @section('content')
 <div class="space-y-6">
-    
+
       <!-- Welcome Section -->
-    <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-lg shadow-lg">
-        <div class="flex items-center justify-between">
-            <div>
-                <h2 class="text-2xl font-bold">Welcome back, {{ auth()->user()->name }}!</h2>
-                <p class="text-blue-100 mt-1">{{ date('l, F j, Y') }}</p>
-            </div>
-            <div class="flex items-center space-x-2">
-                <i class="fas fa-user-shield text-2xl text-blue-200"></i>
-                <span class="text-blue-100">Administrator</span>
-            </div>
+ <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 sm:p-3 md:p-6 rounded-lg shadow-md">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+        <div>
+            <h2 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold">
+                Welcome back, {{ auth()->user()->name }}!
+            </h2>
+            <p class="text-xs sm:text-sm text-blue-100 mt-0.5">{{ date('l, F j, Y') }}</p>
+        </div>
+        <div class="flex items-center space-x-1">
+            <i class="fas fa-user-shield text-lg sm:text-xl text-blue-200"></i>
+            <span class="text-xs sm:text-sm text-blue-100">Administrator</span>
         </div>
     </div>
+</div>
+
+
 
     <!-- Quick Actions -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         <a href="{{ route('admin.students.create') }}" 
            class="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow border-l-4 border-blue-500">
             <div class="flex items-center">
@@ -69,7 +73,7 @@
     </div>
 
     <!-- Enhanced Stats Cards with Trends -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
             <div class="bg-blue-500 text-white p-6">
                 <div class="flex items-center justify-between">
@@ -158,7 +162,7 @@
     </div>
 
     <!-- Financial Overview -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
             <div class="bg-red-500 text-white p-6">
                 <div class="flex items-center justify-between">
@@ -174,8 +178,8 @@
                 </div>
             </div>
             <div class="p-4 bg-red-50">
-                <a href="{{ route('admin.fees.index') }}?status=pending" class="text-red-600 hover:text-red-800 text-sm font-medium">
-                    View Pending →
+                <a href="{{ route('admin.fees.index') }}?status[]=pending&status[]=partial" class="text-red-600 hover:text-red-800 text-sm font-medium">
+                    View Pending & Partial →
                 </a>
             </div>
         </div>
@@ -224,10 +228,13 @@
             </div>
         </div>
     </div>
+    <div class="bg-white rounded-lg shadow-lg p-4 mt-6">
+    <h3 class="text-lg font-bold mb-4">Last 6 Months Overview</h3>
+    <canvas id="revenueChart" height="80"></canvas>
+</div>
 
     <!-- Main Content Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         <!-- Recent Admissions - Enhanced -->
         <div class="bg-white rounded-lg shadow-lg">
             <div class="p-6 border-b bg-gray-50">
@@ -420,5 +427,54 @@ function updateTime() {
 setInterval(updateTime, 1000);
 updateTime(); // Initial call
 </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: @json($stats['last6Months']->pluck('month')),
+            datasets: [
+                {
+                    label: 'Revenue',
+                    data: @json($stats['last6Months']->pluck('revenue')),
+                    backgroundColor: 'rgba(16, 185, 129, 0.7)', // green
+                },
+                {
+                    label: 'Pending',
+                    data: @json($stats['last6Months']->pluck('pending')),
+                    backgroundColor: 'rgba(239, 68, 68, 0.7)', // red
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let value = context.raw;
+                            // ✅ No decimals, proper Rs format
+                            return context.dataset.label + ': Rs. ' + Math.round(value).toLocaleString();
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            // ✅ Y-axis formatting
+                            return 'Rs. ' + Math.round(value).toLocaleString();
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
 
 @endsection

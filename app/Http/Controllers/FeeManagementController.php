@@ -22,6 +22,15 @@ class FeeManagementController extends Controller
         if ($request->student_id) {
             $query->where('student_id', $request->student_id);
         }
+        $query = Fee_management::query();
+
+        if ($request->has('status')) {
+            $statuses = (array) $request->status; // multiple values allowed
+            $query->whereIn('status', $statuses);
+        }
+
+        $fees = $query->get();
+
 
         $fees = $query->orderByDesc('id')->get();
         $students = Student::select('id','name')->orderBy('name')->get();

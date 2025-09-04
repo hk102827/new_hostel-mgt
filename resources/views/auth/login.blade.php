@@ -38,7 +38,7 @@
         
         .header-title {
             background: rgba(255, 255, 255, 0.95);
-            color: #d63384;
+            color: rgb(243, 195, 0);
             font-weight: bold;
             font-size: 1.5rem;
             padding: 15px 0;
@@ -52,7 +52,7 @@
             right: 20px;
             top: 50%;
             transform: translateY(-50%);
-            background: #dc3545;
+            background: rgb(243, 195, 0);
             color: white;
             border: none;
             border-radius: 50%;
@@ -66,7 +66,7 @@
         }
         
         .close-btn:hover {
-            background: #bb2d3b;
+            background: rgb(243, 195, 0);
         }
         
         .login-card {
@@ -79,7 +79,7 @@
         }
         
         .logo-section {
-            background: #d63384;
+            background: rgb(243, 195, 0);
             color: white;
             padding: 30px;
             text-align: center;
@@ -93,7 +93,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, #d63384 0%, #dc3545 100%);
+            background: linear-gradient(135deg, rgb(243, 195, 0) 0%, rgb(243, 195, 0) 100%);
         }
         
         .logo-content {
@@ -114,7 +114,7 @@
         }
         
         .logo-icon i {
-            color: #d63384;
+            color: rgb(243, 195, 0);
             font-size: 2.5rem;
         }
         
@@ -142,7 +142,7 @@
         }
         
         .form-control:focus {
-            border-color: #d63384;
+            border-color: rgb(243, 195, 0);
             background: white;
             box-shadow: 0 0 0 0.2rem rgba(214, 51, 132, 0.25);
         }
@@ -158,8 +158,8 @@
         }
         
         .form-check-input:checked {
-            background-color: #d63384;
-            border-color: #d63384;
+            background-color: rgb(243, 195, 0);
+            border-color: rgb(243, 195, 0);
         }
         
         .form-check-label {
@@ -168,7 +168,7 @@
         }
         
         .login-btn {
-            background: linear-gradient(135deg, #d63384 0%, #dc3545 100%);
+            background-color: rgb(243, 195, 0);
             border: none;
             border-radius: 8px;
             padding: 12px 0;
@@ -183,11 +183,11 @@
         .login-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(214, 51, 132, 0.4);
-            background: linear-gradient(135deg, #c02a6b 0%, #bb2d3b 100%);
+            background: linear-gradient(135deg, rgb(243, 195, 0) 0%, rgb(243, 195, 0) 100%);
         }
         
         .forgot-link {
-            color: #d63384;
+            color: rgb(243, 195, 0);
             text-decoration: none;
             font-size: 0.9rem;
             display: block;
@@ -196,7 +196,7 @@
         }
         
         .forgot-link:hover {
-            color: #c02a6b;
+            color: rgb(243, 195, 0);
         }
         
         @media (max-width: 768px) {
@@ -220,9 +220,10 @@
         <!-- Header -->
         <div class="header-title">
             BOYS HOSTEL MANAGEMENT SYSTEM
-            <button class="close-btn" onclick="window.close()">
+           <button class="close-btn" onclick="window.location.href='{{ url("/") }}'"`>
                 <i class="bi bi-x"></i>
             </button>
+
         </div>
         
         <div class="container-fluid d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 70px);">

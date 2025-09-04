@@ -46,14 +46,14 @@
         <!-- Start Date -->
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
-            <input type="date" name="start_date" value="{{ old('start_date', optional($record->start_date)->format('Y-m-d')) }}" class="h-12 px-3 block w-full rounded-lg border-gray-300 shadow-md focus:border-indigo-500 focus:ring-indigo-500 text-base">
+            <input type="date" name="start_date" value="{{ old('start_date', $record->start_date) }}" class="h-12 px-3 block w-full rounded-lg border-gray-300 shadow-md focus:border-indigo-500 focus:ring-indigo-500 text-base">
             @error('start_date')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
         </div>
 
         <!-- End Date -->
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">End Date (optional)</label>
-            <input type="date" name="end_date" value="{{ old('end_date', optional($record->end_date)->format('Y-m-d')) }}" class="h-12 px-3 block w-full rounded-lg border-gray-300 shadow-md focus:border-indigo-500 focus:ring-indigo-500 text-base">
+            <input type="date" name="end_date" value="{{ old('end_date', $record->end_date) }}" class="h-12 px-3 block w-full rounded-lg border-gray-300 shadow-md focus:border-indigo-500 focus:ring-indigo-500 text-base">
             @error('end_date')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
         </div>
 

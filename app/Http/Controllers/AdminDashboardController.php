@@ -21,26 +21,58 @@ class AdminDashboardController extends Controller
 
 public function admindashboard()
 {
-     $total_fees = Fee_management::sum('amount');
-    $total_paid = Fee_management::sum('paid_amount');
+    $total_fees = Fee_management::sum('amount');
+    $total_paid  = Fee_management::sum('paid_amount');
+
+    $now = now();
+
+    $last6Months = collect(range(0, 5))->map(function ($i) use ($now) {
+        $month = $now->copy()->subMonths($i);
+
+        // month range (include whole day)
+        $start = $month->copy()->startOfMonth()->startOfDay();
+        $end   = $month->copy()->endOfMonth()->endOfDay();
+
+        // Revenue: payments whose paid_date falls inside this month
+        $revenue = Fee_management::whereBetween('paid_date', [$start, $end])
+            ->sum('paid_amount');
+
+        $pending = Fee_management::whereBetween('paid_date', [$start, $end])
+            ->whereColumn('paid_amount', '<', 'amount')
+            ->sum(DB::raw('amount - paid_amount'));
+
+        return [
+            'month' => $month->format('M Y'),
+            'revenue' => (float) $revenue,
+            'pending' => (float) $pending,
+        ];
+    })->reverse()->values();
+
+    // current month range
+        $currentStart = $now->copy()->startOfMonth()->startOfDay();
+        $currentEnd   = $now->copy()->endOfMonth()->endOfDay();
+
+        // ✅ Monthly revenue: total paid_amount jinki paid_date current month me hai
+        $monthly_revenue = Fee_management::whereBetween('paid_date', [$currentStart, $currentEnd])
+            ->sum('paid_amount');
+
+        if ($monthly_revenue == 0) {
+            $monthly_revenue = Fee_management::whereBetween('created_at', [$currentStart, $currentEnd])
+                ->sum('paid_amount');
+        }
 
     $stats = [
-        'total_students' => Student::where('status', 'active')->count(),
-        'occupied_rooms' => Room::sum('occupied'),
-        'total_rooms' => Room::count(),
+        'total_students'   => Student::where('status', 'active')->count(),
+        'occupied_rooms'   => Room::sum('occupied'),
+        'total_rooms'      => Room::count(),
         'academy_students' => JapaneseAcademyStudent::where('status', 'active')->count(),
-        'mess_members' => Mess_management::where('status', 'active')->count(),
+        'mess_members'     => Mess_management::where('status', 'active')->count(),
+        'pending_fees'     => Fee_management::sum(DB::raw('amount - paid_amount')),
+        'pending_count'    => Fee_management::whereColumn('paid_amount', '<', 'amount')->count(),
+        'monthly_revenue'  => (float) $monthly_revenue,
+        'collection_rate'  => $total_fees > 0 ? round(($total_paid / $total_fees) * 100, 2) : 0,
 
-        // ✅ Total pending fees
-        'pending_fees' => Fee_management::sum(DB::raw('amount - paid_amount')),
-
-        // ✅ Monthly revenue (full + partial payments dono ka paid_amount add hoga)
-        'monthly_revenue' => Fee_management::whereMonth('paid_date', now()->month)
-            ->sum('paid_amount'),
-                  // ✅ Collection Rate
-        'collection_rate' => $total_fees > 0 
-            ? round(($total_paid / $total_fees) * 100, 2) 
-            : 0,
+        'last6Months'      => $last6Months,
     ];
 
     $recent_admissions = Student::with('roomAssignment.room')
@@ -57,6 +89,8 @@ public function admindashboard()
 
     return view('admin.dashboard', compact('stats', 'recent_admissions', 'pending_payments'));
 }
+
+
 
 
     // Dashboard: student details view

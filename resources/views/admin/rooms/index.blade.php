@@ -18,7 +18,7 @@
     </div>
     
     <!-- Students Table -->
-    <div class="bg-white rounded-lg shadow overflow-hidden">
+    <div class="bg-white rounded-lg shadow overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
@@ -79,11 +79,11 @@
                         @endif
                     </td>
 
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 max-w-xs truncate">
                         {{ $room->facilities }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        <img src="{{ asset('storage/' . $room->picture) }}" alt="" width="100" height="100">
+                        <img src="{{ asset('storage/' . $room->picture) }}" alt="" class="w-16 h-16 object-cover rounded">
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <a href="{{ route('admin.rooms.edit', $room->id) }}" 
@@ -97,13 +97,7 @@
                                 Delete
                             </button>
                         </form>
-                    
-                    {{-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <a href="{{ route('admin.students.show', $student) }}" 
-                           class="text-indigo-600 hover:text-indigo-900 mr-3">View</a>
-                        <a href="{{ route('admin.students.edit', $student) }}" 
-                           class="text-green-600 hover:text-green-900 mr-3">Edit</a>
-                    </td> --}}
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

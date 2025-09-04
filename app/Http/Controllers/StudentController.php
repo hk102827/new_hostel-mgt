@@ -57,8 +57,7 @@ class StudentController extends Controller
 }
         return redirect()->route('admin.students.index')->with('success', 'Student added successfully.');
     }
-
-
+    
     public function edit(Request $request, $id)
     {
         $student = Student::findOrFail($id);

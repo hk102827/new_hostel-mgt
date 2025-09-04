@@ -81,19 +81,24 @@
             @error('amount')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
         </div>
 
-        <!-- Due Date -->
+   <!-- Due Date -->
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Due Date</label>
-            <input type="date" name="due_date" value="{{ old('due_date', optional($fee->due_date)->format('d-m-Y')) }}" class="h-12 px-3 block w-full rounded-lg border-gray-300 shadow-md focus:border-indigo-500 focus:ring-indigo-500 text-base">
+            <input type="date" name="due_date" 
+                value="{{ old('due_date', optional($fee->due_date)->format('Y-m-d')) }}" 
+                class="h-12 px-3 block w-full rounded-lg border-gray-300 shadow-md focus:border-indigo-500 focus:ring-indigo-500 text-base">
             @error('due_date')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
         </div>
 
         <!-- Paid Date -->
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Paid Date (optional)</label>
-            <input type="date" name="paid_date" value="{{ old('paid_date', optional($fee->paid_date)->format('d-m-Y')) }}" class="h-12 px-3 block w-full rounded-lg border-gray-300 shadow-md focus:border-indigo-500 focus:ring-indigo-500 text-base">
+            <input type="date" name="paid_date" 
+                value="{{ old('paid_date', optional($fee->paid_date)->format('Y-m-d')) }}" 
+                class="h-12 px-3 block w-full rounded-lg border-gray-300 shadow-md focus:border-indigo-500 focus:ring-indigo-500 text-base">
             @error('paid_date')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
         </div>
+
 
         <!-- Status -->
         <div>

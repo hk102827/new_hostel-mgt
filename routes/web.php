@@ -10,6 +10,8 @@ use App\Http\Controllers\MessManagementController;
 use App\Http\Controllers\FeeManagementController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\KitchenController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\AttendanceController;
 
 
 // Route::get('/', function () {
@@ -36,6 +38,7 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         Route::get('/students/edit/{id}', [StudentController::class, 'edit'])->name('students.edit');
         Route::put('/students/update/{id}', [StudentController::class, 'update'])->name('students.update');
         Route::delete('/students/destroy/{id}', [StudentController::class, 'destroy'])->name('students.destroy');
+        Route::get('/students/show/{id}', [StudentController::class, 'show'])->name('students.show');
 
         // Rooms
         Route::get('/rooms', [RoomController::class, 'index'])->name('rooms.index');
@@ -46,6 +49,8 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         Route::delete('/rooms/destroy/{id}', [RoomController::class, 'destroy'])->name('rooms.destroy');
         Route::get('/room/{id}', [RoomController::class, 'show'])->name('room.details');
         Route::get('/room/{id}/book', [RoomController::class, 'create'])->name('room.book');
+        
+
 
         // Academy
         Route::get('/academy', [JapaneseAcademyController::class, 'index'])->name('academy.index');
@@ -55,6 +60,14 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         Route::get('/academy/{id}/edit', [JapaneseAcademyController::class, 'edit'])->name('academy.edit');
         Route::put('/academy/{id}', [JapaneseAcademyController::class, 'update'])->name('academy.update');
         Route::delete('/academy/{id}', [JapaneseAcademyController::class, 'destroy'])->name('academy.destroy');
+
+        // Teachers
+        Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
+        Route::get('/teachers/create', [TeacherController::class, 'create'])->name('teachers.create');
+        Route::post('/teachers/store', [TeacherController::class, 'store'])->name('teachers.store');
+        Route::get('/teachers/{id}/edit', [TeacherController::class, 'edit'])->name('teachers.edit');
+        Route::put('/teachers/{id}', [TeacherController::class, 'update'])->name('teachers.update');
+        Route::delete('/teachers/{id}', [TeacherController::class, 'destroy'])->name('teachers.destroy');
 
         // Mess
         Route::get('/mess', [MessManagementController::class, 'index'])->name('mess.index');
@@ -86,6 +99,15 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         Route::delete('/kitchen/delete/{id}', [KitchenController::class, 'destroy'])->name('kitchen.destroy');
         Route::get('admin/kitchen/{id}/edit', [KitchenController::class, 'edit'])->name('kitchen.edit');
         Route::put('admin/kitchen/{id}', [KitchenController::class, 'update'])->name('kitchen.update');
+
+        // Attendance
+        Route::get('/attendance/mark', [AttendanceController::class, 'create'])->name('attendance.create');
+        Route::post('/attendance/mark', [AttendanceController::class, 'store'])->name('attendance.store');
+        Route::get('/attendance/daily', [AttendanceController::class, 'daily'])->name('attendance.daily');
+        Route::get('/attendance/monthly', [AttendanceController::class, 'monthly'])->name('attendance.monthly');
+       Route::get('/attendance/export/excel', [AttendanceController::class, 'exportExcel'])->name('attendance.export.excel');
+Route::get('/attendance/export/pdf', [AttendanceController::class, 'exportPDF'])->name('attendance.export.pdf');
+
 
 
     });
