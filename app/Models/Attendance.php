@@ -14,12 +14,14 @@ class Attendance extends Model
         'date',
         'session',
         'status',
+        'student_type',
         'attendable_type',
         'attendable_id',
     ];
 
     protected $casts = [
         'date' => 'date',
+        'student_type' => 'string',
     ];
 
     public function attendable(): MorphTo

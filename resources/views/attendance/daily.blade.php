@@ -16,7 +16,6 @@
             </div>
         </div>
     </div>
-
 <!-- Date Filter Card -->
 <div class="card border-0 shadow-sm mb-4">
     <div class="card-body">
@@ -28,6 +27,7 @@
                 <input type="date" id="date" name="date" value="{{ $date }}" 
                        class="form-control form-control-lg border-2">
             </div>
+
             <div class="col-md-3">
                 <label for="filter_type" class="form-label fw-semibold">
                     <i class="fas fa-filter me-2 text-success"></i>Filter by Type
@@ -44,15 +44,34 @@
                     </option>
                 </select>
             </div>
+
+            <!-- New Student Type Filter -->
+            <div class="col-md-3">
+                <label for="student_mode" class="form-label fw-semibold">
+                    <i class="fas fa-user-graduate me-2 text-info"></i>Student Mode
+                </label>
+                <select id="student_mode" name="student_mode" class="form-select form-control-lg form-select-lg border-2">
+                    <option value="all" {{ request('student_mode', 'all') == 'all' ? 'selected' : '' }}>
+                        🎯 All
+                    </option>
+                    <option value="online" {{ request('student_mode') == 'online' ? 'selected' : '' }}>
+                        🌐 Online
+                    </option>
+                    <option value="physical" {{ request('student_mode') == 'physical' ? 'selected' : '' }}>
+                        🏫 Physical
+                    </option>
+                </select>
+            </div>
+
             <div class="col-md-2">
                 <button type="submit" class="btn btn-primary btn-lg px-4">
                     <i class="fas fa-search me-2"></i>Filter
                 </button>
             </div>
-    
         </form>
     </div>
 </div>
+
 
 <!-- Filter Status Info -->
 @if(request('filter_type') && request('filter_type') != 'all')
@@ -160,6 +179,9 @@
                                     <i class="fas fa-user me-2 text-muted"></i>Name
                                 </th>
                                 <th class="fw-semibold text-dark">
+                                    <i class="fas fa-user me-2 text-muted"></i>Student Type
+                                </th>
+                                <th class="fw-semibold text-dark">
                                     <i class="fas fa-check-circle me-2 text-muted"></i>Status
                                 </th>
                             </tr>
@@ -177,6 +199,7 @@
                                         </span>
                                     </td>
                                     <td class="fw-medium">{{ $r->attendable->name ?? '-' }}</td>
+                                    <td class="fw-medium">{{ $r->attendable->student_type ?? '-' }}</td>
                                     <td>
                                         @switch($r->status)
                                             @case('Present')

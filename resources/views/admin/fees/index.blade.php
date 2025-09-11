@@ -32,8 +32,9 @@
         </select>
         <button class="bg-blue-500 text-white px-4 py-2 rounded">Filter</button>
     </form>
+
         <a href="{{ route('admin.fees.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Add Fee</a>
-    </div>
+ 
 
     <table class="min-w-full bg-white border rounded shadow">
         <thead>
@@ -70,11 +71,13 @@
                 <td class="px-6 py-3">
                     <div class="flex space-x-2">
                         <a href="{{ route('admin.fees.edit', $fee->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded">Edit</a>
+                    
                         <form action="{{ route('admin.fees.destroy', $fee->id) }}" method="POST" onsubmit="return confirm('Delete this fee?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded">Delete</button>
                         </form>
+                      
                     </div>
                 </td>
             </tr>
@@ -86,4 +89,6 @@
         </tbody>
     </table>
 </div>
+
+
 @endsection

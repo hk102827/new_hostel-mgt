@@ -15,26 +15,20 @@ class KitchenController extends Controller
     {
         $query = KitchenPurchase::query();
 
-        if ($request->filled('from')) {
-            $query->whereDate('purchase_date', '>=', $request->date('from'));
-        }
-        if ($request->filled('to')) {
-            $query->whereDate('purchase_date', '<=', $request->date('to'));
-        }
-        if ($request->filled('category')) {
-            $query->where('category', $request->input('category'));
+        if ($request->filled('item')) {
+            $query->where('item_name', $request->input('item'));
         }
 
         $purchases = $query->orderByDesc('purchase_date')->orderByDesc('id')->paginate(20)->withQueryString();
 
-        // Simple categories list from existing rows
-        $categories = KitchenPurchase::select('category')
-            ->whereNotNull('category')
+        // Simple items list from existing rows
+        $items = KitchenPurchase::select('item_name')
+            ->whereNotNull('item_name')
             ->distinct()
-            ->orderBy('category')
-            ->pluck('category');
+            ->orderBy('item_name')
+            ->pluck('item_name');
 
-        return view('kitchen.index', compact('purchases', 'categories'));
+        return view('kitchen.index', compact('purchases', 'items'));
     }
 
     // Store single entry (from quick add form)
@@ -110,8 +104,8 @@ class KitchenController extends Controller
         $end = (clone $start)->endOfMonth();
 
         $items = KitchenPurchase::whereBetween('purchase_date', [$start, $end])->get();
-        $total = $items->sum('total_cost');
-        $byCategory = $items->groupBy('category')->map->sum('total_cost')->sortDesc();
+        $total = $items->sum('unit_price');
+        $byCategory = $items->groupBy('item_name')->map->sum('unit_price')->sortDesc();
 
         return view('kitchen.report', compact('year','month','items','total','byCategory'));
     }

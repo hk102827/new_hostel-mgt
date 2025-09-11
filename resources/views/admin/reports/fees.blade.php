@@ -29,7 +29,11 @@
                 <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Filter</button>
             </div>
             <div class="flex items-end">
+                @if(auth()->user()->hasRole('super-admin') || auth()->user()->hasRole('admin'))
                 <a href="{{ route('admin.reports.fees.download', request()->query()) }}" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-center w-full">Download CSV</a>
+                @else
+                <button class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-center w-full restricted-btn cursor-not-allowed">Download CSV</button>
+                @endif  
             </div>
         </form>
     </div>
@@ -99,4 +103,87 @@
         </div>
     </div>
 </div>
+
+<!-- Popup Modal -->
+<div id="noAccessModal" 
+     class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+    <div id="noAccessBox" 
+         class="bg-white p-6 rounded shadow-lg w-80 text-center">
+        <h2 class="text-lg font-bold mb-4 text-red-600">Access Denied</h2>
+        <p class="text-gray-700 mb-4">You do not have permission to perform this action.</p>
+        <button onclick="closeNoAccessModal()" 
+                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            OK
+        </button>
+    </div>
+</div>
+
+<style>
+/* Bounce animation */
+@keyframes bounceIn {
+  0%   { transform: scale(0.7); opacity: 0; }
+  50%  { transform: scale(1.1); opacity: 1; }
+  70%  { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-bounce-in {
+  animation: bounceIn 0.5s ease-out forwards;
+}
+
+/* Smooth fade out when closing */
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.7); }
+}
+.animate-fade-out {
+  animation: fadeOut 0.4s ease-in forwards;
+}
+</style>
+
+<script>
+    let autoHideTimeout;
+
+    function showNoAccessModal() {
+        const modal = document.getElementById('noAccessModal');
+        const box = document.getElementById('noAccessBox');
+        
+        modal.classList.remove('hidden');
+        box.classList.remove('animate-fade-out');
+        void box.offsetWidth; // reset animation
+        box.classList.add('animate-bounce-in');
+
+        // Auto hide after 5 seconds
+        clearTimeout(autoHideTimeout);
+        autoHideTimeout = setTimeout(() => {
+            closeNoAccessModal();
+        }, 5000);
+    }
+
+    function closeNoAccessModal() {
+        const modal = document.getElementById('noAccessModal');
+        const box = document.getElementById('noAccessBox');
+
+        // Add fade out animation
+        box.classList.remove('animate-bounce-in');
+        box.classList.add('animate-fade-out');
+
+        // Wait for animation to finish, then hide
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 400);
+        
+        clearTimeout(autoHideTimeout); 
+    }
+
+    // Attach to all restricted buttons
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.restricted-btn').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault(); 
+                showNoAccessModal();
+            });
+        });
+    });
+</script>
+
 @endsection

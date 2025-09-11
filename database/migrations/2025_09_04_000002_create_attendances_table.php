@@ -13,10 +13,12 @@ return new class extends Migration {
             $table->string('session'); // e.g., Morning, Evening, Class A, etc.
             $table->morphs('attendable'); // attendable_type, attendable_id for student/teacher
             $table->enum('status', ['Present', 'Absent']);
+            $table->enum('student_type', ['Online', 'Physical'])->default('Physical'); // ✅ New column
             $table->timestamps();
 
             $table->unique(['date', 'session', 'attendable_type', 'attendable_id'], 'att_unique');
         });
+
     }
 
     public function down(): void

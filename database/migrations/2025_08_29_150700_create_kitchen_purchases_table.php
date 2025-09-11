@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->decimal('unit_price', 10, 2)->nullable();
             $table->decimal('total_cost', 12, 2)->nullable();
             $table->string('notes', 500)->nullable();
+            $table->json('extra')->nullable(); // store extra fields
+
             $table->timestamps();
         });
     }

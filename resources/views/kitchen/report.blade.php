@@ -32,35 +32,9 @@
                 <p class="text-lg font-semibold">Rs. {{ number_format($total,2) }}</p>
             </div>
             <div class="p-4 rounded bg-gray-50">
-                <p class="text-gray-500 text-sm">Categories</p>
-                <p class="text-lg font-semibold">{{ $byCategory->count() }}</p>
+                <p class="text-gray-500 text-sm">Number of Items Purchased</p>
+                <p class="text-lg font-semibold">{{ $items->count() }}</p>
             </div>
-        </div>
-    </div>
-
-    <div class="bg-white p-6 rounded shadow">
-        <h2 class="text-xl font-semibold mb-4">Category-wise Breakdown</h2>
-        <div class="overflow-x-auto">
-            <table class="min-w-full text-sm">
-                <thead>
-                    <tr class="border-b bg-gray-50">
-                        <th class="text-left p-2">Category</th>
-                        <th class="text-left p-2">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($byCategory as $cat => $sum)
-                    <tr class="border-b">
-                        <td class="p-2">{{ $cat ?? 'Uncategorized' }}</td>
-                        <td class="p-2">Rs. {{ number_format($sum,2) }}</td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="2" class="p-3 text-center text-gray-500">No data for selected month</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
         </div>
     </div>
 
@@ -72,10 +46,7 @@
                     <tr class="border-b bg-gray-50">
                         <th class="text-left p-2">Date</th>
                         <th class="text-left p-2">Item</th>
-                        <th class="text-left p-2">Category</th>
-                        <th class="text-left p-2">Unit</th>
                         <th class="text-left p-2">Unit Price</th>
-                        <th class="text-left p-2">Total</th>
                         <th class="text-left p-2">Notes</th>
                     </tr>
                 </thead>
@@ -84,10 +55,7 @@
                     <tr class="border-b">
                         <td class="p-2">{{ optional($p->purchase_date)->format('d-m-Y') }}</td>
                         <td class="p-2">{{ $p->item_name }}</td>
-                        <td class="p-2">{{ $p->category }}</td>
-                        <td class="p-2">{{ $p->unit }}</td>
                         <td class="p-2">{{ number_format($p->unit_price,2) }}</td>
-                        <td class="p-2 font-semibold">{{ number_format($p->total_cost,2) }}</td>
                         <td class="p-2">{{ $p->notes }}</td>
                     </tr>
                     @endforeach

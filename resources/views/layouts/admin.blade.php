@@ -38,57 +38,137 @@
             </button>
         </div>
 
-        <nav class="mt-8">
-            <a href="{{ route('admin.dashboard') }}" 
-               class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('dashboard') ? 'bg-gray-700' : '' }}">
-                <i class="fas fa-home mr-3"></i> Dashboard
-            </a>
-            <a href="{{ route('admin.students.index') }}" 
-               class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.students.*') ? 'bg-gray-700' : '' }}">
-                <i class="fas fa-users mr-3"></i> Hostel Students
-            </a>
-            <a href="{{ route('admin.rooms.index') }}" 
-               class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.rooms.*') ? 'bg-gray-700' : '' }}">
-                <i class="fas fa-bed mr-3"></i> Room Management
-            </a>
-            <a href="{{ route('admin.academy.index') }}" 
-               class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.academy.*') ? 'bg-gray-700' : '' }}">
-                <i class="fas fa-book mr-3"></i> Japanese Academy
-            </a>
-            <a href="{{ route('admin.mess.index') }}" 
-               class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.mess.*') ? 'bg-gray-700' : '' }}">
-                <i class="fas fa-utensils mr-3"></i> Mess Management
-            </a>
-            <a href="{{ route('admin.kitchen.index') }}" 
-               class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.kitchen.*') ? 'bg-gray-700' : '' }}">
-                <i class="fas fa-carrot mr-3"></i> Kitchen Management
-            </a>
-            <a href="{{ route('admin.fees.index') }}" 
-               class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.fees.*') ? 'bg-gray-700' : '' }}">
-                <i class="fas fa-money-bill mr-3"></i> Fee Management
-            </a>
-            <a href="{{ route('admin.teachers.index') }}" 
-               class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.teachers.*') ? 'bg-gray-700' : '' }}">
-                <i class="fas fa-chalkboard-teacher mr-3"></i> Teachers
-            </a>
-            <a href="{{ route('admin.reports.index') }}" 
-               class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.reports.*') ? 'bg-gray-700' : '' }}">
-                <i class="fas fa-chart-bar mr-3"></i> Reports
-            </a>
+      <nav class="mt-8">
+
+    {{-- ✅ Admin → pura sidebar show hoga --}}
+    @role('admin')
+        <a href="{{ route('admin.dashboard') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('dashboard') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-home mr-3"></i> Dashboard
+        </a>
+        <a href="{{ route('admin.students.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.students.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-users mr-3"></i> Addmissions
+        </a>
+        <a href="{{ route('admin.rooms.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.rooms.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-bed mr-3"></i> Room Management
+        </a>
+        <a href="{{ route('admin.academy.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.academy.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-book mr-3"></i> Japanese Academy
+        </a>
+        <a href="{{ route('admin.mess.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.mess.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-utensils mr-3"></i> Mess Management
+        </a>
+        <a href="{{ route('admin.fees.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.fees.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-money-bill mr-3"></i> Fee Management
+        </a>
+        <a href="{{ route('admin.reports.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.reports.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-chart-bar mr-3"></i> Reports
+        </a>
+        <a href="{{ route('admin.teachers.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.teachers.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-chalkboard-teacher mr-3"></i> Teachers
+        </a>
+        <a href="{{ route('admin.kitchen.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.kitchen.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-carrot mr-3"></i> Expense
+        </a>
+        <div class="mt-4 px-4 text-xs uppercase text-gray-400">Attendance</div>
+        <a href="{{ route('admin.attendance.create') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.attendance.create') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-check-circle mr-3"></i> Mark Attendance
+        </a>
+        <a href="{{ route('admin.attendance.daily') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.attendance.daily') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-calendar-day mr-3"></i> Daily Attendance
+        </a>
+        <a href="{{ route('admin.attendance.monthly') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.attendance.monthly') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-calendar-alt mr-3"></i> Monthly Attendance
+        </a>
+    @endrole
+
+
+    {{-- ✅ Super Admin → pura sidebar show hoga --}}
+    @role('super-admin')
+        <a href="{{ route('admin.dashboard') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('dashboard') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-home mr-3"></i> Dashboard
+        </a>
+      <a href="{{ route('admin.students.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.students.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-users mr-3"></i> Addmissions
+        </a>
+        <a href="{{ route('admin.academy.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.academy.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-book mr-3"></i> Japanese Academy
+        </a>
+        <a href="{{ route('admin.rooms.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.rooms.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-bed mr-3"></i> Room Management
+        </a>
+        <a href="{{ route('admin.mess.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.mess.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-utensils mr-3"></i> Mess Management
+        </a>
+           
+        <a href="{{ route('admin.teachers.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.teachers.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-chalkboard-teacher mr-3"></i> Teachers
+        </a>
+        <a href="{{ route('admin.kitchen.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.kitchen.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-carrot mr-3"></i> Expense
+        </a>
             <div class="mt-4 px-4 text-xs uppercase text-gray-400">Attendance</div>
-            <a href="{{ route('admin.attendance.create') }}" 
-               class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.attendance.create') ? 'bg-gray-700' : '' }}">
-                <i class="fas fa-check-circle mr-3"></i> Mark Attendance
-            </a>
-            <a href="{{ route('admin.attendance.daily') }}" 
-               class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.attendance.daily') ? 'bg-gray-700' : '' }}">
-                <i class="fas fa-calendar-day mr-3"></i> Daily Attendance
-            </a>
-            <a href="{{ route('admin.attendance.monthly') }}" 
-               class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.attendance.monthly') ? 'bg-gray-700' : '' }}">
-                <i class="fas fa-calendar-alt mr-3"></i> Monthly Attendance
-            </a>
-        </nav>
+        <a href="{{ route('admin.attendance.create') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.attendance.create') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-check-circle mr-3"></i> Mark Attendance
+        </a>
+        <a href="{{ route('admin.attendance.daily') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.attendance.daily') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-calendar-day mr-3"></i> Daily Attendance
+        </a>
+        <a href="{{ route('admin.attendance.monthly') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.attendance.monthly') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-calendar-alt mr-3"></i> Monthly Attendance
+        </a>
+    @endrole
+
+
+    {{-- ✅ Teacher → sirf Attendance aur Teacher --}}
+    @role('teacher')
+       <a href="{{ route('admin.dashboard') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('dashboard') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-home mr-3"></i> Dashboard
+        </a>
+              <a href="{{ route('admin.teachers.index') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.teachers.*') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-chalkboard-teacher mr-3"></i> Teachers
+        </a>
+           {{-- <div class="mt-4 px-4 text-xs uppercase text-gray-400">Attendance</div> --}}
+        <a href="{{ route('admin.attendance.create') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.attendance.create') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-check-circle mr-3"></i> Mark Attendance
+        </a>
+        <a href="{{ route('admin.attendance.daily') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.attendance.daily') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-calendar-day mr-3"></i> Daily Attendance
+        </a>
+        <a href="{{ route('admin.attendance.monthly') }}" 
+           class="flex items-center px-4 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.attendance.monthly') ? 'bg-gray-700' : '' }}">
+            <i class="fas fa-calendar-alt mr-3"></i> Monthly Attendance
+        </a>
+  
+    @endrole
+
+</nav>
+
     </div>
 
     <!-- Bottom part (Logout) -->

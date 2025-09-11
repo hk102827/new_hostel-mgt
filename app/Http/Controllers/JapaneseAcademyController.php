@@ -38,6 +38,7 @@ public function index(Request $request)
     // Show create form
     public function create()
     {
+        echo "here";
         $students = Student::select('id', 'name')->orderBy('name')->get();
         return view('admin.accademy.create', compact('students'));
     }

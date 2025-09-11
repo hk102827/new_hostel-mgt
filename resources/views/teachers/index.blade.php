@@ -4,7 +4,9 @@
 <div class="container mx-auto p-4">
     <div class="flex justify-between items-center mb-4">
         <h2 class="text-2xl font-semibold">Teachers</h2>
+    
         <a href="{{ route('admin.teachers.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Add Teacher</a>
+      
     </div>
 
     @if(session('success'))
@@ -35,7 +37,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button class="text-red-600 hover:underline">Delete</button>
-                            </form>
+                            </form>   
                         </td>
                     </tr>
                 @empty
@@ -47,4 +49,87 @@
 
     <div class="mt-4">{{ $teachers->links() }}</div>
 </div>
+
+<!-- Popup Modal -->
+<div id="noAccessModal" 
+     class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+    <div id="noAccessBox" 
+         class="bg-white p-6 rounded shadow-lg w-80 text-center">
+        <h2 class="text-lg font-bold mb-4 text-red-600">Access Denied</h2>
+        <p class="text-gray-700 mb-4">You do not have permission to perform this action.</p>
+        <button onclick="closeNoAccessModal()" 
+                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            OK
+        </button>
+    </div>
+</div>
+
+<style>
+/* Bounce animation */
+@keyframes bounceIn {
+  0%   { transform: scale(0.7); opacity: 0; }
+  50%  { transform: scale(1.1); opacity: 1; }
+  70%  { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-bounce-in {
+  animation: bounceIn 0.5s ease-out forwards;
+}
+
+/* Smooth fade out when closing */
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.7); }
+}
+.animate-fade-out {
+  animation: fadeOut 0.4s ease-in forwards;
+}
+</style>
+
+<script>
+    let autoHideTimeout;
+
+    function showNoAccessModal() {
+        const modal = document.getElementById('noAccessModal');
+        const box = document.getElementById('noAccessBox');
+        
+        modal.classList.remove('hidden');
+        box.classList.remove('animate-fade-out');
+        void box.offsetWidth; // reset animation
+        box.classList.add('animate-bounce-in');
+
+        // Auto hide after 5 seconds
+        clearTimeout(autoHideTimeout);
+        autoHideTimeout = setTimeout(() => {
+            closeNoAccessModal();
+        }, 5000);
+    }
+
+    function closeNoAccessModal() {
+        const modal = document.getElementById('noAccessModal');
+        const box = document.getElementById('noAccessBox');
+
+        // Add fade out animation
+        box.classList.remove('animate-bounce-in');
+        box.classList.add('animate-fade-out');
+
+        // Wait for animation to finish, then hide
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 400);
+        
+        clearTimeout(autoHideTimeout); 
+    }
+
+    // Attach to all restricted buttons
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.restricted-btn').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault(); 
+                showNoAccessModal();
+            });
+        });
+    });
+</script>
+
 @endsection

@@ -15,6 +15,7 @@
            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
             <i class="fas fa-plus mr-2"></i>Add New Room
         </a>
+      
     </div>
     
     <!-- Students Table -->
@@ -88,6 +89,7 @@
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <a href="{{ route('admin.rooms.edit', $room->id) }}" 
                            class="inline-flex items-center px-3 py-1.5 bg-blue-600 text-white text-sm font-medium rounded-lg shadow hover:bg-blue-700 transition">Edit</a>
+                      
                         <form action="{{ route('admin.rooms.destroy', $room->id) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
@@ -97,6 +99,7 @@
                                 Delete
                             </button>
                         </form>
+                     
                     </td>
                 </tr>
                 @endforeach
@@ -109,4 +112,6 @@
         {{ $rooms->links() }}
     </div>
 </div>
+
+
 @endsection

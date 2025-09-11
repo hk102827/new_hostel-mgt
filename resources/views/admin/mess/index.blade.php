@@ -24,7 +24,8 @@
         </select>
         <button class="bg-blue-500 text-white px-4 py-2 rounded">Filter</button>
     </form>
-    <a href="{{ route(name: 'admin.mess.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Add New</a>
+        <a href="{{ route('admin.mess.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Add New</a>
+  
 </div>
 
   <table class="min-w-full bg-white border rounded shadow">
@@ -54,12 +55,13 @@
             </td>
             <td class="px-6 py-3">
                 <div class="flex space-x-2">
-                    <a href="{{ route('admin.mess.edit', $row->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded">Edit</a>
-                    <form action="{{ route('admin.mess.destroy', $row->id) }}" method="POST" onsubmit="return confirm('Delete this record?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded">Delete</button>
+                        <a href="{{ route('admin.mess.edit', $row->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded">Edit</a>
+                        <form action="{{ route('admin.mess.destroy', $row->id) }}" method="POST" onsubmit="return confirm('Delete this record?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded">Delete</button>
                     </form>
+                  
                 </div>
             </td>
         </tr>
@@ -72,4 +74,5 @@
 </table>
 
 </div>
+
 @endsection

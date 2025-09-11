@@ -37,6 +37,7 @@ class AttendanceExport implements FromCollection, WithHeadings, WithMapping
             'Date',
             'Session',
             'Name',
+            'student_type',
             'Type',
             'Status',
         ];
@@ -49,6 +50,7 @@ class AttendanceExport implements FromCollection, WithHeadings, WithMapping
             Carbon::parse($attendance->date)->format('d-m-Y'),  // readable date
             $attendance->session,
             optional($attendance->attendable)->name ?? '-',     // Student/Teacher ka naam
+            optional($attendance->attendable)->student_type ?? '-', // Student Type
             class_basename($attendance->attendable_type),       // sirf model ka short name
             $attendance->status,
         ];

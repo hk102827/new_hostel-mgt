@@ -3,15 +3,40 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Student extends Model
 {
          
         use HasFactory;
-        protected $fillable = [
-            'name', 'father_name', 'cnic', 'phone', 'email', 
-            'address', 'emergency_contact', 'admission_date', 'status'
-        ];
+       protected $fillable = [
+        'name',
+        'father_name',
+        'gender',
+        'cnic',
+        'date_of_birth',
+        'marital_status',
+        'phone',
+        'email',
+        'nationality',
+        'religion',
+        'sect',
+        'postal_address',
+        'address',
+        'emergency_contact',
+        'station',
+        'department',
+        'specialization',
+        'job_type',
+        'admission_date',
+        'status',
+        'room_id',
+        'photo',
+    ];
+        protected $casts = [
+        'date_of_birth' => 'date',
+        'admission_date' => 'date',
+    ];
 
         protected $dates = ['admission_date'];
 
@@ -46,5 +71,57 @@ class Student extends Model
             {
                 return $this->morphMany(Attendance::class, 'attendable');
             }
+                public function qualifications(): HasMany
+                {
+                    return $this->hasMany(StudentQualification::class);
+                }
+
+    /**
+     * Get the experiences for the student.
+     */
+    public function experiences(): HasMany
+    {
+        return $this->hasMany(StudentExperience::class);
+    }
+
+    /**
+     * Get the references for the student.
+     */
+    public function references(): HasMany
+    {
+        return $this->hasMany(StudentReference::class);
+    }
+
+    /**
+     * Get the room assigned to the student.
+     */
+    public function room(): BelongsTo
+    {
+        return $this->belongsTo(Room::class);
+    }
+
+    /**
+     * Calculate age from date of birth
+     */
+    public function getAgeAttribute()
+    {
+        return $this->date_of_birth ? $this->date_of_birth->age : null;
+    }
+
+    /**
+     * Get total qualifications in years
+     */
+    public function getTotalQualificationYearsAttribute()
+    {
+        return $this->qualifications->sum('duration_years');
+    }
+
+    /**
+     * Get total experience in months
+     */
+    public function getTotalExperienceMonthsAttribute()
+    {
+        return $this->experiences->sum('total_period_months');
+    }
 }
 

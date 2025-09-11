@@ -21,46 +21,68 @@
     @endif
 
     <!-- Date and Session Filter Card -->
-    <div class="card shadow-sm mb-4">
-        <div class="card-header bg-light">
-            <h5 class="card-title mb-0">
-                <i class="fas fa-calendar-alt me-2"></i>
-                Select Date & Session
-            </h5>
-        </div>
-        <div class="card-body">
-            <form method="GET" action="{{ route('admin.attendance.create') }}" class="row g-3">
-                <div class="col-md-4">
-                    <label for="date" class="form-label">Date</label>
-                    <input type="date" 
-                           id="date" 
-                           name="date" 
-                           value="{{ $date }}" 
-                           class="form-control form-control-lg">
-                </div>
-                <div class="col-md-4">
-                    <label for="session" class="form-label">Session</label>
-                    <input type="text" 
-                           id="session" 
-                           name="session" 
-                           value="{{ $session }}" 
-                           class="form-control form-control-lg" 
-                           placeholder="e.g., Morning, Afternoon">
-                </div>
-                <div class="col-md-4 d-flex align-items-end">
-                    <button type="submit" class="btn btn-outline-primary btn-lg w-100">
-                        <i class="fas fa-search me-2"></i>Load Attendance
-                    </button>
-                </div>
-            </form>
-        </div>
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-light">
+        <h5 class="card-title mb-0">
+            <i class="fas fa-calendar-alt me-2"></i>
+            Select Date, Session & Student Type
+        </h5>
     </div>
+    <div class="card-body">
+        <form method="GET" action="{{ route('admin.attendance.create') }}" class="row g-3">
+            <!-- Date -->
+            <div class="col-md-3">
+                <label for="date" class="form-label">Date</label>
+                <input type="date"
+                       id="date"
+                       name="date"
+                       value="{{ request('date', $date ?? '') }}"
+                       class="form-control form-control-lg">
+            </div>
+
+            <!-- Session -->
+            <div class="col-md-3">
+                <label for="session" class="form-label">Session</label>
+                <input type="text"
+                       id="session"
+                       name="session"
+                       value="{{ request('session', $session ?? '') }}"
+                       class="form-control form-control-lg"
+                       placeholder="e.g., Morning, Afternoon">
+            </div>
+
+            <!-- Student Type -->
+            <div class="col-md-3">
+                <label for="student_type" class="form-label">Student Type</label>
+                <select id="student_type" name="student_type" class="form-control form-control-lg">
+                    <option value="">🎯 All</option>
+                    <option value="online" {{ $studentType === 'online' ? 'selected' : '' }}>🌐 Online</option>
+                    <option value="physical" {{ $studentType === 'physical' ? 'selected' : '' }}>🏫 Physical</option>
+
+                </select>
+            </div>
+
+            <!-- Submit -->
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-outline-primary btn-lg w-100">
+                    <i class="fas fa-search me-2"></i>Load Attendance
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 
     <!-- Attendance Form -->
     <form method="POST" action="{{ route('admin.attendance.store') }}">
         @csrf
         <input type="hidden" name="date" value="{{ $date }}">
         <input type="hidden" name="session" value="{{ $session }}">
+        @foreach($students as $s)
+            <input type="hidden" name="student_types[{{ $s->id }}]" value="{{ $studentType }}">
+        @endforeach
+
 
         <!-- Current Session Info -->
         <div class="alert alert-info mb-4">

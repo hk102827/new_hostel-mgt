@@ -21,10 +21,13 @@
 
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Filter</button>
             </form>
-               <a href="{{ route('admin.academy.create') }}" 
+             
+                <a href="{{ route('admin.academy.create') }}" 
                 class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
                     <i class="fas fa-plus mr-2"></i>Add New Student
                 </a>
+
+
         </div>
     
 
@@ -63,14 +66,19 @@
                         <td class="px-6 py-4 flex space-x-2">
                             <a href="{{ route('admin.academy.show', $student->id) }}"
                                 class="bg-blue-500 text-white px-3 py-1 rounded">View</a>
-                            <a href="{{ route('admin.academy.edit', $student->id) }}"
-                                class="bg-yellow-500 text-white px-3 py-1 rounded">Edit</a>
+                   
+                            <a href="{{ route('admin.academy.edit', $student->id) }}" 
+                            class="bg-yellow-500 text-white px-3 py-1 rounded">
+                                Edit
+                            </a>
                             <form action="{{ route('admin.academy.destroy', $student->id) }}" method="POST"
                                 onsubmit="return confirm('Are you sure?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
                             </form>
+                   
+
                         </td>
                     </tr>
                 @empty
@@ -81,4 +89,6 @@
             </tbody>
         </table>
     </div>
+
+
 @endsection

@@ -3,7 +3,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <!-- Logo -->
             <a class="navbar-brand logo_h" href="{{ route('home') }}">
-                <img src="{{ asset('assets/image/Logo.png') }}" alt="">
+                {{-- <img src="{{ asset('assets/image/Logo.png') }}" alt=""> --}}
             </a>
 
             <!-- Mobile Toggle -->
