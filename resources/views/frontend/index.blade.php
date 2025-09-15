@@ -259,6 +259,15 @@
                 transform: translateY(0) scale(0.9);
             }
         }
+          .img {
+       height: 60vh;
+       width: auto;
+       /* object-fit: cover; */
+
+
+       /* Apply model */
+       
+    }
     </style>
 
     <!--================Banner Area =================-->
@@ -458,46 +467,58 @@
 
 
 
-            <div class="row justify-content-center">
-                <div class="col-lg-12 mb-4">
-                    <div class="p-4 shadow-sm" style="background:#ffffff;border-radius:8px">
-                        <h4 class="sec_h4 mb-3 text-center"><i class="fa fa-user-plus"></i> Admission Process</h4>
-                        <div class="row">
-                            <div class="col-md-3 text-center mb-3">
-                                <div class="p-3">
-                                    <i class="fa fa-file-text fa-2x text-primary mb-2"></i>
-                                    <h6>Step 1</h6>
-                                    <p>Fill Application Form</p>
+          <div class="row justify-content-center">
+            <div class="col-lg-12 mb-4">
+                <div class="p-4 shadow-sm" style="background:#ffffff;border-radius:8px">
+                    <h4 class="sec_h4 mb-3 text-center">
+                        <i class="fa fa-user-plus"></i> Admission Process
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-3 text-center mb-3">
+                            <div class="p-3 admission-step">
+                                <div class="step-icon">
+                                    <i class="fa fa-file-text fa-2x text-primary"></i>
                                 </div>
-                            </div>
-                            <div class="col-md-3 text-center mb-3">
-                                <div class="p-3">
-                                    <i class="fa fa-comments fa-2x text-primary mb-2"></i>
-                                    <h6>Step 2</h6>
-                                    <p>Counseling Session</p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 text-center mb-3">
-                                <div class="p-3">
-                                    <i class="fa fa-clipboard fa-2x text-primary mb-2"></i>
-                                    <h6>Step 3</h6>
-                                    <p>Level Assessment Test</p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 text-center mb-3">
-                                <div class="p-3">
-                                    <i class="fa fa-users fa-2x text-primary mb-2"></i>
-                                    <h6>Step 4</h6>
-                                    <p>Batch Allocation</p>
-                                </div>
+                                <h6>Step 1</h6>
+                                <p>Fill Application Form</p>
                             </div>
                         </div>
-                        <div class="text-center mt-3">
-                            <a href="{{ route('contact') }}" class="btn theme_btn button_hover">Apply Now</a>
+                        <div class="col-md-3 text-center mb-3">
+                            <div class="p-3 admission-step">
+                                <div class="step-icon">
+                                    <i class="fa fa-comments fa-2x text-primary"></i>
+                                </div>
+                                <h6>Step 2</h6>
+                                <p>Counseling Session</p>
+                            </div>
                         </div>
+                        <div class="col-md-3 text-center mb-3">
+                            <div class="p-3 admission-step">
+                                <div class="step-icon">
+                                    <i class="fa fa-clipboard fa-2x text-primary"></i>
+                                </div>
+                                <h6>Step 3</h6>
+                                <p>Level Assessment Test</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center mb-3">
+                            <div class="p-3 admission-step">
+                                <div class="step-icon">
+                                    <i class="fa fa-users fa-2x text-primary"></i>
+                                </div>
+                                <h6>Step 4</h6>
+                                <p>Batch Allocation</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="button" class="btn theme_btn button_hover" data-bs-toggle="modal" data-bs-target="#studentAdmissionModal">
+                            Apply Now
+                        </button>
                     </div>
                 </div>
             </div>
+        </div>
 
             <!-- Academy Statistics -->
             <div class="row mt-4">
@@ -603,7 +624,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img class="img-fluid" src="{{ asset('assets/image/about_bg.jpg') }}" alt="Tokyo Japanese School">
+                    <img class="img-fluid img" src="{{ asset('assets/image/class1.jpg') }}" alt="Tokyo Japanese School">
                 </div>
             </div>
         </div>
@@ -728,9 +749,275 @@
             </div>
         </div>
     </section>
-    <!--================ Student Testimonials =================-->
+    <!--================ Apply model =================-->
+     <div class="modal fade" id="studentAdmissionModal" tabindex="-1" aria-labelledby="studentAdmissionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="studentAdmissionModalLabel">
+                        <i class="fa fa-user-plus me-2"></i>Student Admission Form
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="studentAdmissionForm" enctype="multipart/form-data">
+                        <!-- Personal Information Section -->
+                        <div class="mb-4">
+                            <h4 class="section-header">1. Personal Information</h4>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="name" class="form-label required-field">Full Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="father_name" class="form-label required-field">Father's Name</label>
+                                    <input type="text" class="form-control" id="father_name" name="father_name" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="gender" class="form-label required-field">Gender</label>
+                                    <select class="form-select" id="gender" name="gender" required>
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="cnic" class="form-label required-field">CNIC</label>
+                                    <input type="text" class="form-control" id="cnic" name="cnic" placeholder="12345-6789012-3" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="date_of_birth" class="form-label required-field">Date of Birth</label>
+                                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="marital_status" class="form-label required-field">Marital Status</label>
+                                    <select class="form-select" id="marital_status" name="marital_status" required>
+                                        <option value="">Select Status</option>
+                                        <option value="single">Single</option>
+                                        <option value="married">Married</option>
+                                        <option value="divorced">Divorced</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="phone" class="form-label required-field">Phone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="email" class="form-label required-field">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="nationality" class="form-label required-field">Nationality</label>
+                                    <input type="text" class="form-control" id="nationality" name="nationality" value="Pakistani" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="religion" class="form-label">Religion</label>
+                                    <input type="text" class="form-control" id="religion" name="religion">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="sect" class="form-label">Sect</label>
+                                    <input type="text" class="form-control" id="sect" name="sect">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="emergency_contact" class="form-label required-field">Emergency Contact</label>
+                                    <input type="text" class="form-control" id="emergency_contact" name="emergency_contact" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="postal_address" class="form-label required-field">Postal Address</label>
+                                    <textarea class="form-control" id="postal_address" name="postal_address" rows="3" required></textarea>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="address" class="form-label required-field">Current Address</label>
+                                    <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                                </div>
+                            </div>
+                        </div>
 
-    <!-- Floating Social Buttons -->
+                        <!-- Department & Station Information -->
+                        <div class="mb-4">
+                            <h4 class="section-header">Department & Station</h4>
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="station" class="form-label">Station</label>
+                                    <select class="form-select" id="station" name="station">
+                                        <option value="">Select Station</option>
+                                        <option value="Islamabad">Islamabad</option>
+                                        <option value="Lahore">Lahore</option>
+                                        <option value="Karachi">Karachi</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="department" class="form-label">Department</label>
+                                    <input type="text" class="form-control" id="department" name="department">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="specialization" class="form-label">Specialization</label>
+                                    <input type="text" class="form-control" id="specialization" name="specialization">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="job_type" class="form-label">Job Type</label>
+                                    <select class="form-select" id="job_type" name="job_type">
+                                        <option value="permanent">Permanent</option>
+                                        <option value="contract">Contract</option>
+                                        <option value="temporary">Temporary</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Qualifications Section -->
+                        <div class="mb-4">
+                            <h4 class="section-header">2. Qualifications</h4>
+                            <div id="qualifications-container">
+                                <div class="dynamic-row qualification-row">
+                                    <div class="row">
+                                        <div class="col-md-2 mb-2">
+                                            <label class="form-label">Degree</label>
+                                            <select name="qualifications[0][degree_type]" class="form-select">
+                                                <option value="">Select</option>
+                                                <option value="SSC">SSC</option>
+                                                <option value="HSSC">HSSC</option>
+                                                <option value="Bachelor">Bachelor</option>
+                                                <option value="Masters">Masters</option>
+                                                <option value="MS/M.Phil">MS/M.Phil</option>
+                                                <option value="Ph.D">Ph.D</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 mb-2">
+                                            <label class="form-label">Duration (Years)</label>
+                                            <input type="number" step="0.1" name="qualifications[0][duration_years]" class="form-control">
+                                        </div>
+                                        <div class="col-md-2 mb-2">
+                                            <label class="form-label">Specialization</label>
+                                            <input type="text" name="qualifications[0][specialization]" class="form-control">
+                                        </div>
+                                        <div class="col-md-2 mb-2">
+                                            <label class="form-label">Passing Year</label>
+                                            <input type="number" min="1950" max="2030" name="qualifications[0][passing_year]" class="form-control">
+                                        </div>
+                                        <div class="col-md-2 mb-2">
+                                            <label class="form-label">CGPA/Grade</label>
+                                            <input type="text" name="qualifications[0][cgpa_grade]" class="form-control">
+                                        </div>
+                                        <div class="col-md-2 mb-2">
+                                            <label class="form-label">Institute/Board/University</label>
+                                            <input type="text" name="qualifications[0][institute_board_university]" class="form-control">
+                                        </div>
+                                        <div class="col-md-12 mb-2">
+                                            <label class="form-label">Country</label>
+                                            <input type="text" name="qualifications[0][country]" class="form-control" value="Pakistan">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="add-more-btn" onclick="addQualification()">
+                                <i class="fa fa-plus me-1"></i>Add Another Qualification
+                            </a>
+                        </div>
+
+                        <!-- Experience Section -->
+                        <div class="mb-4">
+                            <h4 class="section-header">3. Experience</h4>
+                            <div id="experience-container">
+                                <div class="dynamic-row experience-row">
+                                    <div class="row">
+                                        <div class="col-md-3 mb-2">
+                                            <label class="form-label">Institution/Organization</label>
+                                            <input type="text" name="experiences[0][institution_organization]" class="form-control">
+                                        </div>
+                                        <div class="col-md-3 mb-2">
+                                            <label class="form-label">Position/Job Title</label>
+                                            <input type="text" name="experiences[0][position_job_title]" class="form-control">
+                                        </div>
+                                        <div class="col-md-2 mb-2">
+                                            <label class="form-label">From Date</label>
+                                            <input type="date" name="experiences[0][from_date]" class="form-control">
+                                        </div>
+                                        <div class="col-md-2 mb-2">
+                                            <label class="form-label">To Date</label>
+                                            <input type="date" name="experiences[0][to_date]" class="form-control">
+                                        </div>
+                                        <div class="col-md-2 mb-2">
+                                            <label class="form-label">Total Period (Months)</label>
+                                            <input type="number" name="experiences[0][total_period_months]" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="add-more-btn" onclick="addExperience()">
+                                <i class="fa fa-plus me-1"></i>Add Another Experience
+                            </a>
+                        </div>
+
+                        <!-- References Section -->
+                        <div class="mb-4">
+                            <h4 class="section-header">4. References</h4>
+                            <div id="references-container">
+                                <div class="dynamic-row reference-row">
+                                    <div class="row">
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Name</label>
+                                            <input type="text" name="references[0][name]" class="form-control">
+                                        </div>
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Designation</label>
+                                            <input type="text" name="references[0][designation]" class="form-control">
+                                        </div>
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Contact No.</label>
+                                            <input type="text" name="references[0][contact_no]" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="add-more-btn" onclick="addReference()">
+                                <i class="fa fa-plus me-1"></i>Add Another Reference
+                            </a>
+                        </div>
+
+                        <!-- Admission Details -->
+                        <div class="mb-4">
+                            <h4 class="section-header">Admission Details</h4>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="admission_date" class="form-label required-field">Admission Date</label>
+                                    <input type="date" class="form-control" id="admission_date" name="admission_date" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="room_id" class="form-label">Assign Room</label>
+                                    <select class="form-select" id="room_id" name="room_id">
+                                        <option value="">Select Room (Optional)</option>
+                                        <option value="1">Room 101 (5 spaces available)</option>
+                                        <option value="2">Room 102 (3 spaces available)</option>
+                                        <option value="3">Room 103 (2 spaces available)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="photo" class="form-label">Upload Photo</label>
+                                    <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-submit" onclick="submitStudentForm()">
+                        <i class="fa fa-save me-2"></i>Add Student
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Alert -->
+    <div class="alert alert-success alert-dismissible fade" role="alert" id="successAlert" 
+         style="position: fixed; top: 20px; right: 20px; z-index: 9999; display: none;">
+        <i class="fa fa-check-circle me-2"></i>
+        <strong>Success!</strong> Student application has been submitted successfully.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <style>
         .floating-social {
             position: fixed;
@@ -835,6 +1122,277 @@
                     });
                 },
             }
+        });
+    </script>
+    {{-- Apply Script --}}
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let qualificationIndex = 1;
+        let experienceIndex = 1;
+        let referenceIndex = 1;
+
+        // Add Qualification
+        function addQualification() {
+            const container = document.getElementById('qualifications-container');
+            const newRow = document.createElement('div');
+            newRow.className = 'dynamic-row qualification-row';
+            newRow.innerHTML = `
+                <button type="button" class="remove-btn" onclick="this.closest('.qualification-row').remove()">×</button>
+                <div class="row">
+                    <div class="col-md-2 mb-2">
+                        <select name="qualifications[${qualificationIndex}][degree_type]" class="form-select">
+                            <option value="">Select</option>
+                            <option value="SSC">SSC</option>
+                            <option value="HSSC">HSSC</option>
+                            <option value="Bachelor">Bachelor</option>
+                            <option value="Masters">Masters</option>
+                            <option value="MS/M.Phil">MS/M.Phil</option>
+                            <option value="Ph.D">Ph.D</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <input type="number" step="0.1" name="qualifications[${qualificationIndex}][duration_years]" class="form-control" placeholder="Duration">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <input type="text" name="qualifications[${qualificationIndex}][specialization]" class="form-control" placeholder="Specialization">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <input type="number" min="1950" max="2030" name="qualifications[${qualificationIndex}][passing_year]" class="form-control" placeholder="Year">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <input type="text" name="qualifications[${qualificationIndex}][cgpa_grade]" class="form-control" placeholder="CGPA/Grade">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <input type="text" name="qualifications[${qualificationIndex}][institute_board_university]" class="form-control" placeholder="Institute">
+                    </div>
+                    <div class="col-md-12 mb-2">
+                        <input type="text" name="qualifications[${qualificationIndex}][country]" class="form-control" value="Pakistan" placeholder="Country">
+                    </div>
+                </div>
+            `;
+            container.appendChild(newRow);
+            qualificationIndex++;
+            return false;
+        }
+
+        // Add Experience
+        function addExperience() {
+            const container = document.getElementById('experience-container');
+            const newRow = document.createElement('div');
+            newRow.className = 'dynamic-row experience-row';
+            newRow.innerHTML = `
+                <button type="button" class="remove-btn" onclick="this.closest('.experience-row').remove()">×</button>
+                <div class="row">
+                    <div class="col-md-3 mb-2">
+                        <input type="text" name="experiences[${experienceIndex}][institution_organization]" class="form-control" placeholder="Institution/Organization">
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <input type="text" name="experiences[${experienceIndex}][position_job_title]" class="form-control" placeholder="Position/Job Title">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <input type="date" name="experiences[${experienceIndex}][from_date]" class="form-control">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <input type="date" name="experiences[${experienceIndex}][to_date]" class="form-control">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <input type="number" name="experiences[${experienceIndex}][total_period_months]" class="form-control" placeholder="Months">
+                    </div>
+                </div>
+            `;
+            container.appendChild(newRow);
+            experienceIndex++;
+            return false;
+        }
+
+        // Add Reference
+        function addReference() {
+            const container = document.getElementById('references-container');
+            const newRow = document.createElement('div');
+            newRow.className = 'dynamic-row reference-row';
+            newRow.innerHTML = `
+                <button type="button" class="remove-btn" onclick="this.closest('.reference-row').remove()">×</button>
+                <div class="row">
+                    <div class="col-md-4 mb-2">
+                        <input type="text" name="references[${referenceIndex}][name]" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <input type="text" name="references[${referenceIndex}][designation]" class="form-control" placeholder="Designation">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <input type="text" name="references[${referenceIndex}][contact_no]" class="form-control" placeholder="Contact No.">
+                    </div>
+                </div>
+            `;
+            container.appendChild(newRow);
+            referenceIndex++;
+            return false;
+        }
+
+        // Submit Form
+        function submitStudentForm() {
+            const form = document.getElementById('studentAdmissionForm');
+            
+            if (form.checkValidity()) {
+                // Create FormData object to handle file uploads
+                const formData = new FormData(form);
+                
+                // Here you would normally send the data to your Laravel backend
+                console.log('Form Data:', Object.fromEntries(formData.entries()));
+                
+                // For demonstration, we'll just show success message
+                const modal = bootstrap.Modal.getInstance(document.getElementById('studentAdmissionModal'));
+                modal.hide();
+                
+                // Show success message
+                const successAlert = document.getElementById('successAlert');
+                successAlert.style.display = 'block';
+                successAlert.classList.add('show');
+                
+                // Reset form
+                form.reset();
+                
+                // Reset dynamic sections
+                resetDynamicSections();
+                
+                // Auto hide success message after 5 seconds
+                setTimeout(() => {
+                    successAlert.classList.remove('show');
+                    setTimeout(() => {
+                        successAlert.style.display = 'none';
+                    }, 150);
+                }, 5000);
+                
+            } else {
+                form.reportValidity();
+            }
+        }
+
+        // Reset dynamic sections
+        function resetDynamicSections() {
+            // Reset qualifications
+            const qualContainer = document.getElementById('qualifications-container');
+            qualContainer.innerHTML = `
+                <div class="dynamic-row qualification-row">
+                    <div class="row">
+                        <div class="col-md-2 mb-2">
+                            <label class="form-label">Degree</label>
+                            <select name="qualifications[0][degree_type]" class="form-select">
+                                <option value="">Select</option>
+                                <option value="SSC">SSC</option>
+                                <option value="HSSC">HSSC</option>
+                                <option value="Bachelor">Bachelor</option>
+                                <option value="Masters">Masters</option>
+                                <option value="MS/M.Phil">MS/M.Phil</option>
+                                <option value="Ph.D">Ph.D</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label class="form-label">Duration (Years)</label>
+                            <input type="number" step="0.1" name="qualifications[0][duration_years]" class="form-control">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label class="form-label">Specialization</label>
+                            <input type="text" name="qualifications[0][specialization]" class="form-control">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label class="form-label">Passing Year</label>
+                            <input type="number" min="1950" max="2030" name="qualifications[0][passing_year]" class="form-control">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label class="form-label">CGPA/Grade</label>
+                            <input type="text" name="qualifications[0][cgpa_grade]" class="form-control">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label class="form-label">Institute/Board/University</label>
+                            <input type="text" name="qualifications[0][institute_board_university]" class="form-control">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label">Country</label>
+                            <input type="text" name="qualifications[0][country]" class="form-control" value="Pakistan">
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Reset experiences
+            const expContainer = document.getElementById('experience-container');
+            expContainer.innerHTML = `
+                <div class="dynamic-row experience-row">
+                    <div class="row">
+                        <div class="col-md-3 mb-2">
+                            <label class="form-label">Institution/Organization</label>
+                            <input type="text" name="experiences[0][institution_organization]" class="form-control">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label class="form-label">Position/Job Title</label>
+                            <input type="text" name="experiences[0][position_job_title]" class="form-control">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label class="form-label">From Date</label>
+                            <input type="date" name="experiences[0][from_date]" class="form-control">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label class="form-label">To Date</label>
+                            <input type="date" name="experiences[0][to_date]" class="form-control">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label class="form-label">Total Period (Months)</label>
+                            <input type="number" name="experiences[0][total_period_months]" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Reset references
+            const refContainer = document.getElementById('references-container');
+            refContainer.innerHTML = `
+                <div class="dynamic-row reference-row">
+                    <div class="row">
+                        <div class="col-md-4 mb-2">
+                            <label class="form-label">Name</label>
+                            <input type="text" name="references[0][name]" class="form-control">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label class="form-label">Designation</label>
+                            <input type="text" name="references[0][designation]" class="form-control">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label class="form-label">Contact No.</label>
+                            <input type="text" name="references[0][contact_no]" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Reset counters
+            qualificationIndex = 1;
+            experienceIndex = 1;
+            referenceIndex = 1;
+        }
+
+        // CNIC formatting
+        document.getElementById('cnic').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 5) {
+                value = value.substring(0, 5) + '-' + value.substring(5);
+            }
+            if (value.length >= 13) {
+                value = value.substring(0, 13) + '-' + value.substring(13);
+            }
+            e.target.value = value.substring(0, 15);
+        });
+
+        // Phone number formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            e.target.value = value.substring(0, 11);
+        });
+
+        // Emergency contact formatting
+        document.getElementById('emergency_contact').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            e.target.value = value.substring(0, 11);
         });
     </script>
 @endsection

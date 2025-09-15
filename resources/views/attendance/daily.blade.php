@@ -187,17 +187,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                        
                             @foreach($records as $r)
                                 <tr class="align-middle">
                                     <td class="fw-medium">{{ $r->date->format('M d, Y') }}</td>
                                     <td>
                                         <span class="badge bg-light text-dark border">{{ $r->session }}</span>
                                     </td>
-                                    <td>
-                                        <span class="badge bg-secondary">
-                                            {{ class_basename($r->attendable_type) }}
-                                        </span>
-                                    </td>
+                                    @php
+                                        $type = class_basename($r->attendable_type);
+                                        $label = $type === 'JapaneseAcademyStudent' ? 'Student' : $type;
+                                    @endphp
+                                 <td>
+                                    <span class="badge bg-secondary">
+                                        {{ $label }}
+                                    </span>
+                                </td>
                                     <td class="fw-medium">{{ $r->attendable->name ?? '-' }}</td>
                                     <td class="fw-medium">{{ $r->attendable->student_type ?? '-' }}</td>
                                     <td>

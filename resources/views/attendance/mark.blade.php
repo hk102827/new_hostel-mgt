@@ -1,6 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
+<style>
+    /* Default radio color */
+    .form-check-input {
+        accent-color: green; /* Present = green */
+    }
+
+    /* Absent radio ke liye */
+    .form-check-input.absent-radio {
+        accent-color: red;
+    }
+</style>
+
 <div class="container mt-4">
     <!-- Header Section -->
     <div class="d-flex align-items-center mb-4">
@@ -80,7 +92,7 @@
         <input type="hidden" name="date" value="{{ $date }}">
         <input type="hidden" name="session" value="{{ $session }}">
         @foreach($students as $s)
-            <input type="hidden" name="student_types[{{ $s->id }}]" value="{{ $studentType }}">
+        <input type="hidden" name="student_types[{{ $s->id }}]" value="{{ $s->student_type }}">
         @endforeach
 
 
@@ -113,6 +125,7 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th class="ps-4">Name</th>
+                                        <th class="ps-4">Student Type</th>
                                         <th class="text-center">
                                             <i class="fas fa-check text-success me-1"></i>Present
                                         </th>
@@ -136,6 +149,9 @@
                                                     <strong>{{ $s->name }}</strong>
                                                 </div>
                                             </td>
+                                            <td class="ps-4">
+                                                <small class="text-muted">{{ $s->student_type }}</small>
+                                            </td>
                                             <td class="text-center">
                                                 <div class="form-check d-flex justify-content-center">
                                                     <input type="radio" 
@@ -147,17 +163,18 @@
                                                     <label class="form-check-label" for="student_{{ $s->id }}_present"></label>
                                                 </div>
                                             </td>
-                                            <td class="text-center">
-                                                <div class="form-check d-flex justify-content-center">
-                                                    <input type="radio" 
-                                                           class="form-check-input status-radio absent-radio" 
-                                                           name="students[{{ $s->id }}]" 
-                                                           value="Absent" 
-                                                           id="student_{{ $s->id }}_absent"
-                                                           {{ $prefill === 'Absent' ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="student_{{ $s->id }}_absent"></label>
-                                                </div>
-                                            </td>
+                                       <td class="text-center">
+                                            <div class="form-check d-flex justify-content-center">
+                                                <input type="radio" 
+                                                    class="form-check-input status-radio absent-radio" 
+                                                    name="students[{{ $s->id }}]" 
+                                                    value="Absent" 
+                                                    id="student_{{ $s->id }}_absent"
+                                                    {{ $prefill === 'Absent' ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="student_{{ $s->id }}_absent"></label>
+                                            </div>
+                                        </td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -19,8 +19,9 @@
                 <ul class="nav navbar-nav menu_nav ml-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('accomodation') }}">Accomodation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('accomodation') }}">Successful Students</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('gallery') }}">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('blog') }}">Blog</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
 
                     <!-- Auth Buttons -->

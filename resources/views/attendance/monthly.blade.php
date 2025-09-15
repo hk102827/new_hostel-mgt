@@ -87,57 +87,81 @@
         </div>
 
         <!-- Attendance Table -->
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="w-full">
-                    <thead class="bg-gray-200">
-                        <tr>
-                            <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider">
-                                <i class="fas fa-calendar-day mr-2"></i>Date
-                            </th>
-                            <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider">
-                                <i class="fas fa-user mr-2"></i>Name
-                            </th>
-                            <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider">
-                                <i class="fas fa-user mr-2"></i>Student Type
-                            </th>
-                            <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider">
-                                <i class="fas fa-clock mr-2"></i>Session
-                            </th>
-                            <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider">
-                                <i class="fas fa-check-circle mr-2"></i>Status
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        @foreach ($records as $r)
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-4 py-3 text-sm text-gray-900">{{ $r->date->format('d-m-Y') }}</td>
-                                <td class="px-4 py-3">
-                                    <span
-                                        class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                                        {{ $r->session }}
-                                    </span>
-                                </td>
-                                <td class="px-4 py-3 text-sm font-medium text-gray-900">{{ $r->attendable->name ?? '-' }}
-                                </td>
-                                <td class="px-4 py-3 text-sm font-medium text-gray-900">
-                                    {{ $r->attendable->student_type ?? '-' }}</td>
-                                <td class="px-4 py-3">
-                                    <span
-                                        class="inline-flex px-2 py-1 text-xs font-semibold rounded-full 
-                                    @if ($r->status == 'Present') bg-green-100 text-green-800 
-                                    @elseif($r->status == 'Absent') bg-red-100 text-red-800 
-                                    @else bg-yellow-100 text-yellow-800 @endif">
-                                        {{ $r->status }}
-                                    </span>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <form id="bulkDeleteForm" method="POST" action="{{ route('admin.attendance.bulkDelete') }}">
+        @csrf
+        @method('DELETE')
+
+        <div class="p-3">
+            <button type="submit" 
+                class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium"
+                onclick="return confirm('Are you sure you want to delete selected records?')">
+                <i class="fas fa-trash mr-1"></i> Bulk Delete
+            </button>
         </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <!-- Select All Checkbox -->
+                        <th class="px-4 py-3 text-left">
+                            <input type="checkbox" id="selectAll" class="form-checkbox h-4 w-4 text-blue-600">
+                        </th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider">
+                            <i class="fas fa-calendar-day mr-2"></i>Date
+                        </th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider">
+                            <i class="fas fa-clock mr-2"></i>Session
+                        </th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider">
+                            <i class="fas fa-user mr-2"></i>Name
+                        </th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider">
+                            <i class="fas fa-user mr-2"></i>Student Type
+                        </th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider">
+                            <i class="fas fa-check-circle mr-2"></i>Status
+                        </th>
+                    </tr>
+                </thead>
+               <tbody class="divide-y divide-gray-200">
+    @forelse ($records as $r)
+        <tr class="hover:bg-gray-50">
+            <td class="px-4 py-3">
+                <input type="checkbox" name="ids[]" value="{{ $r->id }}" class="record-checkbox h-4 w-4 text-blue-600">
+            </td>
+            <td class="px-4 py-3 text-sm text-gray-900">{{ $r->date->format('d-m-Y') }}</td>
+            <td class="px-4 py-3">
+                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                    {{ $r->session }}
+                </span>
+            </td>
+            <td class="px-4 py-3 text-sm font-medium text-gray-900">{{ $r->attendable->name ?? '-' }}</td>
+            <td class="px-4 py-3 text-sm font-medium text-gray-900">{{ $r->attendable->student_type ?? '-' }}</td>
+            <td class="px-4 py-3">
+                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full 
+                    @if ($r->status == 'Present') bg-green-100 text-green-800 
+                    @elseif($r->status == 'Absent') bg-red-100 text-red-800 
+                    @else bg-yellow-100 text-yellow-800 @endif">
+                    {{ $r->status }}
+                </span>
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="6" class="px-4 py-6 text-center text-gray-500 font-medium">
+                No Attendance found. Please add attendance.
+            </td>
+        </tr>
+    @endforelse
+</tbody>
+
+            </table>
+        </div>
+    </form>
+</div>
+
 
         <!-- Summary Stats (Optional) -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
@@ -161,6 +185,13 @@
     </div>
 
     </div>
+    <script>
+    document.getElementById('selectAll').addEventListener('change', function() {
+        let checkboxes = document.querySelectorAll('.record-checkbox');
+        checkboxes.forEach(cb => cb.checked = this.checked);
+    });
+</script>
+
 
     @push('scripts')
         <script>

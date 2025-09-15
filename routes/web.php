@@ -19,6 +19,7 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/about', [FrontendController::class, 'about'])->name('about');
 Route::get('/accomodation', [FrontendController::class, 'accomodation'])->name('accomodation');
 Route::get('/gallery', [FrontendController::class, 'gallery'])->name('gallery');
+Route::get('/blog', [FrontendController::class, 'blog'])->name('blog');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 
 // Admin Routes
@@ -99,6 +100,9 @@ Route::middleware(['auth', 'role.permission'])->prefix('admin')->name('admin.')-
         Route::get('/fees/{id}/edit', [FeeManagementController::class, 'edit'])->name('fees.edit');
         Route::put('/fees/{id}', [FeeManagementController::class, 'update'])->name('fees.update');
         Route::delete('/fees/{id}', [FeeManagementController::class, 'destroy'])->name('fees.destroy');
+        Route::get('/fees/student-pending/{student}', [FeeManagementController::class, 'getStudentPendingFees'])->name('admin.fees.student-pending');
+        Route::get('/fees/{id}', [FeeManagementController::class, 'show'])->name('fees.show');
+
 
         Route::get('/reports', [ReportsController::class, 'index'])->name('reports.index');
         Route::get('/reports/fees', [ReportsController::class, 'fees'])->name('reports.fees');
@@ -127,7 +131,8 @@ Route::middleware(['auth', 'role.permission'])->prefix('admin')->name('admin.')-
         Route::get('/attendance/monthly', [AttendanceController::class, 'monthly'])->name('attendance.monthly');
         Route::get('/attendance/export/excel', [AttendanceController::class, 'exportExcel'])->name('attendance.export.excel');
         Route::get('/attendance/export/pdf', [AttendanceController::class, 'exportPDF'])->name('attendance.export.pdf');
- 
+         Route::delete('/attendance/bulk-delete', [AttendanceController::class, 'bulkDelete'])->name('attendance.bulkDelete');
+
 
 }); // Main admin route group closing brace
 

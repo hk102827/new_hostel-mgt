@@ -176,4 +176,18 @@ public function monthly(Request $request)
             return back()->with('error', 'PDF export failed: ' . $e->getMessage());
         }
     }
+
+
+    public function bulkDelete(Request $request)
+    {
+        $ids = $request->ids;
+
+        if ($ids && count($ids) > 0) {
+            Attendance::whereIn('id', $ids)->delete();
+            return back()->with('success', 'Selected records deleted successfully.');
+        }
+
+        return back()->with('error', 'No records selected.');
+    }
+
 }

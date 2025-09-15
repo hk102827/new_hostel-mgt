@@ -6,7 +6,7 @@
     <title>@yield('title') - Hostel Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
-<script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
+{{-- <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script> --}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     @stack('scripts')
