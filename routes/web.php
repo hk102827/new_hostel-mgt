@@ -21,6 +21,8 @@ Route::get('/accomodation', [FrontendController::class, 'accomodation'])->name('
 Route::get('/gallery', [FrontendController::class, 'gallery'])->name('gallery');
 Route::get('/blog', [FrontendController::class, 'blog'])->name('blog');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
+Route::post('/apply', [FrontendController::class, 'store'])->name('frontend.apply');
+
 
 // Admin Routes
 Route::middleware(['auth', 'role.permission'])->prefix('admin')->name('admin.')->group(function () {

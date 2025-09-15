@@ -266,11 +266,334 @@
 
 
        /* Apply model */
-       
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        
+        .apply-now-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        
+        .apply-now-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(45deg, #764ba2, #667eea);
+            color: white;
+        }
+        
+        .modal-xl {
+            max-width: 90%;
+        }
+        
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .modal-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px 15px 0 0;
+            border-bottom: none;
+            padding: 20px 30px;
+        }
+        
+        .modal-body {
+            max-height: 70vh;
+            overflow-y: auto;
+            padding: 30px;
+        }
+        
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        
+        .section-header {
+            color: #333;
+            font-weight: 600;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .required-field::after {
+            content: " *";
+            color: #dc3545;
+        }
+        
+        .dynamic-row {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .remove-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .add-more-btn {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .add-more-btn:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+        
+        .btn-submit {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        /* Admission Process Styling */
+        .admission-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .step-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .step-item {
+            text-align: center;
+            margin: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-icon {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .step-description {
+            color: #666;
+            font-size: 14px;
+        }
     }
     </style>
+       <style>
+        /* Full Width Modal Styles */
+        .modal-fullwidth {
+            max-width: 95% !important;
+            width: 95% !important;
+            margin: 2.5% auto !important;
+        }
+        
+        /* Alternative: True full width (uncomment if needed) */
+        /*
+        .modal-fullwidth {
+            max-width: 100% !important;
+            width: 100% !important;
+            margin: 0 !important;
+            height: 100vh !important;
+        }
+        
+        .modal-fullwidth .modal-content {
+            height: 100vh !important;
+            border-radius: 0 !important;
+        }
+        */
+        
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom: none;
+        }
+        
+        .section-header {
+            color: #667eea;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .required-field::after {
+            content: "*";
+            color: red;
+            margin-left: 3px;
+        }
+        
+        .error-field {
+            border-color: #dc3545 !important;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+        }
+        
+        .dynamic-row {
+            position: relative;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+        
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            font-size: 14px;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .remove-btn:hover {
+            background: #c82333;
+        }
+        
+        .add-more-btn {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border: 2px dashed #667eea;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .add-more-btn:hover {
+            background-color: #667eea;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 10px 30px;
+            font-weight: 500;
+        }
+        
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+            color: white;
+        }
+        
+        .apply-now-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .apply-now-btn:hover {
+            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .modal-fullwidth {
+                max-width: 98% !important;
+                width: 98% !important;
+                margin: 1% auto !important;
+            }
+            
+            .dynamic-row {
+                padding: 10px;
+            }
+            
+            .remove-btn {
+                position: static;
+                float: right;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+@if(session('success'))
+<div id="successMessage" class="alert alert-success">
+   <p class="mb-0">{{ session('success') }}</p>
+</div>
+@endif
 
-    <!--================Banner Area =================-->
+
     <section class="banner_area">
         <div class="booking_table d_flex align-items-center">
             <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
@@ -512,8 +835,8 @@
                         </div>
                     </div>
                     <div class="text-center mt-3">
-                        <button type="button" class="btn theme_btn button_hover" data-bs-toggle="modal" data-bs-target="#studentAdmissionModal">
-                            Apply Now
+                       <button type="button" class="apply-now-btn" data-bs-toggle="modal" data-bs-target="#studentAdmissionModal">
+                            <i class="fa fa-paper-plane me-2"></i>Apply Now
                         </button>
                     </div>
                 </div>
@@ -750,8 +1073,8 @@
         </div>
     </section>
     <!--================ Apply model =================-->
-     <div class="modal fade" id="studentAdmissionModal" tabindex="-1" aria-labelledby="studentAdmissionModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+   <div class="modal fade" id="studentAdmissionModal" tabindex="-1" aria-labelledby="studentAdmissionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullwidth">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="studentAdmissionModalLabel">
@@ -759,8 +1082,9 @@
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form id="studentAdmissionForm" enctype="multipart/form-data">
+                <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+                    <form id="studentAdmissionForm" method="POST" action="{{ route('frontend.apply') }}" enctype="multipart/form-data">
+                        @csrf
                         <!-- Personal Information Section -->
                         <div class="mb-4">
                             <h4 class="section-header">1. Personal Information</h4>
@@ -911,7 +1235,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#" class="add-more-btn" onclick="addQualification()">
+                            <a href="#" class="add-more-btn" onclick="addQualification(); return false;">
                                 <i class="fa fa-plus me-1"></i>Add Another Qualification
                             </a>
                         </div>
@@ -945,7 +1269,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#" class="add-more-btn" onclick="addExperience()">
+                            <a href="#" class="add-more-btn" onclick="addExperience(); return false;">
                                 <i class="fa fa-plus me-1"></i>Add Another Experience
                             </a>
                         </div>
@@ -971,7 +1295,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#" class="add-more-btn" onclick="addReference()">
+                            <a href="#" class="add-more-btn" onclick="addReference(); return false;">
                                 <i class="fa fa-plus me-1"></i>Add Another Reference
                             </a>
                         </div>
@@ -1004,13 +1328,12 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-submit" onclick="submitStudentForm()">
-                        <i class="fa fa-save me-2"></i>Add Student
+                        <i class="fa fa-save me-2"></i>Submit Application
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Success Alert -->
     <div class="alert alert-success alert-dismissible fade" role="alert" id="successAlert" 
          style="position: fixed; top: 20px; right: 20px; z-index: 9999; display: none;">
@@ -1018,6 +1341,7 @@
         <strong>Success!</strong> Student application has been submitted successfully.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+
     <style>
         .floating-social {
             position: fixed;
@@ -1131,7 +1455,21 @@
         let experienceIndex = 1;
         let referenceIndex = 1;
 
-        // Add Qualification
+        // Submit Form Function
+        function submitStudentForm() {
+            const form = document.getElementById('studentAdmissionForm');
+            
+            // Validate form
+            if (form.checkValidity()) {
+                // Submit the form normally to Laravel
+                form.submit();
+            } else {
+                // Show validation errors
+                form.reportValidity();
+            }
+        }
+
+        // Add Qualification Function
         function addQualification() {
             const container = document.getElementById('qualifications-container');
             const newRow = document.createElement('div');
@@ -1172,10 +1510,9 @@
             `;
             container.appendChild(newRow);
             qualificationIndex++;
-            return false;
         }
 
-        // Add Experience
+        // Add Experience Function
         function addExperience() {
             const container = document.getElementById('experience-container');
             const newRow = document.createElement('div');
@@ -1202,10 +1539,9 @@
             `;
             container.appendChild(newRow);
             experienceIndex++;
-            return false;
         }
 
-        // Add Reference
+        // Add Reference Function
         function addReference() {
             const container = document.getElementById('references-container');
             const newRow = document.createElement('div');
@@ -1226,149 +1562,6 @@
             `;
             container.appendChild(newRow);
             referenceIndex++;
-            return false;
-        }
-
-        // Submit Form
-        function submitStudentForm() {
-            const form = document.getElementById('studentAdmissionForm');
-            
-            if (form.checkValidity()) {
-                // Create FormData object to handle file uploads
-                const formData = new FormData(form);
-                
-                // Here you would normally send the data to your Laravel backend
-                console.log('Form Data:', Object.fromEntries(formData.entries()));
-                
-                // For demonstration, we'll just show success message
-                const modal = bootstrap.Modal.getInstance(document.getElementById('studentAdmissionModal'));
-                modal.hide();
-                
-                // Show success message
-                const successAlert = document.getElementById('successAlert');
-                successAlert.style.display = 'block';
-                successAlert.classList.add('show');
-                
-                // Reset form
-                form.reset();
-                
-                // Reset dynamic sections
-                resetDynamicSections();
-                
-                // Auto hide success message after 5 seconds
-                setTimeout(() => {
-                    successAlert.classList.remove('show');
-                    setTimeout(() => {
-                        successAlert.style.display = 'none';
-                    }, 150);
-                }, 5000);
-                
-            } else {
-                form.reportValidity();
-            }
-        }
-
-        // Reset dynamic sections
-        function resetDynamicSections() {
-            // Reset qualifications
-            const qualContainer = document.getElementById('qualifications-container');
-            qualContainer.innerHTML = `
-                <div class="dynamic-row qualification-row">
-                    <div class="row">
-                        <div class="col-md-2 mb-2">
-                            <label class="form-label">Degree</label>
-                            <select name="qualifications[0][degree_type]" class="form-select">
-                                <option value="">Select</option>
-                                <option value="SSC">SSC</option>
-                                <option value="HSSC">HSSC</option>
-                                <option value="Bachelor">Bachelor</option>
-                                <option value="Masters">Masters</option>
-                                <option value="MS/M.Phil">MS/M.Phil</option>
-                                <option value="Ph.D">Ph.D</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2 mb-2">
-                            <label class="form-label">Duration (Years)</label>
-                            <input type="number" step="0.1" name="qualifications[0][duration_years]" class="form-control">
-                        </div>
-                        <div class="col-md-2 mb-2">
-                            <label class="form-label">Specialization</label>
-                            <input type="text" name="qualifications[0][specialization]" class="form-control">
-                        </div>
-                        <div class="col-md-2 mb-2">
-                            <label class="form-label">Passing Year</label>
-                            <input type="number" min="1950" max="2030" name="qualifications[0][passing_year]" class="form-control">
-                        </div>
-                        <div class="col-md-2 mb-2">
-                            <label class="form-label">CGPA/Grade</label>
-                            <input type="text" name="qualifications[0][cgpa_grade]" class="form-control">
-                        </div>
-                        <div class="col-md-2 mb-2">
-                            <label class="form-label">Institute/Board/University</label>
-                            <input type="text" name="qualifications[0][institute_board_university]" class="form-control">
-                        </div>
-                        <div class="col-md-12 mb-2">
-                            <label class="form-label">Country</label>
-                            <input type="text" name="qualifications[0][country]" class="form-control" value="Pakistan">
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // Reset experiences
-            const expContainer = document.getElementById('experience-container');
-            expContainer.innerHTML = `
-                <div class="dynamic-row experience-row">
-                    <div class="row">
-                        <div class="col-md-3 mb-2">
-                            <label class="form-label">Institution/Organization</label>
-                            <input type="text" name="experiences[0][institution_organization]" class="form-control">
-                        </div>
-                        <div class="col-md-3 mb-2">
-                            <label class="form-label">Position/Job Title</label>
-                            <input type="text" name="experiences[0][position_job_title]" class="form-control">
-                        </div>
-                        <div class="col-md-2 mb-2">
-                            <label class="form-label">From Date</label>
-                            <input type="date" name="experiences[0][from_date]" class="form-control">
-                        </div>
-                        <div class="col-md-2 mb-2">
-                            <label class="form-label">To Date</label>
-                            <input type="date" name="experiences[0][to_date]" class="form-control">
-                        </div>
-                        <div class="col-md-2 mb-2">
-                            <label class="form-label">Total Period (Months)</label>
-                            <input type="number" name="experiences[0][total_period_months]" class="form-control">
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // Reset references
-            const refContainer = document.getElementById('references-container');
-            refContainer.innerHTML = `
-                <div class="dynamic-row reference-row">
-                    <div class="row">
-                        <div class="col-md-4 mb-2">
-                            <label class="form-label">Name</label>
-                            <input type="text" name="references[0][name]" class="form-control">
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <label class="form-label">Designation</label>
-                            <input type="text" name="references[0][designation]" class="form-control">
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <label class="form-label">Contact No.</label>
-                            <input type="text" name="references[0][contact_no]" class="form-control">
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // Reset counters
-            qualificationIndex = 1;
-            experienceIndex = 1;
-            referenceIndex = 1;
         }
 
         // CNIC formatting
@@ -1394,5 +1587,106 @@
             let value = e.target.value.replace(/\D/g, '');
             e.target.value = value.substring(0, 11);
         });
+
+        // Auto-open modal if there are validation errors
+        @if($errors->any())
+            document.addEventListener('DOMContentLoaded', function() {
+                const modal = new bootstrap.Modal(document.getElementById('studentAdmissionModal'));
+                modal.show();
+            });
+        @endif
+
+        // Restore old qualification values if any
+        @if(old('qualifications'))
+            document.addEventListener('DOMContentLoaded', function() {
+                @php
+                    $oldQualifications = old('qualifications', []);
+                    $count = count($oldQualifications);
+                @endphp
+                
+                @if($count > 1)
+                    @for($i = 1; $i < $count; $i++)
+                        addQualification();
+                        
+                        // Set values
+                        @if(isset($oldQualifications[$i]))
+                            const qualRow{{ $i }} = document.querySelectorAll('.qualification-row')[{{ $i }}];
+                            if (qualRow{{ $i }}) {
+                                @foreach($oldQualifications[$i] as $field => $value)
+                                    @if($value)
+                                        const field{{ $i }}_{{ $field }} = qualRow{{ $i }}.querySelector('[name="qualifications[{{ $i }}][{{ $field }}]"]');
+                                        if (field{{ $i }}_{{ $field }}) {
+                                            field{{ $i }}_{{ $field }}.value = '{{ $value }}';
+                                        }
+                                    @endif
+                                @endforeach
+                            }
+                        @endif
+                    @endfor
+                @endif
+            });
+        @endif
+
+        // Restore old experience values if any
+        @if(old('experiences'))
+            document.addEventListener('DOMContentLoaded', function() {
+                @php
+                    $oldExperiences = old('experiences', []);
+                    $count = count($oldExperiences);
+                @endphp
+                
+                @if($count > 1)
+                    @for($i = 1; $i < $count; $i++)
+                        addExperience();
+                        
+                        // Set values
+                        @if(isset($oldExperiences[$i]))
+                            const expRow{{ $i }} = document.querySelectorAll('.experience-row')[{{ $i }}];
+                            if (expRow{{ $i }}) {
+                                @foreach($oldExperiences[$i] as $field => $value)
+                                    @if($value)
+                                        const expField{{ $i }}_{{ $field }} = expRow{{ $i }}.querySelector('[name="experiences[{{ $i }}][{{ $field }}]"]');
+                                        if (expField{{ $i }}_{{ $field }}) {
+                                            expField{{ $i }}_{{ $field }}.value = '{{ $value }}';
+                                        }
+                                    @endif
+                                @endforeach
+                            }
+                        @endif
+                    @endfor
+                @endif
+            });
+        @endif
+
+        // Restore old reference values if any
+        @if(old('references'))
+            document.addEventListener('DOMContentLoaded', function() {
+                @php
+                    $oldReferences = old('references', []);
+                    $count = count($oldReferences);
+                @endphp
+                
+                @if($count > 1)
+                    @for($i = 1; $i < $count; $i++)
+                        addReference();
+                        
+                        // Set values
+                        @if(isset($oldReferences[$i]))
+                            const refRow{{ $i }} = document.querySelectorAll('.reference-row')[{{ $i }}];
+                            if (refRow{{ $i }}) {
+                                @foreach($oldReferences[$i] as $field => $value)
+                                    @if($value)
+                                        const refField{{ $i }}_{{ $field }} = refRow{{ $i }}.querySelector('[name="references[{{ $i }}][{{ $field }}]"]');
+                                        if (refField{{ $i }}_{{ $field }}) {
+                                            refField{{ $i }}_{{ $field }}.value = '{{ $value }}';
+                                        }
+                                    @endif
+                                @endforeach
+                            }
+                        @endif
+                    @endfor
+                @endif
+            });
+        @endif
     </script>
 @endsection
