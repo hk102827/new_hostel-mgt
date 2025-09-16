@@ -5,6 +5,256 @@
 
 
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .custom-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            text-align: center;
+            /* text center */
+            display: inline-block;
+            /* list ko inline block banaya */
+        }
+
+        .custom-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: left;
+            /* har line ka text left aligned ho */
+        }
+
+        .custom-list li::before {
+            content: "\f00c";
+            /* Font Awesome check icon */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #28a745;
+            font-size: 14px;
+        }
+
+        .col-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* poori list center me aa jayegi */
+        }
+
+
+
+
+
+
+        .section_gap {
+            padding: 80px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section_title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+
+
+
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .title_color {
+            color: #2c3e50;
+        }
+
+        /* Swiper Container - Centered slides for active card */
+        .team-swiper {
+            padding: 80px 0 90px 0;
+            overflow: hidden;
+            /* Allow slight overflow for centered effect */
+            width: 100%;
+        }
+
+        .swiper-slide {
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        /* Team Item Styling */
+        .team_item {
+            background: white border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: scale(0.9);
+            padding: 30px 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 420px;
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        .team_item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+
+        .team_item:hover::before {
+            opacity: 1;
+            animation: shimmer 1.5s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        /* Center slide styling - Active card */
+        .swiper-slide-active .team_item {
+            background: linear-gradient(135deg, #8a9cea 0%, #80a8e8 100%);
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .swiper-slide-active .title_color {
+            color: white !important;
+        }
+
+        .swiper-slide-active .text-muted {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        /* Adjacent slides */
+        .swiper-slide-prev .team_item,
+        .swiper-slide-next .team_item {
+            transform: scale(0.95);
+        }
+
+        /* Dancing animation for center slide */
+        @keyframes dance {
+
+            0%,
+            100% {
+                transform: scale(1.05) rotateY(0deg);
+            }
+
+            25% {
+                transform: scale(1.07) rotateY(2deg);
+            }
+
+            50% {
+                transform: scale(1.05) rotateY(0deg);
+            }
+
+            75% {
+                transform: scale(1.07) rotateY(-2deg);
+            }
+        }
+
+        .swiper-slide-active .team_item {
+            animation: dance 3s ease-in-out infinite;
+        }
+
+        .team_img {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .team_img img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .swiper-slide-active .team_img img {
+            transform: scale(1.1);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .team_content h5 {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .team_content .text-muted {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #666 !important;
+        }
+
+        .team_content p:last-of-type {
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            color: #555;
+        }
+
+        .swiper-slide-active .team_content p:last-of-type {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .social_links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: auto;
+        }
+
         .social_links a {
             display: inline-block;
             width: 30px;
@@ -13,10 +263,12 @@
             border-radius: 50%;
             transition: all 0.3s ease;
             font-size: 14px;
+            text-align: center;
+            text-decoration: none;
         }
 
         .social_links a:hover {
-            transform: scale(1.2);
+            transform: translateY(-3px) scale(1.2);
             color: white !important;
         }
 
@@ -36,108 +288,18 @@
             background-color: #25d366;
         }
 
-        @media (max-width: 768px) {
-            .col-lg-3.col-sm-6 {
-                margin-bottom: 20px;
-            }
-        }
-
-        .col-lg-2-4 {
-            flex: 0 0 20%;
-            max-width: 20%;
-        }
-
-        .custom-list {
-            list-style: none;
-            /* padding: 0; */
-            margin: 0 auto;
-            display: table;
-            /* UL ko center align kar dega */
-        }
-
-        .custom-list li {
-            position: relative;
-            padding-left: 25px;
-            /* tick ke liye space */
-            margin-bottom: 10px;
-            text-align: left;
-            /* text straight ho */
-        }
-
-        .section_gap {
-            padding: 80px 0;
-        }
-
-        .title_color {
-            color: #2c3e50;
-        }
-
-        .team-swiper {
-            padding: 70px 100px;
-            overflow: hidden;
-
-        }
-
-        .team_item {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform: scale(0.9);
-            /* opacity: 0.7; */
-        }
-
-        /* Center slide styling */
-        /* Active card ke background + icons */
-        .swiper-slide-active .team_item {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-        }
-
-        /* Jab card active ho to icons bhi white ho jaye */
+        /* Active card ke social icons */
         .swiper-slide-active .team_item .social_links a {
             color: #fff !important;
             background-color: rgba(255, 255, 255, 0.2);
-            /* halka transparent bg */
         }
 
-        /* Active card ke hover effect */
         .swiper-slide-active .team_item .social_links a:hover {
             background-color: #fff !important;
             color: #764ba2 !important;
-            /* contrast hover */
         }
 
-        .swiper-slide-active .title_color {
-            color: white !important;
-        }
-
-        .swiper-slide-active .text-muted {
-            color: rgba(255, 255, 255, 0.8) !important;
-        }
-
-        /* Adjacent slides */
-        .swiper-slide-prev .team_item,
-        .swiper-slide-next .team_item {
-            transform: scale(0.95);
-            /* opacity: 0.8; */
-        }
-
-        .team_img {
-            position: relative;
-            overflow: visible;
-        }
-
-        .team_img img {
-            transition: all 0.4s ease;
-        }
-
-        .swiper-slide-active .team_img img {
-            transform: scale(1.1);
-            border: 3px solid rgba(255, 255, 255, 0.3);
-        }
-
-        /* Custom navigation */
+        /* Custom Navigation */
         .swiper-button-next,
         .swiper-button-prev {
             width: 40px;
@@ -147,7 +309,6 @@
             border-radius: 50%;
             color: white;
             transition: all 0.3s ease;
-
         }
 
         .swiper-button-next:after,
@@ -162,85 +323,19 @@
             transform: scale(1.1);
         }
 
-        /* Custom pagination */
+        /* Custom Pagination */
         .swiper-pagination-bullet {
             width: 12px;
             height: 12px;
             background: rgba(102, 126, 234, 0.3);
             border-radius: 50%;
             transition: all 0.3s ease;
+            opacity: 1;
         }
 
         .swiper-pagination-bullet-active {
             background: #667eea;
             transform: scale(1.3);
-        }
-
-        .social_links a {
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .social_links a:hover {
-            transform: translateY(-3px) scale(1.2);
-        }
-
-        /* Dancing animation for center slide */
-        @keyframes dance {
-
-            0%,
-            100% {
-                transform: scale(1.1) rotateY(0deg);
-            }
-
-            25% {
-                transform: scale(1.12) rotateY(2deg);
-            }
-
-            50% {
-                transform: scale(1.1) rotateY(0deg);
-            }
-
-            75% {
-                transform: scale(1.12) rotateY(-2deg);
-            }
-        }
-
-        .swiper-slide-active .team_item {
-            animation: dance 3s ease-in-out infinite;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .team-swiper {
-                padding: 30px 0;
-            }
-
-            .swiper-slide-active .team_item {
-                transform: scale(1.05);
-            }
-
-            .swiper-button-next,
-            .swiper-button-prev {
-                width: 40px;
-                height: 40px;
-                margin-top: -20px;
-            }
-
-            .swiper-button-next:after,
-            .swiper-button-prev:after {
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .team_item {
-                margin: 0 10px;
-            }
-
-            .swiper-slide-active .team_item {
-                transform: scale(1.02);
-            }
         }
 
         /* Smooth entrance animation */
@@ -255,221 +350,74 @@
             }
 
             to {
-                opacity: 0.7;
+                opacity: 1;
                 transform: translateY(0) scale(0.9);
             }
         }
-          .img {
-       height: 60vh;
-       width: auto;
-       /* object-fit: cover; */
 
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .section_title h2 {
+                font-size: 2.5em;
+            }
 
-       /* Apply model */
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px 0;
+            .team-swiper {
+                padding: 30px 0 50px 0;
+            }
+
+            .swiper-slide-active .team_item {
+                transform: scale(1.02);
+            }
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                width: 40px;
+                height: 40px;
+                margin-top: -20px;
+            }
+
+            .swiper-button-next:after,
+            .swiper-button-prev:after {
+                font-size: 14px;
+            }
+
+            .team_item {
+                min-height: 380px;
+                max-width: 250px;
+            }
         }
-        
-        .apply-now-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border: none;
-            padding: 15px 40px;
-            border-radius: 25px;
-            color: white;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            font-size: 16px;
+
+        @media (max-width: 576px) {
+            .team_item {
+                margin: 0 10px;
+                min-height: 350px;
+                max-width: 220px;
+            }
+
+            .swiper-slide-active .team_item {
+                transform: scale(1.05);
+            }
+
+            .team_img img {
+                width: 100px;
+                height: 100px;
+            }
         }
-        
-        .apply-now-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-            background: linear-gradient(45deg, #764ba2, #667eea);
-            color: white;
-        }
-        
-        .modal-xl {
-            max-width: 90%;
-        }
-        
-        .modal-content {
-            border-radius: 15px;
-            border: none;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-        
-        .modal-header {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 15px 15px 0 0;
-            border-bottom: none;
-            padding: 20px 30px;
-        }
-        
-        .modal-body {
-            max-height: 70vh;
-            overflow-y: auto;
-            padding: 30px;
-        }
-        
-        .form-control, .form-select {
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-            padding: 12px;
-            transition: all 0.3s ease;
-        }
-        
-        .form-control:focus, .form-select:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-        }
-        
-        .section-header {
-            color: #333;
-            font-weight: 600;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .required-field::after {
-            content: " *";
-            color: #dc3545;
-        }
-        
-        .dynamic-row {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            position: relative;
-        }
-        
-        .remove-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #dc3545;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-        
-        .add-more-btn {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .add-more-btn:hover {
-            color: #764ba2;
-            text-decoration: underline;
-        }
-        
-        .btn-submit {
-            background: linear-gradient(45deg, #28a745, #20c997);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-submit:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
-        }
-        
-        /* Admission Process Styling */
-        .admission-card {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        .step-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
-        
-        .step-item {
-            text-align: center;
-            margin: 20px;
-            transition: transform 0.3s ease;
-        }
-        
-        .step-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .step-icon {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            font-size: 24px;
-        }
-        
-        .step-title {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        
-        .step-description {
-            color: #666;
-            font-size: 14px;
-        }
-    }
     </style>
-       <style>
+    <style>
         /* Full Width Modal Styles */
         .modal-fullwidth {
             max-width: 95% !important;
             width: 95% !important;
             margin: 2.5% auto !important;
         }
-        
-        /* Alternative: True full width (uncomment if needed) */
-        /*
-        .modal-fullwidth {
-            max-width: 100% !important;
-            width: 100% !important;
-            margin: 0 !important;
-            height: 100vh !important;
-        }
-        
-        .modal-fullwidth .modal-content {
-            height: 100vh !important;
-            border-radius: 0 !important;
-        }
-        */
-        
+
         .modal-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-bottom: none;
         }
-        
+
         .section-header {
             color: #667eea;
             border-bottom: 2px solid #eee;
@@ -477,18 +425,18 @@
             margin-bottom: 20px;
             font-weight: 600;
         }
-        
+
         .required-field::after {
             content: "*";
             color: red;
             margin-left: 3px;
         }
-        
+
         .error-field {
             border-color: #dc3545 !important;
             box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
         }
-        
+
         .dynamic-row {
             position: relative;
             padding: 15px;
@@ -497,7 +445,7 @@
             border-radius: 8px;
             background-color: #f8f9fa;
         }
-        
+
         .remove-btn {
             position: absolute;
             top: 5px;
@@ -513,11 +461,11 @@
             cursor: pointer;
             z-index: 10;
         }
-        
+
         .remove-btn:hover {
             background: #c82333;
         }
-        
+
         .add-more-btn {
             display: inline-block;
             color: #667eea;
@@ -528,13 +476,13 @@
             border-radius: 6px;
             transition: all 0.3s ease;
         }
-        
+
         .add-more-btn:hover {
             background-color: #667eea;
             color: white;
             text-decoration: none;
         }
-        
+
         .btn-submit {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
@@ -542,12 +490,12 @@
             padding: 10px 30px;
             font-weight: 500;
         }
-        
+
         .btn-submit:hover {
             background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
             color: white;
         }
-        
+
         .apply-now-btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
@@ -560,14 +508,14 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
-        
+
         .apply-now-btn:hover {
             background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
         }
-        
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .modal-fullwidth {
@@ -575,11 +523,11 @@
                 width: 98% !important;
                 margin: 1% auto !important;
             }
-            
+
             .dynamic-row {
                 padding: 10px;
             }
-            
+
             .remove-btn {
                 position: static;
                 float: right;
@@ -587,27 +535,37 @@
             }
         }
     </style>
-@if(session('success'))
-<div id="successMessage" class="alert alert-success">
-   <p class="mb-0">{{ session('success') }}</p>
-</div>
-@endif
-
+    @if (session('success'))
+        <div id="successMessage" class="alert alert-success">
+            <p class="mb-0">{{ session('success') }}</p>
+        </div>
+    @endif
 
     <section class="banner_area">
+        <!-- Video Background -->
+        <video autoplay muted loop playsinline class="bg-video">
+            <source src="{{ asset('assets/image/classvideo.mp4') }}" type="video/mp4">
+        </video>
+
         <div class="booking_table d_flex align-items-center">
-            <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+            <!-- Overlay -->
+            <div class="overlay"></div>
+
             <div class="container">
                 <div class="banner_content text-center">
                     <h6>Learn Japanese Language & Culture</h6>
                     <h2>Tokyo Japanese School</h2>
-                    <p>Master Japanese language with professional JLPT preparation courses<br> and comfortable hostel
-                        accommodation for students.</p>
+                    <p>
+                        Master Japanese language with professional JLPT preparation courses<br>
+                        and comfortable hostel accommodation for students.
+                    </p>
                     <a href="#japanese-academy" class="btn theme_btn button_hover">Explore Programs</a>
                 </div>
             </div>
         </div>
     </section>
+
+
     <!--================Banner Area =================-->
 
     <section class="section_gap">
@@ -624,16 +582,18 @@
                     <div class="swiper-slide">
                         <div class="team_item text-center p-4">
                             <div class="team_img mb-3">
-                                <img src="{{ asset('assets/image/farid.jpg') }}" alt="School Owner"
+                                <img src="{{ asset('assets/image/farids.jpg') }}" alt="School Owner"
                                     class="img-fluid rounded-circle"
                                     style="width: 120px; height: 120px; object-fit: cover;">
                             </div>
                             <div class="team_content">
-                                <h5 class="title_color mb-2">Mr. Tanaka Hiroshi</h5>
+                                <h5 class="title_color mb-2">Mr. Farid Kiyani</h5>
                                 <p class="text-muted mb-2" style="font-size: 13px; font-weight: 600;">Founder & Owner</p>
-                                <p style="font-size: 12px; line-height: 1.5;">Visionary leader with 15+ years in Japanese
-                                    education. Established
-                                    the school to bridge cultural gaps.</p>
+                                <p style="font-size: 12px; line-height: 1.5;">
+                                    Proud owner of the school and a successful entrepreneur in Japan, dedicated to building
+                                    strong
+                                    cultural and educational connections.
+                                </p>
                                 <div class="social_links mt-3">
                                     <a href="#" class="text-primary mx-2"><i class="fab fa-facebook-f"></i></a>
                                     <a href="#" class="text-info mx-2"><i class="fab fa-twitter"></i></a>
@@ -643,20 +603,23 @@
                         </div>
                     </div>
 
+
+                    <!-- Head Teacher -->
                     <!-- Head Teacher -->
                     <div class="swiper-slide">
                         <div class="team_item text-center p-4">
                             <div class="team_img mb-3">
-                                <img src="{{ asset('assets/image/waleed.jpeg') }}" alt="Head Teacher"
+                                <img src="{{ asset('assets/image/yamo.jpg') }}" alt="Head Teacher"
                                     class="img-fluid rounded-circle"
                                     style="width: 120px; height: 120px; object-fit: cover;">
                             </div>
                             <div class="team_content">
-                                <h5 class="title_color mb-2">Ms. Yuki Sato</h5>
+                                <h5 class="title_color mb-2">Ms. Yamamoto Yuki</h5>
                                 <p class="text-muted mb-2" style="font-size: 13px; font-weight: 600;">Head Teacher</p>
-                                <p style="font-size: 12px; line-height: 1.5;">Native Japanese speaker with JLPT
-                                    certification expertise.
-                                    Specializes in N1-N5 preparation.</p>
+                                <p style="font-size: 12px; line-height: 1.5;">
+                                    A native Japanese educator from Japan, teaching at our school with JLPT expertise and
+                                    specialization in N1–N5 preparation.
+                                </p>
                                 <div class="social_links mt-3">
                                     <a href="#" class="text-primary mx-2"><i class="fab fa-facebook-f"></i></a>
                                     <a href="#" class="text-info mx-2"><i class="fab fa-twitter"></i></a>
@@ -666,21 +629,23 @@
                         </div>
                     </div>
 
-                    <!-- UK Coordinator -->
+
+                    <!-- Principal & Journalist -->
                     <div class="swiper-slide">
                         <div class="team_item text-center p-4">
                             <div class="team_img mb-3">
-                                <img src="{{ asset('assets/image/hazrat.jpg') }}" alt="UK Coordinator"
+                                <img src="{{ asset('assets/image/Waleed.jpeg') }}" alt="School Principal"
                                     class="img-fluid rounded-circle"
                                     style="width: 120px; height: 120px; object-fit: cover;">
                             </div>
                             <div class="team_content">
-                                <h5 class="title_color mb-2">Mrs. Sarah Johnson</h5>
-                                <p class="text-muted mb-2" style="font-size: 13px; font-weight: 600;">UK Program Coordinator
+                                <h5 class="title_color mb-2">Mr. Waleed Yaseen</h5>
+                                <p class="text-muted mb-2" style="font-size: 13px; font-weight: 600;">Principal & Journalist
                                 </p>
-                                <p style="font-size: 12px; line-height: 1.5;">International education expert helping
-                                    students with overseas
-                                    opportunities and cultural integration.</p>
+                                <p style="font-size: 12px; line-height: 1.5;">
+                                    Dedicated Principal of the school and an active journalist with 360 News,
+                                    combining leadership in education with a passion for media and communication.
+                                </p>
                                 <div class="social_links mt-3">
                                     <a href="#" class="text-primary mx-2"><i class="fab fa-facebook-f"></i></a>
                                     <a href="#" class="text-info mx-2"><i class="fab fa-twitter"></i></a>
@@ -690,20 +655,19 @@
                         </div>
                     </div>
 
+
                     <!-- Principal -->
                     <div class="swiper-slide">
                         <div class="team_item text-center p-4">
                             <div class="team_img mb-3">
-                                <img src="{{ asset('assets/image/professor2.jpeg') }}" alt="Principal"
-                                    class="img-fluid rounded-circle"
-                                    style="width: 120px; height: 120px; object-fit: cover;">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=faces"
+                                    alt="Principal" class="img-fluid rounded-circle">
                             </div>
                             <div class="team_content">
                                 <h5 class="title_color mb-2">Dr. Ahmed Hassan</h5>
-                                <p class="text-muted mb-2" style="font-size: 13px; font-weight: 600;">Principal</p>
-                                <p style="font-size: 12px; line-height: 1.5;">Educational leader with PhD in Language
-                                    Studies. Ensures quality
-                                    education and student success.</p>
+                                <p class="text-muted mb-2">Principal</p>
+                                <p>Educational leader with PhD in Language Studies. Ensures quality
+                                    education and student success through innovative teaching methodologies.</p>
                                 <div class="social_links mt-3">
                                     <a href="#" class="text-primary mx-2"><i class="fab fa-facebook-f"></i></a>
                                     <a href="#" class="text-primary mx-2"><i class="fab fa-linkedin-in"></i></a>
@@ -713,20 +677,18 @@
                         </div>
                     </div>
 
-                    <!-- Admin -->
+                    <!-- Administrator -->
                     <div class="swiper-slide">
                         <div class="team_item text-center p-4">
                             <div class="team_img mb-3">
-                                <img src="{{ asset('assets/image/man.jpeg') }}" alt="Admin"
-                                    class="img-fluid rounded-circle"
-                                    style="width: 120px; height: 120px; object-fit: cover;">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=faces"
+                                    alt="Admin" class="img-fluid rounded-circle">
                             </div>
                             <div class="team_content">
                                 <h5 class="title_color mb-2">Ms. Fatima Ali</h5>
-                                <p class="text-muted mb-2" style="font-size: 13px; font-weight: 600;">Administrator</p>
-                                <p style="font-size: 12px; line-height: 1.5;">Manages admissions, student records, and
-                                    daily operations. Always
-                                    ready to help students.</p>
+                                <p class="text-muted mb-2">Administrator</p>
+                                <p>Manages admissions, student records, and daily operations. Always
+                                    ready to help students with their academic and administrative needs.</p>
                                 <div class="social_links mt-3">
                                     <a href="#" class="text-primary mx-2"><i class="fab fa-facebook-f"></i></a>
                                     <a href="#" class="text-danger mx-2"><i class="fab fa-instagram"></i></a>
@@ -758,19 +720,18 @@
             {{-- Course Programs --}}
 
             <div class="row justify-content-center text-center">
-                <div class="col-lg-6 mb-4">
-                    <div class="shadow-sm equal-box" style="background:#ffffff;border-radius:8px">
-                        <h4 class="sec_h4 mb-3"><i class="fa fa-book"></i> Course Programs</h4>
-                        <ul class="custom-list mr-5">
-                            <li>JLPT N5 – Beginner foundation course</li>
-                            <li>JLPT N4 – Elementary grammar & vocabulary</li>
-                            <li>JLPT N3 – Intermediate level preparation</li>
-                            <li>Conversation & Listening practice sessions</li>
-                            <li>Japanese culture & business etiquette</li>
-                            <li>Kanji writing & reading practice</li>
-                        </ul>
-                    </div>
+              <div class="col-md-6 col-center">
+                    <h5 class="title_color mb-3"><i class="fas fa-book-open"></i> Course Programs</h5>
+                    <ul class="custom-list">
+                        <li>JLPT N5 – Beginner foundation course</li>
+                        <li>JLPT N4 – Elementary grammar & vocabulary</li>
+                        <li>JLPT N3 – Intermediate level preparation</li>
+                        <li>Conversation & Listening practice sessions</li>
+                        <li>Japanese culture & business etiquette</li>
+                        <li>Kanji writing & reading practice</li>
+                    </ul>
                 </div>
+
 
                 <div class="col-lg-6 mb-4">
                     <div class="shadow-sm equal-box" style="background:#ffffff;border-radius:8px">
@@ -785,63 +746,65 @@
                         </ul>
                     </div>
                 </div>
+
             </div>
 
 
 
 
-          <div class="row justify-content-center">
-            <div class="col-lg-12 mb-4">
-                <div class="p-4 shadow-sm" style="background:#ffffff;border-radius:8px">
-                    <h4 class="sec_h4 mb-3 text-center">
-                        <i class="fa fa-user-plus"></i> Admission Process
-                    </h4>
-                    <div class="row">
-                        <div class="col-md-3 text-center mb-3">
-                            <div class="p-3 admission-step">
-                                <div class="step-icon">
-                                    <i class="fa fa-file-text fa-2x text-primary"></i>
+            <div class="row justify-content-center">
+                <div class="col-lg-12 mb-4">
+                    <div class="p-4 shadow-sm" style="background:#ffffff;border-radius:8px">
+                        <h4 class="sec_h4 mb-3 text-center">
+                            <i class="fa fa-user-plus"></i> Admission Process
+                        </h4>
+                        <div class="row">
+                            <div class="col-md-3 text-center mb-3">
+                                <div class="p-3 admission-step">
+                                    <div class="step-icon">
+                                        <i class="fa fa-file-text fa-2x text-primary"></i>
+                                    </div>
+                                    <h6>Step 1</h6>
+                                    <p>Fill Application Form</p>
                                 </div>
-                                <h6>Step 1</h6>
-                                <p>Fill Application Form</p>
+                            </div>
+                            <div class="col-md-3 text-center mb-3">
+                                <div class="p-3 admission-step">
+                                    <div class="step-icon">
+                                        <i class="fa fa-comments fa-2x text-primary"></i>
+                                    </div>
+                                    <h6>Step 2</h6>
+                                    <p>Counseling Session</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-center mb-3">
+                                <div class="p-3 admission-step">
+                                    <div class="step-icon">
+                                        <i class="fa fa-clipboard fa-2x text-primary"></i>
+                                    </div>
+                                    <h6>Step 3</h6>
+                                    <p>Level Assessment Test</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-center mb-3">
+                                <div class="p-3 admission-step">
+                                    <div class="step-icon">
+                                        <i class="fa fa-users fa-2x text-primary"></i>
+                                    </div>
+                                    <h6>Step 4</h6>
+                                    <p>Batch Allocation</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-3 text-center mb-3">
-                            <div class="p-3 admission-step">
-                                <div class="step-icon">
-                                    <i class="fa fa-comments fa-2x text-primary"></i>
-                                </div>
-                                <h6>Step 2</h6>
-                                <p>Counseling Session</p>
-                            </div>
+                        <div class="text-center mt-3">
+                            <button type="button" class="apply-now-btn" data-bs-toggle="modal"
+                                data-bs-target="#studentAdmissionModal">
+                                <i class="fa fa-paper-plane me-2"></i>Apply Now
+                            </button>
                         </div>
-                        <div class="col-md-3 text-center mb-3">
-                            <div class="p-3 admission-step">
-                                <div class="step-icon">
-                                    <i class="fa fa-clipboard fa-2x text-primary"></i>
-                                </div>
-                                <h6>Step 3</h6>
-                                <p>Level Assessment Test</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 text-center mb-3">
-                            <div class="p-3 admission-step">
-                                <div class="step-icon">
-                                    <i class="fa fa-users fa-2x text-primary"></i>
-                                </div>
-                                <h6>Step 4</h6>
-                                <p>Batch Allocation</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center mt-3">
-                       <button type="button" class="apply-now-btn" data-bs-toggle="modal" data-bs-target="#studentAdmissionModal">
-                            <i class="fa fa-paper-plane me-2"></i>Apply Now
-                        </button>
                     </div>
                 </div>
             </div>
-        </div>
 
             <!-- Academy Statistics -->
             <div class="row mt-4">
@@ -938,12 +901,14 @@
                 <div class="col-md-6 d_flex align-items-center">
                     <div class="about_content">
                         <h2 class="title title_color">About Tokyo<br>Japanese School<br>Our Mission</h2>
-                        <p>Tokyo Japanese School is dedicated to providing comprehensive Japanese language education with a
+                        <div>Tokyo Japanese School is dedicated to providing comprehensive Japanese language education with
+                            a
                             focus on JLPT preparation and cultural understanding. We combine quality education with
-                            comfortable hostel facilities to create the perfect learning environment for our students.</p>
-                        <p>Our experienced native instructors use modern teaching methods to help students master Japanese
-                            language skills, from basic conversation to advanced business communication.</p>
-                        <a href="{{ route('contact') }}" class="button_hover theme_btn_two">Get Information</a>
+                            comfortable hostel facilities to create the perfect learning environment for our students.</div>
+                        <div class="mt-2">Our experienced native instructors use modern teaching methods to help students
+                            master Japanese
+                            language skills, from basic conversation to advanced business communication.</div>
+                        <a href="{{ route('contact') }}" class="button_hover theme_btn_two mt-4">Get Information</a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -1073,17 +1038,20 @@
         </div>
     </section>
     <!--================ Apply model =================-->
-   <div class="modal fade" id="studentAdmissionModal" tabindex="-1" aria-labelledby="studentAdmissionModalLabel" aria-hidden="true">
+    <div class="modal fade" id="studentAdmissionModal" tabindex="-1" aria-labelledby="studentAdmissionModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-fullwidth">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="studentAdmissionModalLabel">
                         <i class="fa fa-user-plus me-2"></i>Student Admission Form
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
-                    <form id="studentAdmissionForm" method="POST" action="{{ route('frontend.apply') }}" enctype="multipart/form-data">
+                    <form id="studentAdmissionForm" method="POST" action="{{ route('frontend.apply') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         <!-- Personal Information Section -->
                         <div class="mb-4">
@@ -1095,7 +1063,8 @@
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="father_name" class="form-label required-field">Father's Name</label>
-                                    <input type="text" class="form-control" id="father_name" name="father_name" required>
+                                    <input type="text" class="form-control" id="father_name" name="father_name"
+                                        required>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="gender" class="form-label required-field">Gender</label>
@@ -1108,11 +1077,13 @@
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="cnic" class="form-label required-field">CNIC</label>
-                                    <input type="text" class="form-control" id="cnic" name="cnic" placeholder="12345-6789012-3" required>
+                                    <input type="text" class="form-control" id="cnic" name="cnic"
+                                        placeholder="12345-6789012-3" required>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="date_of_birth" class="form-label required-field">Date of Birth</label>
-                                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+                                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth"
+                                        required>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="marital_status" class="form-label required-field">Marital Status</label>
@@ -1133,7 +1104,8 @@
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="nationality" class="form-label required-field">Nationality</label>
-                                    <input type="text" class="form-control" id="nationality" name="nationality" value="Pakistani" required>
+                                    <input type="text" class="form-control" id="nationality" name="nationality"
+                                        value="Pakistani" required>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="religion" class="form-label">Religion</label>
@@ -1144,8 +1116,10 @@
                                     <input type="text" class="form-control" id="sect" name="sect">
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <label for="emergency_contact" class="form-label required-field">Emergency Contact</label>
-                                    <input type="text" class="form-control" id="emergency_contact" name="emergency_contact" required>
+                                    <label for="emergency_contact" class="form-label required-field">Emergency
+                                        Contact</label>
+                                    <input type="text" class="form-control" id="emergency_contact"
+                                        name="emergency_contact" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="postal_address" class="form-label required-field">Postal Address</label>
@@ -1177,7 +1151,8 @@
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="specialization" class="form-label">Specialization</label>
-                                    <input type="text" class="form-control" id="specialization" name="specialization">
+                                    <input type="text" class="form-control" id="specialization"
+                                        name="specialization">
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="job_type" class="form-label">Job Type</label>
@@ -1210,27 +1185,33 @@
                                         </div>
                                         <div class="col-md-2 mb-2">
                                             <label class="form-label">Duration (Years)</label>
-                                            <input type="number" step="0.1" name="qualifications[0][duration_years]" class="form-control">
+                                            <input type="number" step="0.1" name="qualifications[0][duration_years]"
+                                                class="form-control">
                                         </div>
                                         <div class="col-md-2 mb-2">
                                             <label class="form-label">Specialization</label>
-                                            <input type="text" name="qualifications[0][specialization]" class="form-control">
+                                            <input type="text" name="qualifications[0][specialization]"
+                                                class="form-control">
                                         </div>
                                         <div class="col-md-2 mb-2">
                                             <label class="form-label">Passing Year</label>
-                                            <input type="number" min="1950" max="2030" name="qualifications[0][passing_year]" class="form-control">
+                                            <input type="number" min="1950" max="2030"
+                                                name="qualifications[0][passing_year]" class="form-control">
                                         </div>
                                         <div class="col-md-2 mb-2">
                                             <label class="form-label">CGPA/Grade</label>
-                                            <input type="text" name="qualifications[0][cgpa_grade]" class="form-control">
+                                            <input type="text" name="qualifications[0][cgpa_grade]"
+                                                class="form-control">
                                         </div>
                                         <div class="col-md-2 mb-2">
                                             <label class="form-label">Institute/Board/University</label>
-                                            <input type="text" name="qualifications[0][institute_board_university]" class="form-control">
+                                            <input type="text" name="qualifications[0][institute_board_university]"
+                                                class="form-control">
                                         </div>
                                         <div class="col-md-12 mb-2">
                                             <label class="form-label">Country</label>
-                                            <input type="text" name="qualifications[0][country]" class="form-control" value="Pakistan">
+                                            <input type="text" name="qualifications[0][country]" class="form-control"
+                                                value="Pakistan">
                                         </div>
                                     </div>
                                 </div>
@@ -1248,11 +1229,13 @@
                                     <div class="row">
                                         <div class="col-md-3 mb-2">
                                             <label class="form-label">Institution/Organization</label>
-                                            <input type="text" name="experiences[0][institution_organization]" class="form-control">
+                                            <input type="text" name="experiences[0][institution_organization]"
+                                                class="form-control">
                                         </div>
                                         <div class="col-md-3 mb-2">
                                             <label class="form-label">Position/Job Title</label>
-                                            <input type="text" name="experiences[0][position_job_title]" class="form-control">
+                                            <input type="text" name="experiences[0][position_job_title]"
+                                                class="form-control">
                                         </div>
                                         <div class="col-md-2 mb-2">
                                             <label class="form-label">From Date</label>
@@ -1264,7 +1247,8 @@
                                         </div>
                                         <div class="col-md-2 mb-2">
                                             <label class="form-label">Total Period (Months)</label>
-                                            <input type="number" name="experiences[0][total_period_months]" class="form-control">
+                                            <input type="number" name="experiences[0][total_period_months]"
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -1306,7 +1290,8 @@
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label for="admission_date" class="form-label required-field">Admission Date</label>
-                                    <input type="date" class="form-control" id="admission_date" name="admission_date" required>
+                                    <input type="date" class="form-control" id="admission_date" name="admission_date"
+                                        required>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="room_id" class="form-label">Assign Room</label>
@@ -1319,7 +1304,8 @@
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="photo" class="form-label">Upload Photo</label>
-                                    <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
+                                    <input type="file" class="form-control" id="photo" name="photo"
+                                        accept="image/*">
                                 </div>
                             </div>
                         </div>
@@ -1335,8 +1321,8 @@
         </div>
     </div>
     <!-- Success Alert -->
-    <div class="alert alert-success alert-dismissible fade" role="alert" id="successAlert" 
-         style="position: fixed; top: 20px; right: 20px; z-index: 9999; display: none;">
+    <div class="alert alert-success alert-dismissible fade" role="alert" id="successAlert"
+        style="position: fixed; top: 20px; right: 20px; z-index: 9999; display: none;">
         <i class="fa fa-check-circle me-2"></i>
         <strong>Success!</strong> Student application has been submitted successfully.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -1404,52 +1390,130 @@
         </a>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js"></script>
+
     <script>
+        // Initialize Swiper with proper settings to avoid half cards
         const swiper = new Swiper('.team-swiper', {
+            // Basic settings - removed centeredSlides to avoid half cards
             slidesPerView: 1,
             spaceBetween: 30,
-            centeredSlides: true,
+            centeredSlides: true, // This centers the active slide
             loop: true,
+
+            // Autoplay
             autoplay: {
-                delay: 4000,
+                delay: 3000,
                 disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+                reverseDirection: false, // Normal direction mein chalega
+                waitForTransition: true, // Smooth transition ke liye
+
             },
+
+            // Effects and speed
             effect: 'slide',
-            speed: 800,
+            speed: 900,
+
+            // Navigation
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
+
+            // Pagination
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
+                dynamicBullets: true,
             },
+
+            // Responsive breakpoints - exact number of cards per view
             breakpoints: {
+                480: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
                 640: {
                     slidesPerView: 2,
-                    spaceBetween: 20,
+                    spaceBetween: 15,
                 },
                 768: {
                     slidesPerView: 3,
-                    spaceBetween: 30,
+                    spaceBetween: 20,
                 },
                 1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 30,
+                    slidesPerView: 3, // Exactly 3 cards, no partial cards
+                    spaceBetween: 20,
                 },
+                1200: {
+                    slidesPerView: 3, // Keep it at 3 for larger screens too
+                    spaceBetween: 25,
+                }
             },
+
+            // Keyboard control
+            keyboard: {
+                enabled: true,
+                onlyInViewport: true,
+            },
+
+            // Grab cursor
+            grabCursor: true,
+
+            // Events
             on: {
                 init: function() {
-                    // Add smooth entrance animation
+                    console.log('Swiper initialized - 3 cards per view');
+                    // Add entrance animation
                     this.slides.forEach((slide, index) => {
-                        slide.style.animationDelay = `${index * 0.1}s`;
+                        slide.style.opacity = '0';
+                        slide.style.transform = 'translateY(50px)';
+                        setTimeout(() => {
+                            slide.style.transition = 'all 0.6s ease';
+                            slide.style.opacity = '1';
+                            slide.style.transform = 'translateY(0)';
+                        }, index * 100);
                     });
                 },
+                slideChange: function() {
+                    // Add some animation on slide change
+                    const activeSlide = this.slides[this.activeIndex];
+                    if (activeSlide) {
+                        const teamItem = activeSlide.querySelector('.team_item');
+                        if (teamItem) {
+                            teamItem.style.transform = 'scale(1.02)';
+                            setTimeout(() => {
+                                teamItem.style.transform = 'scale(1)';
+                            }, 200);
+                        }
+                    }
+                }
             }
+        });
+
+        // Pause autoplay on hover
+        const swiperContainer = document.querySelector('.team-swiper');
+        swiperContainer.addEventListener('mouseenter', () => {
+            swiper.autoplay.stop();
+        });
+
+        swiperContainer.addEventListener('mouseleave', () => {
+            swiper.autoplay.start();
+        });
+
+        // Add interactive effects
+        document.querySelectorAll('.team_item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+
+            item.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
+            });
         });
     </script>
     {{-- Apply Script --}}
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
         let qualificationIndex = 1;
         let experienceIndex = 1;
@@ -1458,7 +1522,7 @@
         // Submit Form Function
         function submitStudentForm() {
             const form = document.getElementById('studentAdmissionForm');
-            
+
             // Validate form
             if (form.checkValidity()) {
                 // Submit the form normally to Laravel
@@ -1589,7 +1653,7 @@
         });
 
         // Auto-open modal if there are validation errors
-        @if($errors->any())
+        @if ($errors->any())
             document.addEventListener('DOMContentLoaded', function() {
                 const modal = new bootstrap.Modal(document.getElementById('studentAdmissionModal'));
                 modal.show();
@@ -1597,26 +1661,31 @@
         @endif
 
         // Restore old qualification values if any
-        @if(old('qualifications'))
+        @if (old('qualifications'))
             document.addEventListener('DOMContentLoaded', function() {
                 @php
                     $oldQualifications = old('qualifications', []);
                     $count = count($oldQualifications);
                 @endphp
-                
-                @if($count > 1)
-                    @for($i = 1; $i < $count; $i++)
+
+                @if ($count > 1)
+                    @for ($i = 1; $i < $count; $i++)
                         addQualification();
-                        
+
                         // Set values
-                        @if(isset($oldQualifications[$i]))
-                            const qualRow{{ $i }} = document.querySelectorAll('.qualification-row')[{{ $i }}];
+                        @if (isset($oldQualifications[$i]))
+                            const qualRow{{ $i }} = document.querySelectorAll('.qualification-row')[
+                                {{ $i }}];
                             if (qualRow{{ $i }}) {
-                                @foreach($oldQualifications[$i] as $field => $value)
-                                    @if($value)
-                                        const field{{ $i }}_{{ $field }} = qualRow{{ $i }}.querySelector('[name="qualifications[{{ $i }}][{{ $field }}]"]');
+                                @foreach ($oldQualifications[$i] as $field => $value)
+                                    @if ($value)
+                                        const field{{ $i }}_{{ $field }} =
+                                            qualRow{{ $i }}.querySelector(
+                                                '[name="qualifications[{{ $i }}][{{ $field }}]"]'
+                                            );
                                         if (field{{ $i }}_{{ $field }}) {
-                                            field{{ $i }}_{{ $field }}.value = '{{ $value }}';
+                                            field{{ $i }}_{{ $field }}.value =
+                                                '{{ $value }}';
                                         }
                                     @endif
                                 @endforeach
@@ -1628,26 +1697,30 @@
         @endif
 
         // Restore old experience values if any
-        @if(old('experiences'))
+        @if (old('experiences'))
             document.addEventListener('DOMContentLoaded', function() {
                 @php
                     $oldExperiences = old('experiences', []);
                     $count = count($oldExperiences);
                 @endphp
-                
-                @if($count > 1)
-                    @for($i = 1; $i < $count; $i++)
+
+                @if ($count > 1)
+                    @for ($i = 1; $i < $count; $i++)
                         addExperience();
-                        
+
                         // Set values
-                        @if(isset($oldExperiences[$i]))
-                            const expRow{{ $i }} = document.querySelectorAll('.experience-row')[{{ $i }}];
+                        @if (isset($oldExperiences[$i]))
+                            const expRow{{ $i }} = document.querySelectorAll('.experience-row')[
+                                {{ $i }}];
                             if (expRow{{ $i }}) {
-                                @foreach($oldExperiences[$i] as $field => $value)
-                                    @if($value)
-                                        const expField{{ $i }}_{{ $field }} = expRow{{ $i }}.querySelector('[name="experiences[{{ $i }}][{{ $field }}]"]');
+                                @foreach ($oldExperiences[$i] as $field => $value)
+                                    @if ($value)
+                                        const expField{{ $i }}_{{ $field }} =
+                                            expRow{{ $i }}.querySelector(
+                                                '[name="experiences[{{ $i }}][{{ $field }}]"]');
                                         if (expField{{ $i }}_{{ $field }}) {
-                                            expField{{ $i }}_{{ $field }}.value = '{{ $value }}';
+                                            expField{{ $i }}_{{ $field }}.value =
+                                                '{{ $value }}';
                                         }
                                     @endif
                                 @endforeach
@@ -1659,26 +1732,30 @@
         @endif
 
         // Restore old reference values if any
-        @if(old('references'))
+        @if (old('references'))
             document.addEventListener('DOMContentLoaded', function() {
                 @php
                     $oldReferences = old('references', []);
                     $count = count($oldReferences);
                 @endphp
-                
-                @if($count > 1)
-                    @for($i = 1; $i < $count; $i++)
+
+                @if ($count > 1)
+                    @for ($i = 1; $i < $count; $i++)
                         addReference();
-                        
+
                         // Set values
-                        @if(isset($oldReferences[$i]))
-                            const refRow{{ $i }} = document.querySelectorAll('.reference-row')[{{ $i }}];
+                        @if (isset($oldReferences[$i]))
+                            const refRow{{ $i }} = document.querySelectorAll('.reference-row')[
+                                {{ $i }}];
                             if (refRow{{ $i }}) {
-                                @foreach($oldReferences[$i] as $field => $value)
-                                    @if($value)
-                                        const refField{{ $i }}_{{ $field }} = refRow{{ $i }}.querySelector('[name="references[{{ $i }}][{{ $field }}]"]');
+                                @foreach ($oldReferences[$i] as $field => $value)
+                                    @if ($value)
+                                        const refField{{ $i }}_{{ $field }} =
+                                            refRow{{ $i }}.querySelector(
+                                                '[name="references[{{ $i }}][{{ $field }}]"]');
                                         if (refField{{ $i }}_{{ $field }}) {
-                                            refField{{ $i }}_{{ $field }}.value = '{{ $value }}';
+                                            refField{{ $i }}_{{ $field }}.value =
+                                                '{{ $value }}';
                                         }
                                     @endif
                                 @endforeach
