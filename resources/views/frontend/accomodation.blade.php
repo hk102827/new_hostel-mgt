@@ -300,7 +300,7 @@
     .single_counter h3 {
         font-size: 2.5rem;
         font-weight: bold;
-        color: #007bff;
+        color: #f3c300;;
         margin-bottom: 10px;
     }
     

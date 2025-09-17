@@ -10,6 +10,26 @@
             padding: 0;
             box-sizing: border-box;
         }
+        @media (max-width: 576px) {
+            .banner_content h6 {
+                font-size: 14px;       /* optional: text size thoda chhota */
+                line-height: 1.2;      /* gap kam */
+                margin-bottom: 5px;    /* neeche ka space kam */
+            }
+
+            .banner_content h2 {
+                font-size: 22px;       /* thoda chhota text */
+                line-height: 1.3;
+                margin-bottom: 10px;
+            }
+
+            .banner_content p {
+                font-size: 14px;
+                line-height: 1.4;      /* gap kam */
+                margin-bottom: 15px;
+            }
+            }
+
 
         .custom-list {
             list-style: none;
@@ -18,7 +38,24 @@
             text-align: center;
             /* text center */
             display: inline-block;
+            
             /* list ko inline block banaya */
+        }
+        .first{
+            margin-left: 34%;
+        }
+        @media(max-width: 776px){
+            .first{
+                margin-left: 20%;
+            }
+        }
+        .second{
+            margin-left: 15%;
+        }
+        @media(max-width: 776px){
+            .second{
+                margin-left: 20%;
+            }
         }
 
         .custom-list li {
@@ -55,9 +92,30 @@
 
 
 
-        .section_gap {
-            padding: 80px 0;
-        }
+    .section_gap {
+    padding: 80px 0; /* top & bottom */
+}
+
+@media (max-width: 576px) {
+    .section_gap {
+        padding: 20px 0; /* chhota gap */
+    }
+}
+@media (max-width: 576px) {
+    .section_title h2 {
+        font-size: 18px !important;
+    }
+    h2 {
+        font-size: 18px !important;
+    }
+       .col-center p {
+        margin-bottom: 0px !important; /* default se kam */
+        padding-bottom: 0 !important;  /* agar padding lagi ho to remove */
+    }
+}
+
+
+
 
         .container {
             max-width: 1200px;
@@ -722,7 +780,7 @@
             <div class="row justify-content-center text-center">
               <div class="col-md-6 col-center">
                     <h5 class="title_color mb-3"><i class="fas fa-book-open"></i> Course Programs</h5>
-                    <ul class="custom-list">
+                    <ul class="custom-list first">
                         <li>JLPT N5 – Beginner foundation course</li>
                         <li>JLPT N4 – Elementary grammar & vocabulary</li>
                         <li>JLPT N3 – Intermediate level preparation</li>
@@ -736,7 +794,7 @@
                 <div class="col-lg-6 mb-4">
                     <div class="shadow-sm equal-box" style="background:#ffffff;border-radius:8px">
                         <h4 class="sec_h4 mb-3"><i class="fa fa-graduation-cap"></i> Course Features</h4>
-                        <ul class="custom-list">
+                        <ul class="custom-list second">
                             <li>Native Japanese instructors</li>
                             <li>Interactive multimedia classes</li>
                             <li>Small batch sizes (10-15 students)</li>
@@ -976,62 +1034,95 @@
     <!--================ Why Choose Us =================-->
 
     <!--================ Student Testimonials =================-->
-    <section class="testimonial_area section_gap">
+   <section class="motivation_area section_gap">
         <div class="container">
             <div class="section_title text-center">
-                <h2 class="title_color">What Our Students Say</h2>
-                <p>Hear from our successful students who have mastered Japanese language and achieved their JLPT goals.</p>
+                <h2 class="title_color">Begin Your Japanese Journey Today</h2>
+                <p>Transform your dreams into reality with our comprehensive Japanese language programs</p>
             </div>
-            <div class="testimonial_slider owl-carousel">
-                <div class="media testimonial_item">
-                    <img class="rounded-circle" src="{{ asset('assets/image/testtimonial-1.jpg') }}" alt="Student">
-                    <div class="media-body">
-                        <p>Tokyo Japanese School helped me pass JLPT N3 in just 8 months. The instructors are amazing and
-                            the hostel facilities made my learning journey comfortable and focused.</p>
-                        <a href="#">
-                            <h4 class="sec_h4">Ahmad Ali</h4>
-                        </a>
-                        <div class="star">
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_feature">
+                        <div class="feature_head">
+                            <span class="lnr lnr-graduation-hat"></span>
+                            <h4>Master JLPT Levels</h4>
+                        </div>
+                        <div class="feature_content">
+                            <p>From beginner N5 to advanced N1, our structured curriculum ensures your success in Japanese Language Proficiency Tests with proven teaching methods.</p>
                         </div>
                     </div>
                 </div>
-                <div class="media testimonial_item">
-                    <img class="rounded-circle" src="{{ asset('assets/image/testtimonial-1.jpg') }}" alt="Student">
-                    <div class="media-body">
-                        <p>The best decision I made was joining Tokyo Japanese School. From N5 to N2, the systematic
-                            approach and cultural classes prepared me well for living in Japan.</p>
-                        <a href="#">
-                            <h4 class="sec_h4">Fatima Khan</h4>
-                        </a>
-                        <div class="star">
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_feature">
+                        <div class="feature_head">
+                            <span class="lnr lnr-users"></span>
+                            <h4>Expert Native Teachers</h4>
+                        </div>
+                        <div class="feature_content">
+                            <p>Learn from qualified native Japanese instructors who bring authentic language experience and cultural insights to every lesson.</p>
                         </div>
                     </div>
                 </div>
-                <div class="media testimonial_item">
-                    <img class="rounded-circle" src="{{ asset('assets/image/testtimonial-1.jpg') }}" alt="Student">
-                    <div class="media-body">
-                        <p>Excellent teaching methods and supportive environment. I'm now working in Japan thanks to the
-                            solid foundation I got from Tokyo Japanese School.</p>
-                        <a href="#">
-                            <h4 class="sec_h4">Muhammad Hassan</h4>
-                        </a>
-                        <div class="star">
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_feature">
+                        <div class="feature_head">
+                            <span class="lnr lnr-rocket"></span>
+                            <h4>Career Opportunities</h4>
                         </div>
+                        <div class="feature_content">
+                            <p>Open doors to exciting careers in Japan, translation, tourism, and international business with our comprehensive language training.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="about_content">
+                        <h3 class="title_color">Our Success Story</h3>
+                        <p>Over 500+ students have successfully completed their Japanese language journey with us. Our proven track record includes:</p>
+                        <div class="counter_content d-flex justify-content-between flex-wrap mt-3">
+                            <div class="single_counter text-center mb-3">
+                                <h2 class="font-weight-bold">95%</h2>
+                                <p class="text-muted">JLPT Pass Rate</p>
+                            </div>
+                            <div class="single_counter text-center mb-3">
+                                <h2 class="font-weight-bold">200+</h2>
+                                <p class="text-muted">Students in Japan</p>
+                            </div>
+                            <div class="single_counter text-center mb-3">
+                                <h2 class="font-weight-bold">8</h2>
+                                <p class="text-muted">Years Experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 order-lg-1">
+                    <div class="about_content">
+                        <h3 class="title_color">Why Choose Japanese?</h3>
+                        <p>Japanese is the gateway to one of the world's most fascinating cultures and advanced economies. With over 125 million speakers globally, mastering Japanese opens doors to:</p>
+                        <ul class="feature_list">
+                            <li>High-paying job opportunities in Japan</li>
+                            <li>Access to cutting-edge technology and innovation</li>
+                            <li>Rich cultural experiences and traditions</li>
+                            <li>Business partnerships with Japanese companies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <div class="cta_content">
+                        <h3 class="title_color">Ready to Start Your Japanese Adventure?</h3>
+                        <p>Join thousands of successful students who chose us for their Japanese language journey</p>
+                        <a href="" class="primary_btn" data-bs-toggle="modal"
+                                data-bs-target="#studentAdmissionModal">Enroll Now</a>
+                        <a href="" class="white_bg_btn">Free Trial Class</a>
                     </div>
                 </div>
             </div>

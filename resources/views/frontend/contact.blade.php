@@ -1,18 +1,19 @@
 @extends('layouts.app')
 @section('content')
     <!--================Breadcrumb Area =================-->
-    <section class="breadcrumb_area">
-        <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
-        <div class="container">
-            <div class="page-cover text-center">
-                <h2 class="page-cover-tittle">Contact Us</h2>
-                <ol class="breadcrumb">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li class="active">Contact Us</li>
-                </ol>
-            </div>
+ <section class="breadcrumb_area">
+    <div class="overlay bg-parallax"></div>
+    <div class="container">
+        <div class="page-cover text-center">
+            <h2 class="page-cover-tittle">Contact Us</h2>
+            <ol class="breadcrumb">
+                <li><a href="{{ route('home') }}">Home</a></li>
+                <li class="active">Contact Us</li>
+            </ol>
         </div>
-    </section>
+    </div>
+</section>
+
     <!--================Breadcrumb Area =================-->
 
     <!--================Contact Info Header =================-->
@@ -269,7 +270,7 @@
         }
 
         .info_icon {
-            background: linear-gradient(135deg, #007bff, #0056b3);
+            background: linear-gradient(135deg, #f3c300, #f3c300);
             color: white;
             width: 80px;
             height: 80px;
@@ -294,7 +295,7 @@
         }
 
         .info_content a {
-            color: #007bff;
+            color: #f3c300;
             text-decoration: none;
             font-weight: 500;
         }
@@ -335,7 +336,7 @@
         }
 
         .form-control:focus {
-            border-color: #007bff;
+            border-color: #f3c300;
             box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
         }
 
@@ -355,7 +356,7 @@
             color: #333;
             margin-bottom: 20px;
             font-weight: 600;
-            border-bottom: 2px solid #007bff;
+            border-bottom: 2px solid #f3c300;
             padding-bottom: 10px;
         }
 
@@ -373,7 +374,7 @@
         .contact_item i {
             width: 40px;
             height: 40px;
-            background: #007bff;
+            background: #f3c300;
             color: white;
             border-radius: 50%;
             display: flex;
@@ -440,7 +441,7 @@
         }
 
         .faq_link:hover {
-            color: #007bff;
+            color: #f3c300;
             text-decoration: none;
         }
 
@@ -449,7 +450,7 @@
         }
 
         .download_widget {
-            background: linear-gradient(135deg, #007bff, #0056b3) !important;
+            background: linear-gradient(135deg, #f3c300, #f3c300) !important;
             color: white;
         }
 
@@ -500,7 +501,7 @@
         .direction_item i {
             width: 50px;
             height: 50px;
-            background: #007bff;
+            background: #f3c300;
             color: white;
             border-radius: 50%;
             display: flex;

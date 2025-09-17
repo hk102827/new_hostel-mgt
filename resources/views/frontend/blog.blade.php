@@ -49,7 +49,7 @@
                         <!-- Blog Post 1 -->
                         <article class="blog_post tips" data-date="2024-03-15">
                             <div class="blog_post_img">
-                                <img src="{{ asset('assets/blog/japanese-study-tips.jpg') }}" alt="Japanese Study Tips" class="img-fluid">
+                                <img src="{{ asset('assets/image/class2.jpg') }}" alt="Japanese Study Tips" class="img-fluid">
                                 <div class="blog_date">
                                     <span class="day">15</span>
                                     <span class="month">Mar</span>
@@ -78,7 +78,7 @@
                         <!-- Blog Post 2 -->
                         <article class="blog_post culture" data-date="2024-03-12">
                             <div class="blog_post_img">
-                                <img src="{{ asset('assets/blog/japanese-culture.jpg') }}" alt="Japanese Culture" class="img-fluid">
+                                <img src="{{ asset('assets/image/classphoto3.jpg') }}" alt="Japanese Culture" class="img-fluid">
                                 <div class="blog_date">
                                     <span class="day">12</span>
                                     <span class="month">Mar</span>
@@ -107,7 +107,7 @@
                         <!-- Blog Post 3 -->
                         <article class="blog_post jlpt" data-date="2024-03-10">
                             <div class="blog_post_img">
-                                <img src="{{ asset('assets/blog/jlpt-preparation.jpg') }}" alt="JLPT Preparation" class="img-fluid">
+                                <img src="{{ asset('assets/image/our-mission.jpg') }}" alt="JLPT Preparation" class="img-fluid">
                                 <div class="blog_date">
                                     <span class="day">10</span>
                                     <span class="month">Mar</span>
@@ -136,7 +136,7 @@
                         <!-- Blog Post 4 -->
                         <article class="blog_post grammar" data-date="2024-03-08">
                             <div class="blog_post_img">
-                                <img src="{{ asset('assets/blog/japanese-grammar.jpg') }}" alt="Japanese Grammar" class="img-fluid">
+                                <img src="{{ asset('assets/image/classphoto4.jpg') }}" alt="Japanese Grammar" class="img-fluid">
                                 <div class="blog_date">
                                     <span class="day">08</span>
                                     <span class="month">Mar</span>
@@ -162,64 +162,9 @@
                             </div>
                         </article>
 
-                        <!-- Blog Post 5 -->
-                        <article class="blog_post vocabulary" data-date="2024-03-05">
-                            <div class="blog_post_img">
-                                <img src="{{ asset('assets/blog/kanji-learning.jpg') }}" alt="Kanji Learning" class="img-fluid">
-                                <div class="blog_date">
-                                    <span class="day">05</span>
-                                    <span class="month">Mar</span>
-                                </div>
-                            </div>
-                            <div class="blog_post_content">
-                                <div class="blog_meta">
-                                    <span class="category vocabulary">Vocabulary</span>
-                                    <span class="author">By Ayesha Khan</span>
-                                    <span class="read_time">10 min read</span>
-                                </div>
-                                <h3><a href="{{ url('/blog/kanji-learning-techniques') }}">Smart Kanji Learning Techniques: From Beginner to Advanced</a></h3>
-                                <p>
-                                    Learning Kanji doesn't have to be overwhelming. Discover effective memory techniques, stroke order 
-                                    importance, and digital tools that make Kanji learning enjoyable and efficient...
-                                </p>
-                                <div class="blog_tags">
-                                    <span class="tag">#Kanji</span>
-                                    <span class="tag">#Vocabulary</span>
-                                    <span class="tag">#Memory</span>
-                                </div>
-                                <a href="{{ url('/blog/kanji-learning-techniques') }}" class="read_more_btn">Read More <i class="fa fa-arrow-right"></i></a>
-                            </div>
-                        </article>
+                   
 
-                        <!-- Blog Post 6 -->
-                        <article class="blog_post tips" data-date="2024-03-02">
-                            <div class="blog_post_img">
-                                <img src="{{ asset('assets/blog/hostel-life.jpg') }}" alt="Student Life" class="img-fluid">
-                                <div class="blog_date">
-                                    <span class="day">02</span>
-                                    <span class="month">Mar</span>
-                                </div>
-                            </div>
-                            <div class="blog_post_content">
-                                <div class="blog_meta">
-                                    <span class="category tips">Learning Tips</span>
-                                    <span class="author">By Maria Khan</span>
-                                    <span class="read_time">5 min read</span>
-                                </div>
-                                <h3><a href="{{ url('/blog/hostel-life-japanese-learning') }}">How Our Hostel Environment Enhances Japanese Learning</a></h3>
-                                <p>
-                                    Living in our hostel facility provides unique advantages for Japanese language learners. 
-                                    From study groups to cultural immersion activities, discover how communal living accelerates 
-                                    your Japanese learning journey...
-                                </p>
-                                <div class="blog_tags">
-                                    <span class="tag">#HostelLife</span>
-                                    <span class="tag">#StudentLife</span>
-                                    <span class="tag">#CommunityLearning</span>
-                                </div>
-                                <a href="{{ url('/blog/hostel-life-japanese-learning') }}" class="read_more_btn">Read More <i class="fa fa-arrow-right"></i></a>
-                            </div>
-                        </article>
+                      
 
                     </div>
 
@@ -243,41 +188,6 @@
                 <!-- Sidebar -->
                 <div class="col-lg-4">
                     <div class="blog_sidebar">
-                        
-                        <!-- Recent Posts Widget -->
-                        <div class="sidebar_widget">
-                            <h4 class="widget_title">Recent Posts</h4>
-                            <div class="recent_posts">
-                                <div class="recent_post_item d-flex">
-                                    <div class="recent_post_img">
-                                        <img src="{{ asset('assets/blog/recent-1.jpg') }}" alt="Recent Post" class="img-fluid">
-                                    </div>
-                                    <div class="recent_post_content">
-                                        <h6><a href="#">Japanese Honorific Language: Keigo Mastery</a></h6>
-                                        <span class="post_date">March 18, 2024</span>
-                                    </div>
-                                </div>
-                                <div class="recent_post_item d-flex">
-                                    <div class="recent_post_img">
-                                        <img src="{{ asset('assets/blog/recent-2.jpg') }}" alt="Recent Post" class="img-fluid">
-                                    </div>
-                                    <div class="recent_post_content">
-                                        <h6><a href="#">Student Success: From N5 to N1 in 18 Months</a></h6>
-                                        <span class="post_date">March 16, 2024</span>
-                                    </div>
-                                </div>
-                                <div class="recent_post_item d-flex">
-                                    <div class="recent_post_img">
-                                        <img src="{{ asset('assets/blog/recent-3.jpg') }}" alt="Recent Post" class="img-fluid">
-                                    </div>
-                                    <div class="recent_post_content">
-                                        <h6><a href="#">Top 5 Japanese Language Apps We Recommend</a></h6>
-                                        <span class="post_date">March 14, 2024</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Categories Widget -->
                         <div class="sidebar_widget">
                             <h4 class="widget_title">Categories</h4>
@@ -377,7 +287,7 @@
                                     <span>Saddar, Rawalpindi</span>
                                 </div>
                             </div>
-                            <a href="{{ url('/contact') }}" class="btn btn-outline-primary btn-sm mt-3">Get in Touch</a>
+                            <a href="{{ url('/contact') }}" class="btn btn-sm mt-3">Get in Touch</a>
                         </div>
 
                     </div>
@@ -409,9 +319,9 @@
     
     .category_btn:hover,
     .category_btn.active {
-        background: #007bff;
+        background: #f3c300;
         color: white;
-        border-color: #007bff;
+        border-color: #f3c300;
     }
     
     .blog_search .input-group {
@@ -464,7 +374,7 @@
         position: absolute;
         top: 20px;
         left: 20px;
-        background: #007bff;
+        background: #f3c300;
         color: white;
         text-align: center;
         border-radius: 10px;
@@ -497,7 +407,7 @@
     }
     
     .blog_meta .category {
-        background: #007bff;
+        background: #f3c300;
         color: white;
         padding: 4px 12px;
         border-radius: 15px;
@@ -529,7 +439,7 @@
     }
     
     .blog_post_content h3 a:hover {
-        color: #007bff;
+        color: #f3c300;
     }
     
     .blog_post_content p {
@@ -554,14 +464,14 @@
     }
     
     .read_more_btn {
-        color: #007bff;
+        color: #f3c300;
         text-decoration: none;
         font-weight: 500;
         transition: all 0.3s ease;
     }
     
     .read_more_btn:hover {
-        color: #0056b3;
+        color: #f3c300;
         text-decoration: none;
     }
     
@@ -582,7 +492,7 @@
         color: #333;
         margin-bottom: 20px;
         padding-bottom: 10px;
-        border-bottom: 2px solid #007bff;
+        border-bottom: 2px solid #f3c300;
         font-size: 1.2rem;
     }
     
@@ -623,9 +533,7 @@
         transition: color 0.3s ease;
     }
     
-    .recent_post_content h6 a:hover {
-        color: #007bff;
-    }
+ 
     
     .post_date {
         color: #999;
@@ -644,7 +552,7 @@
     }
     
     .category_link:hover {
-        color: #007bff;
+        color: #f3c300;
         text-decoration: none;
     }
     
@@ -674,13 +582,13 @@
     }
     
     .tag_item:hover {
-        background: #007bff;
+        background: #f3c300;
         color: white;
         text-decoration: none;
     }
     
     .newsletter_widget {
-        background: linear-gradient(135deg, #007bff, #0056b3) !important;
+        background: linear-gradient(135deg, #f3c300, #d0a704;) !important;
         color: white;
     }
     
@@ -699,7 +607,7 @@
     .newsletter_form .btn {
         border-radius: 20px;
         background: white;
-        color: #007bff;
+        color: #f3c300;
         border: none;
         font-weight: 500;
     }
@@ -715,7 +623,7 @@
     }
     
     .resource_link:hover {
-        color: #007bff;
+        color: #f3c300;
         text-decoration: none;
     }
     
@@ -725,7 +633,7 @@
     
     .resource_link i {
         margin-right: 12px;
-        color: #007bff;
+        color: #f3c300;
         font-size: 16px;
     }
     
@@ -737,7 +645,7 @@
     
     .contact_item i {
         margin-right: 12px;
-        color: #007bff;
+        color: #f3c300;
         font-size: 14px;
         width: 20px;
     }
@@ -756,13 +664,13 @@
     .pagination .page-link {
         border-radius: 50px;
         margin: 0 5px;
-        border: 2px solid #007bff;
-        color: #007bff;
+        border: 2px solid #f3c300;
+        color: #f3c300;
     }
     
     .pagination .page-item.active .page-link {
-        background: #007bff;
-        border-color: #007bff;
+        background: #f3c300;
+        border-color: #f3c300;
     }
     
     /* Responsive */

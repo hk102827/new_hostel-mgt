@@ -34,6 +34,27 @@
                 @endif
 
         @yield('content')
+        <script>
+document.addEventListener("DOMContentLoaded", function() {
+    let images = [
+        "{{ asset('assets/image/class1.jpg') }}",
+        "{{ asset('assets/image/classphoto3.jpg') }}",
+        "{{ asset('assets/image/our-mission.jpg') }}"
+    ];
+
+    let index = 0;
+    let bg = document.querySelector(".breadcrumb_area .bg-parallax");
+
+    // set first image
+    bg.style.backgroundImage = `url('${images[index]}')`;
+
+    setInterval(() => {
+        index = (index + 1) % images.length; // loop images
+        bg.style.backgroundImage = `url('${images[index]}')`;
+    }, 4000); // change every 4 seconds
+});
+</script>
+
 
 
 

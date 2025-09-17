@@ -31,7 +31,7 @@
                     <li class="filter-btn" data-filter="classroom">Classrooms</li>
                     <li class="filter-btn" data-filter="hostel">Hostel Facilities</li>
                     <li class="filter-btn" data-filter="activities">Student Activities</li>
-                    <li class="filter-btn" data-filter="events">Events & Ceremonies</li>
+                    {{-- <li class="filter-btn" data-filter="events">Events & Ceremonies</li> --}}
                     <li class="filter-btn" data-filter="facilities">School Facilities</li>
                 </ul>
             </div>
@@ -42,7 +42,7 @@
                 <!-- Classroom Images -->
                 <div class="col-lg-4 col-md-6 mb-4 gallery_item classroom">
                     <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/classroom-1.jpg') }}" alt="Modern Japanese Classroom" class="img-fluid">
+                        <img src="{{ asset('assets/image/class1.jpg') }}" alt="Modern Japanese Classroom" class="img-fluid">
                         <div class="gallery_overlay">
                             <div class="gallery_content">
                                 <h4>Modern Classroom</h4>
@@ -54,7 +54,7 @@
 
                 <div class="col-lg-4 col-md-6 mb-4 gallery_item classroom">
                     <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/classroom-2.jpg') }}" alt="Interactive Learning" class="img-fluid">
+                        <img src="{{ asset('assets/image/classphoto4.jpg') }}" alt="Interactive Learning" class="img-fluid">
                         <div class="gallery_overlay">
                             <div class="gallery_content">
                                 <h4>Interactive Learning</h4>
@@ -66,7 +66,7 @@
 
                 <div class="col-lg-4 col-md-6 mb-4 gallery_item classroom">
                     <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/classroom-3.jpg') }}" alt="Group Study Session" class="img-fluid">
+                        <img src="{{ asset('assets/image/classphoto5.jpg') }}" alt="Group Study Session" class="img-fluid">
                         <div class="gallery_overlay">
                             <div class="gallery_content">
                                 <h4>Group Study Session</h4>
@@ -79,7 +79,7 @@
                 <!-- Hostel Images -->
                 <div class="col-lg-4 col-md-6 mb-4 gallery_item hostel">
                     <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/hostel-room.jpg') }}" alt="Hostel Room" class="img-fluid">
+                        <img src="{{ asset('assets/image/5th.jpeg') }}" alt="Hostel Room" class="img-fluid">
                         <div class="gallery_overlay">
                             <div class="gallery_content">
                                 <h4>Comfortable Hostel Rooms</h4>
@@ -91,7 +91,7 @@
 
                 <div class="col-lg-4 col-md-6 mb-4 gallery_item hostel">
                     <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/hostel-dining.jpg') }}" alt="Dining Area" class="img-fluid">
+                        <img src="{{ asset('assets/image/dinner.jpeg') }}" alt="Dining Area" class="img-fluid">
                         <div class="gallery_overlay">
                             <div class="gallery_content">
                                 <h4>Dining Hall</h4>
@@ -103,7 +103,7 @@
 
                 <div class="col-lg-4 col-md-6 mb-4 gallery_item hostel">
                     <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/hostel-common.jpg') }}" alt="Common Area" class="img-fluid">
+                        <img src="{{ asset('assets/image/stude-space.jpeg') }}" alt="Common Area" class="img-fluid">
                         <div class="gallery_overlay">
                             <div class="gallery_content">
                                 <h4>Common Area</h4>
@@ -116,7 +116,7 @@
                 <!-- Student Activities -->
                 <div class="col-lg-4 col-md-6 mb-4 gallery_item activities">
                     <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/cultural-activity.jpg') }}" alt="Cultural Activity" class="img-fluid">
+                        <img src="{{ asset('assets/image/traditional.jpeg') }}" alt="Cultural Activity" class="img-fluid">
                         <div class="gallery_overlay">
                             <div class="gallery_content">
                                 <h4>Japanese Cultural Workshop</h4>
@@ -128,7 +128,7 @@
 
                 <div class="col-lg-4 col-md-6 mb-4 gallery_item activities">
                     <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/speaking-practice.jpg') }}" alt="Speaking Practice" class="img-fluid">
+                        <img src="{{ asset('assets/image/conversation.jpeg') }}" alt="Speaking Practice" class="img-fluid">
                         <div class="gallery_overlay">
                             <div class="gallery_content">
                                 <h4>Speaking Practice Session</h4>
@@ -140,7 +140,7 @@
 
                 <div class="col-lg-4 col-md-6 mb-4 gallery_item activities">
                     <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/study-group.jpg') }}" alt="Study Group" class="img-fluid">
+                        <img src="{{ asset('assets/image/group-study.jpeg') }}" alt="Study Group" class="img-fluid">
                         <div class="gallery_overlay">
                             <div class="gallery_content">
                                 <h4>Evening Study Groups</h4>
@@ -150,47 +150,11 @@
                     </div>
                 </div>
 
-                <!-- Events & Ceremonies -->
-                <div class="col-lg-4 col-md-6 mb-4 gallery_item events">
-                    <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/graduation.jpg') }}" alt="Graduation Ceremony" class="img-fluid">
-                        <div class="gallery_overlay">
-                            <div class="gallery_content">
-                                <h4>Graduation Ceremony</h4>
-                                <p>Celebrating successful completion of Japanese language program</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4 gallery_item events">
-                    <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/jlpt-result.jpg') }}" alt="JLPT Success" class="img-fluid">
-                        <div class="gallery_overlay">
-                            <div class="gallery_content">
-                                <h4>JLPT Success Celebration</h4>
-                                <p>Students celebrating their JLPT exam achievements</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4 gallery_item events">
-                    <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/farewell-party.jpg') }}" alt="Farewell Party" class="img-fluid">
-                        <div class="gallery_overlay">
-                            <div class="gallery_content">
-                                <h4>Farewell Party</h4>
-                                <p>Sending off students to Japan with warm wishes</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+             
                 <!-- School Facilities -->
                 <div class="col-lg-4 col-md-6 mb-4 gallery_item facilities">
                     <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/library.jpg') }}" alt="Library" class="img-fluid">
+                        <img src="{{ asset('assets/image/liborary.jpeg') }}" alt="Library" class="img-fluid">
                         <div class="gallery_overlay">
                             <div class="gallery_content">
                                 <h4>Japanese Language Library</h4>
@@ -202,7 +166,7 @@
 
                 <div class="col-lg-4 col-md-6 mb-4 gallery_item facilities">
                     <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/computer-lab.jpg') }}" alt="Computer Lab" class="img-fluid">
+                        <img src="{{ asset('assets/image/lab.jpeg') }}" alt="Computer Lab" class="img-fluid">
                         <div class="gallery_overlay">
                             <div class="gallery_content">
                                 <h4>Computer Lab</h4>
@@ -214,7 +178,7 @@
 
                 <div class="col-lg-4 col-md-6 mb-4 gallery_item facilities">
                     <div class="gallery_card">
-                        <img src="{{ asset('assets/gallery/reception.jpg') }}" alt="Reception Area" class="img-fluid">
+                        <img src="{{ asset('assets/image/reception.jpeg') }}" alt="Reception Area" class="img-fluid">
                         <div class="gallery_overlay">
                             <div class="gallery_content">
                                 <h4>Reception & Welcome Area</h4>
@@ -230,69 +194,66 @@
     <!--================Gallery Filter Area =================-->
 
     <!--================Hostel Information Area =================-->
-    <section class="hostel_info_area section_gap" style="background-color: #f8f9fa;">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="hostel_content">
-                        <h2 class="title_color">Comfortable Hostel Accommodation</h2>
-                        <p>
-                            We understand that learning Japanese requires dedication and focus. That's why we provide 
-                            comfortable hostel facilities for out-of-city students, creating a home-away-from-home 
-                            environment that supports your learning journey.
-                        </p>
-                        <div class="hostel_features mt-4">
-                            <div class="feature_item d-flex align-items-center mb-3">
-                                <i class="fa fa-bed text-primary mr-3"></i>
-                                <span>Clean and furnished rooms with modern amenities</span>
-                            </div>
-                            <div class="feature_item d-flex align-items-center mb-3">
-                                <i class="fa fa-wifi text-primary mr-3"></i>
-                                <span>Free Wi-Fi for online study and research</span>
-                            </div>
-                            <div class="feature_item d-flex align-items-center mb-3">
-                                <i class="fa fa-utensils text-primary mr-3"></i>
-                                <span>Healthy meals and dining facilities</span>
-                            </div>
-                            <div class="feature_item d-flex align-items-center mb-3">
-                                <i class="fa fa-book text-primary mr-3"></i>
-                                <span>Quiet study areas and common rooms</span>
-                            </div>
-                            <div class="feature_item d-flex align-items-center mb-3">
-                                <i class="fa fa-shield-alt text-primary mr-3"></i>
-                                <span>24/7 security and safe environment</span>
-                            </div>
+<section class="hostel_info_area section_gap" style="background-color: #f8f9fa;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <div class="hostel_content">
+                    <h2 class="title_color mb-3">Comfortable Hostel Accommodation</h2>
+                    <p class="text-muted mb-4">
+                        We understand that learning Japanese requires dedication and focus. 
+                        That’s why we provide comfortable hostel facilities for out-of-city students, 
+                        creating a home-away-from-home environment that supports your learning journey.
+                    </p>
+                    
+                    <div class="row text-left mt-4">
+                        <div class="col-md-6 mb-3 d-flex align-items-start">
+                            <i class="fa fa-bed text-primary fa-lg mr-3"></i>
+                            <span>Clean and furnished rooms with modern amenities</span>
                         </div>
-                        <a href="{{ url('/contact') }}" class="button_hover theme_btn_two mt-4">Inquire About Hostel</a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="hostel_image_grid">
-                        <div class="row">
-                            <div class="col-6 mb-3">
-                                <img src="{{ asset('assets/gallery/hostel-exterior.jpg') }}" alt="Hostel Building" class="img-fluid rounded shadow">
-                            </div>
-                            <div class="col-6 mb-3">
-                                <img src="{{ asset('assets/gallery/hostel-kitchen.jpg') }}" alt="Kitchen Area" class="img-fluid rounded shadow">
-                            </div>
-                            <div class="col-6 mb-3">
-                                <img src="{{ asset('assets/gallery/hostel-study.jpg') }}" alt="Study Area" class="img-fluid rounded shadow">
-                            </div>
-                            <div class="col-6 mb-3">
-                                <img src="{{ asset('assets/gallery/hostel-security.jpg') }}" alt="Security" class="img-fluid rounded shadow">
-                            </div>
+                        <div class="col-md-6 mb-3 d-flex align-items-start">
+                            <i class="fa fa-wifi text-primary fa-lg mr-3"></i>
+                            <span>Free Wi-Fi for online study and research</span>
+                        </div>
+                        <div class="col-md-6 mb-3 d-flex align-items-start">
+                            <i class="fa fa-utensils text-primary fa-lg mr-3"></i>
+                            <span>Healthy meals and dining facilities</span>
+                        </div>
+                        <div class="col-md-6 mb-3 d-flex align-items-start">
+                            <i class="fa fa-book text-primary fa-lg mr-3"></i>
+                            <span>Quiet study areas and common rooms</span>
+                        </div>
+                        <div class="col-md-6 mb-3 d-flex align-items-start">
+                            <i class="fa fa-shield-alt text-primary fa-lg mr-3"></i>
+                            <span>24/7 security and safe environment</span>
                         </div>
                     </div>
+
+                    <a href="{{ url('/contact') }}" class="button_hover theme_btn_two mt-4">Inquire About Hostel</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
     <!--================Hostel Information Area =================-->
 
     <style>
     .gallery_filter ul {
         margin-bottom: 50px;
     }
+    @media (max-width: 768px) {
+  .gallery_filter ul li {
+    flex: 0 0 calc(50% - 10px); /* 2 per row */
+    box-sizing: border-box;
+    margin-top: 0;
+   
+  }
+
+  .gallery_filter ul li:last-child {
+    flex: 0 0 100%; /* last one full width */
+  }
+}
     
     .filter-btn {
         background: #f8f9fa;
@@ -307,9 +268,9 @@
     
     .filter-btn:hover,
     .filter-btn.active {
-        background: #007bff;
+        background: #f3c300;
         color: white;
-        border-color: #007bff;
+        border-color: #f3c300;
     }
     
     .gallery_card {
@@ -338,7 +299,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(45deg, rgba(0,123,255,0.9), rgba(0,86,179,0.9));
+        background: linear-gradient(45deg, #f3c300, #f3c300);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -387,7 +348,7 @@
     
     .hostel_features .feature_item i {
         font-size: 1.2rem;
-        width: 30px;
+        /* width: 30px; */
     }
     
     .hostel_image_grid img {
@@ -395,6 +356,8 @@
         object-fit: cover;
         width: 100%;
     }
+
+
     </style>
 
     <script>

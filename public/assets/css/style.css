@@ -704,13 +704,37 @@ button:focus {
   background: #04091e;
   z-index: 1;
   overflow: hidden;
+  min-height: 550px; /* flexible height */
 }
 
 .breadcrumb_area .bg-parallax {
-  background: url("../image/about_banner.jpg") no-repeat scroll center 0/cover;
-  opacity: 0.50;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
   z-index: -1;
+  transition: background-image 1s ease-in-out; /* smooth fade effect */
 }
+
+/* Mobile screens */
+@media (max-width: 768px) {
+  .breadcrumb_area {
+    padding: 100px 0 60px; 
+    min-height: 250px; /* smaller height */
+  }
+  .page-cover h2 {
+    font-size: 22px; /* smaller heading */
+  }
+  .breadcrumb li {
+    font-size: 14px;
+  }
+}
+
+
 
 .page-cover-tittle {
   display: block;
